@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using OnlineAptitude.Models;
+
 namespace OnlineAptitude
 {
     public class Program
@@ -8,6 +11,7 @@ namespace OnlineAptitude
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<AptitudeTestContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("myconn")));
 
             var app = builder.Build();
 
