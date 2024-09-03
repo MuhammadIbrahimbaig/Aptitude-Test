@@ -1,8 +1,0 @@
-C:\Users\USER\Desktop\OnlineAptitude\obj\Debug\net8.0\OnlineAptitude.csproj.AssemblyReference.cache
-C:\Users\USER\Desktop\OnlineAptitude\obj\Debug\net8.0\OnlineAptitude.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\USER\Desktop\OnlineAptitude\obj\Debug\net8.0\OnlineAptitude.AssemblyInfoInputs.cache
-C:\Users\USER\Desktop\OnlineAptitude\obj\Debug\net8.0\OnlineAptitude.AssemblyInfo.cs
-C:\Users\USER\Desktop\OnlineAptitude\obj\Debug\net8.0\OnlineAptitude.csproj.CoreCompileInputs.cache
-C:\Users\USER\Desktop\OnlineAptitude\obj\Debug\net8.0\OnlineAptitude.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\USER\Desktop\OnlineAptitude\obj\Debug\net8.0\OnlineAptitude.RazorAssemblyInfo.cache
-C:\Users\USER\Desktop\OnlineAptitude\obj\Debug\net8.0\OnlineAptitude.RazorAssemblyInfo.cs
