@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using OnlineAptitude.Models;
 using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 
 namespace OnlineAptitude.Controllers
@@ -10,13 +11,16 @@ namespace OnlineAptitude.Controllers
     {
         //Private Read Context File
         private readonly AptitudeTestContext db;
+        private readonly IHttpContextAccessor Contx;
+
 
         private readonly ILogger<HomeController> _logger;
-                public HomeController(ILogger<HomeController> logger, AptitudeTestContext db)
+                public HomeController(ILogger<HomeController> logger, AptitudeTestContext db, IHttpContextAccessor contx)
         {
             _logger = logger;
             this.db = db;
-        }
+            this.Contx = contx;
+        }   
 
         public IActionResult Index()
         {
@@ -67,28 +71,39 @@ namespace OnlineAptitude.Controllers
         }
 
         [HttpPost]
+
+
+
+
+
+
+
         public IActionResult Signin(User userAuth)
         {
-            var findUser = db.Users.Include(options => options.RoleIdFk).Where(options => options.Username == userAuth.Username && options.Password == userAuth.Password).ToList();
+            var findUser = db.Users.Include(options => options.RoleIdFkNavigation).Where(options => options.Username == userAuth.Username && options.Password == userAuth.Password).ToList();
             if (findUser != null)
             {
-                var userRole = findUser[0].Roles.RoleName;
-                if (userRole == "Admin")
+                var userRole = findUser[0].RoleIdFkNavigation.Rolename;
+                if (userRole == "Manager")
                 {
-                    var userrole = "Admin";
-                    Contx.HttpContext.Session.SetString("Name", findUser[0].UserName);
-                    Contx.HttpContext.Session.SetString("Email", findUser[0].Email);
+                    var userrole = "Manager";
+                    Contx.HttpContext.Session.SetString("Name", findUser[0].Username);
                     Contx.HttpContext.Session.SetString("Password", findUser[0].Password);
+                    Contx.HttpContext.Session.SetString("PersonalDetails", findUser[0].PersonalDetails);
+                    Contx.HttpContext.Session.SetString("EducationDetails", findUser[0].EducationDetails);
+                    Contx.HttpContext.Session.SetString("WorkExperience", findUser[0].WorkExperience);
                     Contx.HttpContext.Session.SetString("userimg", findUser[0].UserImage);
                     Contx.HttpContext.Session.SetString("userrole", userrole);
                     return RedirectToAction("Index", "Dashboard");
                 }
-                else if (userRole == "User")
+                else if (userRole == "Canditate")
                 {
-                    var userrole = "User";
-                    Contx.HttpContext.Session.SetString("Name", findUser[0].UserName);
-                    Contx.HttpContext.Session.SetString("Email", findUser[0].Email);
+                    var userrole = "Canditate";
+                    Contx.HttpContext.Session.SetString("Name", findUser[0].Username);
                     Contx.HttpContext.Session.SetString("Password", findUser[0].Password);
+                    Contx.HttpContext.Session.SetString("PersonalDetails", findUser[0].PersonalDetails);
+                    Contx.HttpContext.Session.SetString("EducationDetails", findUser[0].EducationDetails);
+                    Contx.HttpContext.Session.SetString("WorkExperience", findUser[0].WorkExperience);
                     Contx.HttpContext.Session.SetString("userimg", findUser[0].UserImage);
                     Contx.HttpContext.Session.SetString("userrole", userrole);
                     return RedirectToAction("Index", "Home");
@@ -96,15 +111,16 @@ namespace OnlineAptitude.Controllers
                 else
                 {
                     // Handle unrecognized role
-                    return RedirectToAction("Registration", "Signup");
+                    return RedirectToAction("Registration", "Home");
                 }
             }
             return View();
         }
+
         public IActionResult Logout()
         {
             Contx.HttpContext.Session.Clear();
-            return RedirectToAction("Login", "signup");
+            return RedirectToAction("Signin", "Home");
         }
 
 

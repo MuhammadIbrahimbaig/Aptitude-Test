@@ -7,8 +7,12 @@
       "RelativeMoniker": "D:0:0:{27E94AE9-4666-4909-986F-591F351F2EFB}|OnlineAptitude.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{27E94AE9-4666-4909-986F-591F351F2EFB}|OnlineAptitude.csproj|c:\\users\\user\\desktop\\onlineaptitude\\views\\home\\signin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{27E94AE9-4666-4909-986F-591F351F2EFB}|OnlineAptitude.csproj|solutionrelative:views\\home\\signin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{27E94AE9-4666-4909-986F-591F351F2EFB}|OnlineAptitude.csproj|c:\\users\\user\\desktop\\onlineaptitude\\models\\registrationroleviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{27E94AE9-4666-4909-986F-591F351F2EFB}|OnlineAptitude.csproj|solutionrelative:models\\registrationroleviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{27E94AE9-4666-4909-986F-591F351F2EFB}|OnlineAptitude.csproj|c:\\users\\user\\desktop\\onlineaptitude\\models\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{27E94AE9-4666-4909-986F-591F351F2EFB}|OnlineAptitude.csproj|solutionrelative:models\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,8 +22,34 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Role.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\OnlineAptitude\\Models\\Role.cs",
+              "RelativeDocumentMoniker": "Models\\Role.cs",
+              "ToolTip": "C:\\Users\\USER\\Desktop\\OnlineAptitude\\Models\\Role.cs",
+              "RelativeToolTip": "Models\\Role.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-04T17:10:44.649Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "RegistrationRoleViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\OnlineAptitude\\Models\\RegistrationRoleViewModel.cs",
+              "RelativeDocumentMoniker": "Models\\RegistrationRoleViewModel.cs",
+              "ToolTip": "C:\\Users\\USER\\Desktop\\OnlineAptitude\\Models\\RegistrationRoleViewModel.cs",
+              "RelativeToolTip": "Models\\RegistrationRoleViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-04T17:08:09.85Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -28,22 +58,10 @@
               "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
               "ToolTip": "C:\\Users\\USER\\Desktop\\OnlineAptitude\\Controllers\\HomeController.cs",
               "RelativeToolTip": "Controllers\\HomeController.cs",
-              "ViewState": "AQIAADAAAAAAAAAAAAAmwEsAAAAoAAAA",
+              "ViewState": "AQIAAEcAAADAHfmvMBsnwFYAAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-02T17:02:40.236Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Signin.cshtml",
-              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\OnlineAptitude\\Views\\Home\\Signin.cshtml",
-              "RelativeDocumentMoniker": "Views\\Home\\Signin.cshtml",
-              "ToolTip": "C:\\Users\\USER\\Desktop\\OnlineAptitude\\Views\\Home\\Signin.cshtml",
-              "RelativeToolTip": "Views\\Home\\Signin.cshtml",
-              "ViewState": "AQIAABIAAAAAAAAAAAAAABkAAABZAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-09-02T17:02:28.076Z"
             }
           ]
         }

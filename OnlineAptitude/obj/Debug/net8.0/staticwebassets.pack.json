@@ -1153,6 +1153,14 @@
       "PackagePath": "staticwebassets\\assets\\scss\\material-dashboard\\variables\\_virtual-reality.scss"
     },
     {
+      "Id": "C:\\Users\\USER\\Desktop\\OnlineAptitude\\wwwroot\\myfiles\\1.jpg",
+      "PackagePath": "staticwebassets\\myfiles\\1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\USER\\Desktop\\OnlineAptitude\\wwwroot\\myfiles\\3.jpg",
+      "PackagePath": "staticwebassets\\myfiles\\3.jpg"
+    },
+    {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.OnlineAptitude.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

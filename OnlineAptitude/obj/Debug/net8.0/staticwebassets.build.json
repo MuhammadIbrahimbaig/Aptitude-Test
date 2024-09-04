@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "nxEo8IFdIStnGUM3gBUbg5Hq/Vkr2NTJmHVXnlONnMM=",
+  "Hash": "TAhr7QfscZ4eXdRUUQZGKPtrJApA3HreKWdB/HRqumM=",
   "Source": "OnlineAptitude",
   "BasePath": "_content/OnlineAptitude",
   "Mode": "Default",
@@ -5506,6 +5506,44 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\scss\\material-dashboard\\variables\\_virtual-reality.scss"
+    },
+    {
+      "Identity": "C:\\Users\\USER\\Desktop\\OnlineAptitude\\wwwroot\\myfiles\\1.jpg",
+      "SourceId": "OnlineAptitude",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\OnlineAptitude\\wwwroot\\",
+      "BasePath": "_content/OnlineAptitude",
+      "RelativePath": "myfiles/1.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\myfiles\\1.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\USER\\Desktop\\OnlineAptitude\\wwwroot\\myfiles\\3.jpg",
+      "SourceId": "OnlineAptitude",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\USER\\Desktop\\OnlineAptitude\\wwwroot\\",
+      "BasePath": "_content/OnlineAptitude",
+      "RelativePath": "myfiles/3.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\myfiles\\3.jpg"
     }
   ]
 }

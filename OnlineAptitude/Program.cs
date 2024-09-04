@@ -12,6 +12,12 @@ namespace OnlineAptitude
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<AptitudeTestContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("myconn")));
+            //------------------------------add session---------------------------------------------------------------
+            builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            builder.Services.AddDistributedMemoryCache();
+            builder.Services.AddSession(option => {
+                option.IdleTimeout = TimeSpan.FromMinutes(120);
+            });
 
             var app = builder.Build();
 
@@ -27,7 +33,7 @@ namespace OnlineAptitude
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseSession();
             app.UseAuthorization();
 
             app.MapControllerRoute(

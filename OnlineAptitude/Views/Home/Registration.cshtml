@@ -75,7 +75,7 @@
                                     <div class="input-group input-group-outline mb-3">
                                        @*  <label asp-for="Registration.RoleIdFk" class="control-label"></label> *@
 
-                                        <select asp-for="Registration.RoleIdFk" class="control-label">
+                                        <select asp-for="Registration.ro" class="control-label">
                                             @foreach (var tem in Model.RoleList)
                                             {
                                                 <option value="@tem.RoleId">@tem.Rolename</option>
