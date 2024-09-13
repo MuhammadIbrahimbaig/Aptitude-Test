@@ -162,36 +162,10 @@
                         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                             <div class="ms-md-auto pe-md-3 d-flex align-items-center">
 
-                                <div class="input-group input-group-outline">
-                                    <label class="form-label">Type here...</label>
-                                    <input type="text" class="form-control">
-                                </div>
+                              
 
                             </div>
-                            <ul class="navbar-nav  justify-content-end">
-                                <li class="nav-item d-flex align-items-center">
-                                    <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="https://www.creative-tim.com/builder?ref=navbar-material-dashboard">Online Builder</a>
-                                </li>
-
-                                <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-                                    <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
-                                        <div class="sidenav-toggler-inner">
-                                            <i class="sidenav-toggler-line"></i>
-                                            <i class="sidenav-toggler-line"></i>
-                                            <i class="sidenav-toggler-line"></i>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="nav-item px-3 d-flex align-items-center">
-                                    <a href="javascript:;" class="nav-link text-body p-0">
-                                        <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
-                                    </a>
-                                </li>
-                                <li class="nav-item dropdown pe-2 d-flex align-items-center">
-                                    <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-bell cursor-pointer"></i>
-                                    </a>
-
+                          <!--DROPDOWN-->
                                     <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
                                         <li class="mb-2">
                                             <a class="dropdown-item border-radius-md" href="javascript:;">
@@ -201,7 +175,7 @@
                                                     </div>
                                                     <div class="d-flex flex-column justify-content-center">
                                                         <h6 class="text-sm font-weight-normal mb-1">
-                                                            <span class="font-weight-bold">New message</span> from Laur
+                                                             <span class="font-weight-bold">New message</span> from Laur
                                                         </h6>
                                                         <p class="text-xs text-secondary mb-0">
                                                             <i class="fa fa-clock me-1"></i>
@@ -469,21 +443,11 @@
                 <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="true">
                     <div class="container-fluid py-1 px-3">
                         <nav aria-label="breadcrumb">
+                            <!-- Breadcrumbs or any other navigation elements -->
                         </nav>
                         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                             <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-
-                                <div class="input-group input-group-outline">
-                                    <label class="form-label">Search here...</label>
-                                    <input type="text" class="form-control">
-                                </div>
-
-                            </div>
-                            <ul class="navbar-nav  justify-content-end">
-                                <li class="nav-item d-flex align-items-center">
-                                    <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="#">Sign in</a>
-                                </li>
-
+                                <!-- Mobile sidenav toggler -->
                                 <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                                     <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
                                         <div class="sidenav-toggler-inner">
@@ -493,39 +457,22 @@
                                         </div>
                                     </a>
                                 </li>
-                               
-                                <!-- Dropdown 
-                                <li class="nav-item dropdown pe-2 d-flex align-items-center">
-                                    <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                       <i class="fa fa-bell cursor-pointer"></i>
-                                    </a>
 
-                                    <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
-                                   Ibrahim session
-                                    <li class="mb-2">
-                                            <a class="dropdown-item border-radius-md" href="javascript:;">
-                                          User name
-                                            </a>
-                                        </li>
-                                           
-                                    </ul>
-                                </li>  -->
-                                @* Dynamic dropdown *@
-                                <div class="dropdown">
-                                    <a class="btn btn-secondary dropdown-toggle d-flex align-items-center" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <img src="~/@Context.Session.GetString("userimg")" alt="Icon" class="me-2" widht="20px" height="25px"> <!-- Replace with your icon -->
+                                <!-- Dynamic dropdown -->
+                                <div class="dropdown ms-2">
+                                    <a class="btn btn-primary dropdown-toggle d-flex align-items-center" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <img src="~/@Context.Session.GetString('userimg')" alt="Icon" class="me-2 rounded-circle" height="30px">
                                         @Context.Session.GetString("Name")
                                     </a>
-
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                        <li><a class="dropdown-item" asp-controller="Home" asp-action="logout">logout</a></li>
+                                        <li><a class="dropdown-item" asp-controller="Home" asp-action="logout">Logout</a></li>
                                     </ul>
                                 </div>
-        
-                            </ul>
+                            </div>
                         </div>
                     </div>
                 </nav>
+
 
                 <!-- End Navbar -->
 

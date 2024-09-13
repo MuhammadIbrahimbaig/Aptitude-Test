@@ -1,0 +1,21 @@
+  <!-- Mobile sidenav toggler -->
+  <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+      <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
+          <div class="sidenav-toggler-inner">
+              <i class="sidenav-toggler-line"></i>
+              <i class="sidenav-toggler-line"></i>
+              <i class="sidenav-toggler-line"></i>
+          </div>
+      </a>
+  </li>
+
+  <!-- Dynamic dropdown -->
+  <div class="dropdown ms-2">
+      <a class="btn btn-primary dropdown-toggle d-flex align-items-center" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="~/@Context.Session.GetString('userimg')" alt="Icon" class="me-2 rounded-circle" height="30px">
+          @Context.Session.GetString("Name")
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <li><a class="dropdown-item" asp-controller="Home" asp-action="logout">Logout</a></li>
+      </ul>
+  </div>
