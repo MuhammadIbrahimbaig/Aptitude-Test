@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewData["Title"] = "Role";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card my-4">
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                        <h6 class="text-white text-capitalize ps-3">Role table</h6>
+                    </div>
+                </div>
+                <div class="card-body px-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <table class="table align-items-center mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">RoleId</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">RoleName</th>
+
+                                    <th class="text-secondary opacity-7">Edit</th>
+                                    <th class="text-secondary opacity-7">Delete</th>
+
+                                </tr>
+                            </thead>
+                            @if (Model == null)
+                            {
+                                <p>No ROles Available.</p>
+                            }
+                            else{
+                            <tbody>
+
+                                @foreach (var a in Model)
+                                {
+                                    <tr>
+                                        <td>@a.RoleId</td>
+                                        <td>@a.Rolename</td>
+                                        <td><a asp-action="Edit" asp-route-id="@a.RoleId" class="btn waves-effect waves-light btn-info hidden-md-down">Edit</a></td>
+                                        <td><a asp-action="Roledelete" asp-route-id="@a.RoleId" class="btn waves-effect waves-light btn-danger hidden-md-down">Delete</a></td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  
+</div>
+<!-- end <table></table> -->
+

@@ -1,8 +1,6 @@
 ﻿using System.Diagnostics;
-
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
 using OnlineAptitudeTest6.Models;
 
 namespace OnlineAptitudeTest6.Controllers
@@ -119,10 +117,63 @@ namespace OnlineAptitudeTest6.Controllers
             Contx.HttpContext.Session.Clear();
             return RedirectToAction("Signin", "Home");
         }
+        //Add Role work
+        public IActionResult Role()
+        {
+            var Roleshow = db.Roles.ToList();
 
-        public IActionResult Privacy()
+            return View(Roleshow);
+        }
+        public IActionResult RoleAdd()
         {
             return View();
+        }
+        [HttpPost]
+        public IActionResult RoleAdd(string RoleName)
+        {
+            if (!string.IsNullOrEmpty(RoleName))
+            {
+                var newRole = new Role { Rolename = RoleName };
+                db.Roles.Add(newRole);
+                db.SaveChanges();
+            }
+            return RedirectToAction("Role");
+        }
+        ////start the Edit Work Get
+        public async Task<IActionResult> Edit(int id)
+        {
+            var dataa = await db.Roles.FindAsync(id);
+            if (dataa == null)
+            {
+                return NotFound();
+            }
+            return View(dataa);
+        }
+        //Http Post
+        [HttpPost]
+        public async Task<IActionResult> Edit(Role r)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Roles.Update(r);
+                db.SaveChanges();
+                return RedirectToAction("Role");
+            }
+            return View();
+        }
+        ////Start The ROle Delete
+        public async Task<IActionResult> Roledelete(int id)
+        {
+            var dlt = await db.Roles.FindAsync(id);
+            if (dlt == null)
+            {
+                return NotFound();
+            }
+           db.Roles.Remove(dlt);
+            await db.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Role));
+
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

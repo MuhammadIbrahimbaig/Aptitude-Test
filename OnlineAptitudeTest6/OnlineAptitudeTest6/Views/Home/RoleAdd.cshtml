@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewData["Title"] = "RoleAdd";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="card my-4">
+    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+        <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+            <h6 class="text-white text-capitalize ps-3">Role Add</h6>
+        </div>
+    </div>
+    <br />
+<form asp-action="RoleAdd" method="post">
+    <div class="input-group input-group-outline">
+    <input class="form-control w-50" placeholder="Add Role" type="text" id="RoleName" name="RoleName" width="50" required>
+    </div>
+    <br />
+    <center>
+            <button class="btn btn-primary" type="submit">Add Role</button>
+
+    </center>
+</form>
+
