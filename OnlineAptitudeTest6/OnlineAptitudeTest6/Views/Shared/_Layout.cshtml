@@ -59,29 +59,30 @@
                                 <span class="nav-link-text ms-1 ">Admin Dashboard</span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white " asp-action="RoleAdd" asp-controller="Home">
+
+                                <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                                    <i class="material-icons opacity-10">person</i>
+                                </div>
+
+                                <span class="nav-link-text ms-1">Role Add</span>
+
+                            </a>
+                        </li>
 
                         <li class="nav-item">
-                            <a class="nav-link text-white " href="./pages/tables.html">
+                            <a class="nav-link text-white " asp-action="Role" asp-controller="Home">
 
                                 <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                                     <i class="material-icons opacity-10">table_view</i>
                                 </div>
 
-                                <span class="nav-link-text ms-1">Tables</span>
+                                <span class="nav-link-text ms-1">Role show</span>
+
                             </a>
                         </li>
 
-
-                        <li class="nav-item">
-                            <a class="nav-link text-white " href="./pages/notifications.html">
-
-                                <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                                    <i class="material-icons opacity-10">notifications</i>
-                                </div>
-
-                                <span class="nav-link-text ms-1">Notifications</span>
-                            </a>
-                        </li>
 
 
                         <li class="nav-item mt-3">
@@ -147,19 +148,10 @@
                 <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="true">
                     <div class="container-fluid py-1 px-3">
                         <nav aria-label="breadcrumb">
-
-
-
+                            <!-- Breadcrumbs or any other navigation elements -->
                         </nav>
                         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                             <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-
-                              
-
-                            </div>
-                            <ul class="navbar-nav  justify-content-end">
-                                
-
                                 <!-- Mobile sidenav toggler -->
                                 <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                                     <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
@@ -173,17 +165,19 @@
 
                                 <!-- Dynamic dropdown -->
                                 <div class="dropdown ms-2">
-                                    <a class="btn btn-primary  dropdown-toggle d-flex align-items-center" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <img src="~/@Context.Session.GetString("userimg") alt="Icon" class="me-2 rounded-circle" height="30px">
+                                    <a class="btn btn-primary dropdown-toggle d-flex align-items-center" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <img src="~/@Context.Session.GetString("userimg")" alt="Icon" class="me-2 rounded-circle" height="30px">
                                         @Context.Session.GetString("Name")
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                         <li><a class="dropdown-item" asp-controller="Home" asp-action="logout">Logout</a></li>
                                     </ul>
                                 </div>
+                            </div>
                         </div>
                     </div>
                 </nav>
+
 
                 <!-- End Navbar -->
 
@@ -307,29 +301,9 @@
                                 <span class="nav-link-text ms-1 ">User</span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white " asp-action="RoleAdd" asp-controller="Home">
+                        
 
-                                <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                                    <i class="material-icons opacity-10">person</i>
-                                </div>
-
-                                <span class="nav-link-text ms-1">Role Add</span>
-
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link text-white " asp-action="Role" asp-controller="Home">
-
-                                <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                                    <i class="material-icons opacity-10">table_view</i>
-                                </div>
-
-                                <span class="nav-link-text ms-1">Role show</span>
-
-                            </a>
-                        </li>
+                      
 
 
 
@@ -338,7 +312,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link text-white " href="./pages/profile.html">
+                            <a class="nav-link text-white " asp-action="profile" asp-controller="Home">
 
                                 <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                                     <i class="material-icons opacity-10">person</i>
@@ -418,6 +392,8 @@
                                         @Context.Session.GetString("Name")
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <li><a class="dropdown-item"   asp-controller="Home" asp-action="Profile">Profile</a></li>
+
                                         <li><a class="dropdown-item" asp-controller="Home" asp-action="logout">Logout</a></li>
                                     </ul>
                                 </div>

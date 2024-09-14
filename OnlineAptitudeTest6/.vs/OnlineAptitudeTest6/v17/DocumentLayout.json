@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\USER\\Desktop\\Aptitude-Test\\OnlineAptitudeTest6\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{EC124748-1D2A-4883-9A45-C2DAFDDB55AE}|OnlineAptitudeTest6\\OnlineAptitudeTest6.csproj|c:\\users\\user\\desktop\\aptitude-test\\onlineaptitudetest6\\onlineaptitudetest6\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{EC124748-1D2A-4883-9A45-C2DAFDDB55AE}|OnlineAptitudeTest6\\OnlineAptitudeTest6.csproj|solutionrelative:onlineaptitudetest6\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EC124748-1D2A-4883-9A45-C2DAFDDB55AE}|OnlineAptitudeTest6\\OnlineAptitudeTest6.csproj|c:\\users\\user\\desktop\\aptitude-test\\onlineaptitudetest6\\onlineaptitudetest6\\views\\home\\role.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{EC124748-1D2A-4883-9A45-C2DAFDDB55AE}|OnlineAptitudeTest6\\OnlineAptitudeTest6.csproj|solutionrelative:onlineaptitudetest6\\views\\home\\role.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{EC124748-1D2A-4883-9A45-C2DAFDDB55AE}|OnlineAptitudeTest6\\OnlineAptitudeTest6.csproj|c:\\users\\user\\desktop\\aptitude-test\\onlineaptitudetest6\\onlineaptitudetest6\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EC124748-1D2A-4883-9A45-C2DAFDDB55AE}|OnlineAptitudeTest6\\OnlineAptitudeTest6.csproj|solutionrelative:onlineaptitudetest6\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -19,12 +27,39 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\Aptitude-Test\\OnlineAptitudeTest6\\OnlineAptitudeTest6\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "OnlineAptitudeTest6\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\USER\\Desktop\\Aptitude-Test\\OnlineAptitudeTest6\\OnlineAptitudeTest6\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "OnlineAptitudeTest6\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAG4BAAAAAAAAAAAuwJMBAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-14T10:43:59.12Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Role.cshtml",
+              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\Aptitude-Test\\OnlineAptitudeTest6\\OnlineAptitudeTest6\\Views\\Home\\Role.cshtml",
+              "RelativeDocumentMoniker": "OnlineAptitudeTest6\\Views\\Home\\Role.cshtml",
+              "ToolTip": "C:\\Users\\USER\\Desktop\\Aptitude-Test\\OnlineAptitudeTest6\\OnlineAptitudeTest6\\Views\\Home\\Role.cshtml",
+              "RelativeToolTip": "OnlineAptitudeTest6\\Views\\Home\\Role.cshtml",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAACgAAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-14T10:58:00.203Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\Users\\USER\\Desktop\\Aptitude-Test\\OnlineAptitudeTest6\\OnlineAptitudeTest6\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "OnlineAptitudeTest6\\Controllers\\HomeController.cs",
               "ToolTip": "C:\\Users\\USER\\Desktop\\Aptitude-Test\\OnlineAptitudeTest6\\OnlineAptitudeTest6\\Controllers\\HomeController.cs",
               "RelativeToolTip": "OnlineAptitudeTest6\\Controllers\\HomeController.cs",
-              "ViewState": "AQIAACsAAAAAAAAAAAAkwDYAAAARAAAA",
+              "ViewState": "AQIAAJcAAAAAAAAAAAAcwKoAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-11T07:30:14.616Z",
               "EditorCaption": ""
