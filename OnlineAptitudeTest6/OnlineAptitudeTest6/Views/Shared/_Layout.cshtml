@@ -50,7 +50,7 @@
                     <ul class="navbar-nav">
 
                         <li class="nav-item">
-                            <a class="nav-link text-white bg-primary" href="./pages/dashboard.html">
+                            <a class="nav-link text-white bg-primary" asp-action="Index" asp-controller="Home" >
 
                                 <div class="text-white text-center me-2 d-flex align-items-center justify-content-center bg-primary">
                                     <i class="material-icons opacity-10">dashboard</i>
@@ -59,6 +59,9 @@
                                 <span class="nav-link-text ms-1 ">Admin Dashboard</span>
                             </a>
                         </li>
+                        <!--Dropdown Check-->
+
+                        <!--ENd Check-->
                         <li class="nav-item">
                             <a class="nav-link text-white " asp-action="RoleAdd" asp-controller="Home">
 
@@ -71,6 +74,7 @@
                             </a>
                         </li>
 
+
                         <li class="nav-item">
                             <a class="nav-link text-white " asp-action="Role" asp-controller="Home">
 
@@ -82,7 +86,17 @@
 
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white " asp-action="QuestionAdd" asp-controller="Dashboard">
 
+                                <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                                    <i class="material-icons opacity-10">person</i>
+                                </div>
+
+                                <span class="nav-link-text ms-1">Add Question</span>
+
+                            </a>
+                        </li>
 
 
                         <li class="nav-item mt-3">

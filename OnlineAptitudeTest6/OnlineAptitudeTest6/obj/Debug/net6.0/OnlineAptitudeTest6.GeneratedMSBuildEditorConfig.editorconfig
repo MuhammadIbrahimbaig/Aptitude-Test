@@ -18,6 +18,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\USER\Desktop\Aptitude-Test\OnlineAptitudeTest6\OnlineAptitudeTest6
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/USER/Desktop/Aptitude-Test/OnlineAptitudeTest6/OnlineAptitudeTest6/Views/Dashboard/QuestionAdd.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXFF1ZXN0aW9uQWRkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/USER/Desktop/Aptitude-Test/OnlineAptitudeTest6/OnlineAptitudeTest6/Views/Home/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

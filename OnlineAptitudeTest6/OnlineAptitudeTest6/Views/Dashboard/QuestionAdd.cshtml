@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewData["Title"] = "QuestionAdd";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model OnlineAptitudeTest6.Models.QuestionAddViewModel
+
+<main class="main-content mt-0">
+    <section>
+        <!-- Corrected form tag -->
+           <form asp-action="QuestionAdd" method="post">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 start-0 text-center justify-content-center flex-column">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-5 col-md-7 d-flex flex-column ms-auto me-auto ms-lg-auto">
+                    <div class="card card-plain">
+                        <div class="card-header bg-primary">
+                            <h4 class="font-weight-bolder text-light text-center">Add Question</h4>
+                        </div>
+                        <div class="card-body bg-light">
+
+                          @*   <div class="input-group input-group-outline mb-3">
+                                <input asp-for="Question.QuestionId" type="text" class="form-control" placeholder="Enter QuestionId">
+                            </div> *@
+
+                            <div class="input-group input-group-outline mb-3">
+                                <input asp-for="Question.TestId" type="tel" placeholder="Enter TestId" class="form-control">
+                            </div>
+
+                            <div class="input-group input-group-outline mb-3">
+                                <input asp-for="Question.QuestionText" type="text" placeholder="Enter QuestionText" class="form-control">
+                            </div>
+                           @*  <div class="input-group input-group-outline mb-3">
+                                <select asp-for="Question.TestId" class="control-label">
+                                    @foreach (var tem in Model.Testlist)
+                                    {
+                                        <option value="@tem.TestId">@tem.TestName</option>
+                                    }
+                                </select>
+                            </div> *@
+
+                            <div class="input-group input-group-outline mb-3">
+                                <input asp-for="Question.OptionA" placeholder="Enter OptionA" type="text" class="form-control">
+                            </div>
+
+                            <div class="input-group input-group-outline mb-3">
+                                <input asp-for="Question.OptionB" placeholder="Enter OptionB" type="text" class="form-control">
+                            </div>
+
+                            <div class="input-group input-group-outline mb-3">
+                                <input asp-for="Question.OptionC" placeholder="Enter OptionC" type="text" class="form-control">
+                            </div>
+
+                            <div class="input-group input-group-outline mb-3">
+                                <input asp-for="Question.OptionD" placeholder="Enter OptionD" type="text" class="form-control">
+                            </div>
+
+                            <div class="input-group input-group-outline mb-3">
+                                <input asp-for="Question.CorrectOption" placeholder="Enter CorrectOption" type="text" class="form-control">
+                            </div>
+
+                            <div class="input-group input-group-outline mb-3">
+                                <input asp-for="Question.Marks" placeholder="Enter Marks" type="text" class="form-control">
+                            </div>
+
+                            <!-- Button -->
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Add Question</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            </div>
+
+
+
+
+
+
+           </form>
+
+    </section>
+</main>
