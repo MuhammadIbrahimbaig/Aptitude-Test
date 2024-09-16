@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+@model OnlineAptitudeTest6.Models.QuestionAddViewModel
+
+
+<div class="container">
+    <h1 class="text-center">Edit Work Item</h1>
+    <hr />
+    <form asp-action="Edit" method="post">
+        <div class="form-group">
+            <input type="hidden" class="form-control" asp-for="Question.QuestionId" />
+            <div class="form-group">
+                <label for="Test" class="form-label">Test</label>
+                <select class="form-control" asp-for="Testlist.TestId">
+                    @foreach (var tem in Model.Testlist.Testname)
+                    {
+                        <option value="@tem.Id"> @tem.CatName</option>
+                    }
+                </select>
+
+
+
+                <input type="text" class="form-control" asp-for="Question.QuestionText" />
+                <input type="text" class="form-control" asp-for="Question.OptionA" />
+                <input type="text" class="form-control" asp-for="Question.OptionB" />
+                <input type="text" class="form-control" asp-for="Question.OptionC" />
+                <input type="text" class="form-control" asp-for="Question.OptionD" />
+                <input type="text" class="form-control" asp-for="Question.CorrectOption" />
+                <input type="text" class="form-control" asp-for="Question.Marks" />
+
+
+
+
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>

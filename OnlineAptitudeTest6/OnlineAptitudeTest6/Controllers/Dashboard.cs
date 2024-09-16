@@ -17,43 +17,69 @@ namespace OnlineAptitudeTest6.Controllers
             this.Contx = contx;
         }
 
-        //[HttpGet]
-        //public IActionResult QuestionAdd()
-        //{
-
-
-        //    QuestionAddViewModel add = new QuestionAddViewModel
-        //    {
-        //        Testlist = db.Tests.ToList(),
-        //        Question = new Question()
-        //    };
-        //    db.Questions.Add(QuestionAddViewModel);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Signin");
-        //    //return View(add);
-        //}
         [HttpGet]
         public IActionResult QuestionAdd()
         {
-            return View();
+            QuestionAddViewModel add = new QuestionAddViewModel
+            {
+                Testlist = db.Tests.ToList(),
+                Question = new Question()
+            };
+         
+            return View(add);
+           
+        }
+		[HttpPost]
+        public IActionResult QuestionAdd(QuestionAddViewModel add)
+        {
+			db.Questions.Add(add.Question);
+			db.SaveChanges();
+			return RedirectToAction("Questionshow");
+		}
+		[HttpGet]
+		//Questionshow Work
+		public IActionResult Questionshow()
+        {
+            var show = db.Questions.ToList();
+            return View(show);
+        }
+        //Edit Work Question
+        public async Task<IActionResult> Edit(int id)
+        {
+            var dataa = await db.Questions.FindAsync(id);
+            if (dataa == null)
+            {
+                return NotFound();
+            }
+            return View(dataa);
         }
         [HttpPost]
-        public IActionResult QuestionAdd(string Questionadd)
+        public IActionResult Edit(Question q)
         {
-            if (!string.IsNullOrEmpty(Questionadd))
+            if (ModelState.IsValid)
             {
-                var add = new Question { QuestionText = Questionadd , OptionA = Questionadd, OptionB = Questionadd, OptionC = Questionadd, OptionD = Questionadd, CorrectOption = Questionadd, Marks = CoQuestionadd};
-                db.Questions.Add(add);
+                db.Questions.Update(q);
                 db.SaveChanges();
+                return RedirectToAction("Questionshow");
             }
-            return RedirectToAction("QuestionAdd");
-        }
-
-
-
-        public IActionResult QuestionShow()
-        {
             return View();
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

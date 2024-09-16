@@ -22,25 +22,19 @@
                         </div>
                         <div class="card-body bg-light">
 
-                          @*   <div class="input-group input-group-outline mb-3">
-                                <input asp-for="Question.QuestionId" type="text" class="form-control" placeholder="Enter QuestionId">
-                            </div> *@
-
-                            <div class="input-group input-group-outline mb-3">
-                                <input asp-for="Question.TestId" type="tel" placeholder="Enter TestId" class="form-control">
-                            </div>
-
+                       
                             <div class="input-group input-group-outline mb-3">
                                 <input asp-for="Question.QuestionText" type="text" placeholder="Enter QuestionText" class="form-control">
                             </div>
-                           @*  <div class="input-group input-group-outline mb-3">
+
+                            <div class="input-group input-group-outline mb-3">
                                 <select asp-for="Question.TestId" class="control-label">
                                     @foreach (var tem in Model.Testlist)
                                     {
                                         <option value="@tem.TestId">@tem.TestName</option>
                                     }
                                 </select>
-                            </div> *@
+                            </div>
 
                             <div class="input-group input-group-outline mb-3">
                                 <input asp-for="Question.OptionA" placeholder="Enter OptionA" type="text" class="form-control">

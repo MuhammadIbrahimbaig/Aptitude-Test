@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewData["Title"] = "Questionshow";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card my-4">
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                        <h6 class="text-white text-capitalize ps-3">Question table</h6>
+                    </div>
+                </div>
+                <div class="card-body px-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <table class="table align-items-center mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">QuestionId</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">TestId</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">QuestionText</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">OptionA</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">OptionB</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">OptionC</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">OptionD</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Correct Options</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Marks</th>
+
+                                    <th class="text-secondary opacity-7">Edit</th>
+                                    <th class="text-secondary opacity-7">Delete</th>
+
+                                </tr>
+                            </thead>
+                            @if (Model == null)
+                            {
+                                <p>No Question Available.</p>
+                            }
+                            else
+                            {
+                                <tbody>
+
+                                    @foreach (var a in Model)
+                                    {
+                                        <tr>
+                                            <td>@a.QuestionId</td>
+                                            <td>@a.TestId</td>
+                                            <td>@a.QuestionText</td>
+                                            <td>@a.OptionA</td>
+                                            <td>@a.OptionB</td>
+                                            <td>@a.OptionC</td>
+                                            <td>@a.OptionD</td>
+                                            <td>@a.CorrectOption</td>
+                                            <td>@a.Marks</td>
+
+                                            <td><a asp-action="Edit" asp-route-id="@a.QuestionId" class="btn waves-effect waves-light btn-info hidden-md-down">Edit</a></td>
+                                            <td><a asp-action="Roledelete" asp-route-id="@a.QuestionId" class="btn waves-effect waves-light btn-danger hidden-md-down">Delete</a></td>
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

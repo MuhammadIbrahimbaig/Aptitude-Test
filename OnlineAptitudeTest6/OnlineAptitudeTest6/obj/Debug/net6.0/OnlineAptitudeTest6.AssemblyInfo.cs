@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OnlineAptitudeTest6")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f1a38474f3b9960a1b6a55017136474b677447e5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("OnlineAptitudeTest6")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OnlineAptitudeTest6")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
