@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\USER\\Desktop\\Aptitude-Test\\OnlineAptitudeTest6\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{EC124748-1D2A-4883-9A45-C2DAFDDB55AE}|OnlineAptitudeTest6\\OnlineAptitudeTest6.csproj|c:\\users\\user\\desktop\\aptitude-test\\onlineaptitudetest6\\onlineaptitudetest6\\views\\dashboard\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{EC124748-1D2A-4883-9A45-C2DAFDDB55AE}|OnlineAptitudeTest6\\OnlineAptitudeTest6.csproj|solutionrelative:onlineaptitudetest6\\views\\dashboard\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EC124748-1D2A-4883-9A45-C2DAFDDB55AE}|OnlineAptitudeTest6\\OnlineAptitudeTest6.csproj|c:\\users\\user\\desktop\\aptitude-test\\onlineaptitudetest6\\onlineaptitudetest6\\views\\home\\roleadd.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{EC124748-1D2A-4883-9A45-C2DAFDDB55AE}|OnlineAptitudeTest6\\OnlineAptitudeTest6.csproj|solutionrelative:onlineaptitudetest6\\views\\home\\roleadd.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EC124748-1D2A-4883-9A45-C2DAFDDB55AE}|OnlineAptitudeTest6\\OnlineAptitudeTest6.csproj|c:\\users\\user\\desktop\\aptitude-test\\onlineaptitudetest6\\onlineaptitudetest6\\views\\home\\signin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{EC124748-1D2A-4883-9A45-C2DAFDDB55AE}|OnlineAptitudeTest6\\OnlineAptitudeTest6.csproj|solutionrelative:onlineaptitudetest6\\views\\home\\signin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{EC124748-1D2A-4883-9A45-C2DAFDDB55AE}|OnlineAptitudeTest6\\OnlineAptitudeTest6.csproj|c:\\users\\user\\desktop\\aptitude-test\\onlineaptitudetest6\\onlineaptitudetest6\\controllers\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EC124748-1D2A-4883-9A45-C2DAFDDB55AE}|OnlineAptitudeTest6\\OnlineAptitudeTest6.csproj|solutionrelative:onlineaptitudetest6\\controllers\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EC124748-1D2A-4883-9A45-C2DAFDDB55AE}|OnlineAptitudeTest6\\OnlineAptitudeTest6.csproj|c:\\users\\user\\desktop\\aptitude-test\\onlineaptitudetest6\\onlineaptitudetest6\\views\\dashboard\\questionadd.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{EC124748-1D2A-4883-9A45-C2DAFDDB55AE}|OnlineAptitudeTest6\\OnlineAptitudeTest6.csproj|solutionrelative:onlineaptitudetest6\\views\\dashboard\\questionadd.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EC124748-1D2A-4883-9A45-C2DAFDDB55AE}|OnlineAptitudeTest6\\OnlineAptitudeTest6.csproj|c:\\users\\user\\desktop\\aptitude-test\\onlineaptitudetest6\\onlineaptitudetest6\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EC124748-1D2A-4883-9A45-C2DAFDDB55AE}|OnlineAptitudeTest6\\OnlineAptitudeTest6.csproj|solutionrelative:onlineaptitudetest6\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,45 +26,58 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "QuestionAdd.cshtml",
-              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\Aptitude-Test\\OnlineAptitudeTest6\\OnlineAptitudeTest6\\Views\\Dashboard\\QuestionAdd.cshtml",
-              "RelativeDocumentMoniker": "OnlineAptitudeTest6\\Views\\Dashboard\\QuestionAdd.cshtml",
-              "ToolTip": "C:\\Users\\USER\\Desktop\\Aptitude-Test\\OnlineAptitudeTest6\\OnlineAptitudeTest6\\Views\\Dashboard\\QuestionAdd.cshtml",
-              "RelativeToolTip": "OnlineAptitudeTest6\\Views\\Dashboard\\QuestionAdd.cshtml",
-              "ViewState": "AQIAABsAAAAAAAAAAAAAAB4AAAAiAAAA",
+              "Title": "RoleAdd.cshtml",
+              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\Aptitude-Test\\OnlineAptitudeTest6\\OnlineAptitudeTest6\\Views\\Home\\RoleAdd.cshtml",
+              "RelativeDocumentMoniker": "OnlineAptitudeTest6\\Views\\Home\\RoleAdd.cshtml",
+              "ToolTip": "C:\\Users\\USER\\Desktop\\Aptitude-Test\\OnlineAptitudeTest6\\OnlineAptitudeTest6\\Views\\Home\\RoleAdd.cshtml",
+              "RelativeToolTip": "OnlineAptitudeTest6\\Views\\Home\\RoleAdd.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAvAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-09-15T10:51:31.05Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Dashboard.cs",
-              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\Aptitude-Test\\OnlineAptitudeTest6\\OnlineAptitudeTest6\\Controllers\\Dashboard.cs",
-              "RelativeDocumentMoniker": "OnlineAptitudeTest6\\Controllers\\Dashboard.cs",
-              "ToolTip": "C:\\Users\\USER\\Desktop\\Aptitude-Test\\OnlineAptitudeTest6\\OnlineAptitudeTest6\\Controllers\\Dashboard.cs",
-              "RelativeToolTip": "OnlineAptitudeTest6\\Controllers\\Dashboard.cs",
-              "ViewState": "AQIAAB0AAAAAAAAAAAAMwDAAAAAzAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-14T19:27:54.892Z",
+              "WhenOpened": "2024-09-16T17:27:13.732Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\Aptitude-Test\\OnlineAptitudeTest6\\OnlineAptitudeTest6\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "OnlineAptitudeTest6\\Controllers\\HomeController.cs",
-              "ToolTip": "C:\\Users\\USER\\Desktop\\Aptitude-Test\\OnlineAptitudeTest6\\OnlineAptitudeTest6\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "OnlineAptitudeTest6\\Controllers\\HomeController.cs",
-              "ViewState": "AQIAAHYAAAAAAAAAAAAowIgAAAAmAAAA",
+              "Title": "Signin.cshtml",
+              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\Aptitude-Test\\OnlineAptitudeTest6\\OnlineAptitudeTest6\\Views\\Home\\Signin.cshtml",
+              "RelativeDocumentMoniker": "OnlineAptitudeTest6\\Views\\Home\\Signin.cshtml",
+              "ToolTip": "C:\\Users\\USER\\Desktop\\Aptitude-Test\\OnlineAptitudeTest6\\OnlineAptitudeTest6\\Views\\Home\\Signin.cshtml",
+              "RelativeToolTip": "OnlineAptitudeTest6\\Views\\Home\\Signin.cshtml",
+              "ViewState": "AQIAACoAAAAAAAAAAAAAAEEAAAAqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-16T17:05:51.699Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Dashboard.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\Aptitude-Test\\OnlineAptitudeTest6\\OnlineAptitudeTest6\\Controllers\\Dashboard.cs",
+              "RelativeDocumentMoniker": "OnlineAptitudeTest6\\Controllers\\Dashboard.cs",
+              "ToolTip": "C:\\Users\\USER\\Desktop\\Aptitude-Test\\OnlineAptitudeTest6\\OnlineAptitudeTest6\\Controllers\\Dashboard.cs",
+              "RelativeToolTip": "OnlineAptitudeTest6\\Controllers\\Dashboard.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-15T09:58:24.341Z",
+              "WhenOpened": "2024-09-16T17:03:53.06Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\USER\\Desktop\\Aptitude-Test\\OnlineAptitudeTest6\\OnlineAptitudeTest6\\Views\\Dashboard\\Edit.cshtml",
+              "RelativeDocumentMoniker": "OnlineAptitudeTest6\\Views\\Dashboard\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\USER\\Desktop\\Aptitude-Test\\OnlineAptitudeTest6\\OnlineAptitudeTest6\\Views\\Dashboard\\Edit.cshtml",
+              "RelativeToolTip": "OnlineAptitudeTest6\\Views\\Dashboard\\Edit.cshtml",
+              "ViewState": "AQIAABUAAAAAAAAAAAAAACEAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-16T16:46:44.363Z",
               "EditorCaption": ""
             }
           ]

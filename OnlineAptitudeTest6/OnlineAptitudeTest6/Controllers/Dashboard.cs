@@ -25,46 +25,86 @@ namespace OnlineAptitudeTest6.Controllers
                 Testlist = db.Tests.ToList(),
                 Question = new Question()
             };
-         
+
             return View(add);
-           
+
         }
-		[HttpPost]
+        [HttpPost]
         public IActionResult QuestionAdd(QuestionAddViewModel add)
         {
-			db.Questions.Add(add.Question);
-			db.SaveChanges();
-			return RedirectToAction("Questionshow");
-		}
-		[HttpGet]
-		//Questionshow Work
-		public IActionResult Questionshow()
+            db.Questions.Add(add.Question);
+            db.SaveChanges();
+            return RedirectToAction("Questionshow");
+        }
+        [HttpGet]
+        //Questionshow Work
+        public IActionResult Questionshow()
         {
             var show = db.Questions.ToList();
             return View(show);
         }
         //Edit Work Question
-        public async Task<IActionResult> Edit(int id)
+        public IActionResult Edit(int id)
         {
-            var dataa = await db.Questions.FindAsync(id);
-            if (dataa == null)
+            QuestionAddViewModel editform = new QuestionAddViewModel
             {
-                return NotFound();
-            }
-            return View(dataa);
+                Testlist = db.Tests.ToList(),
+                Question = new Question()
+            };
+            return View(editform);
         }
         [HttpPost]
-        public IActionResult Edit(Question q)
+        public IActionResult Edit(QuestionAddViewModel nayadata, int id)
         {
-            if (ModelState.IsValid)
-            {
-                db.Questions.Update(q);
-                db.SaveChanges();
-                return RedirectToAction("Questionshow");
-            }
-            return View();
-        }
+            var puranadata = db.Questions.Find(id);
 
+            puranadata.QuestionText = nayadata.Question.QuestionText;
+            puranadata.OptionA = nayadata.Question.OptionA;
+            puranadata.OptionB = nayadata.Question.OptionB;
+            puranadata.OptionC = nayadata.Question.OptionC;
+            puranadata.OptionD = nayadata.Question.OptionD;
+            puranadata.CorrectOption = nayadata.Question.CorrectOption;
+            puranadata.Marks = nayadata.Question.Marks;
+            db.SaveChanges();
+            return RedirectToAction("Questionshow");
+        }
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //public async Task<IActionResult> Edit(int id)
+        //{
+        //    var dataa = await db.Questions.FindAsync(id);
+        //    if (dataa == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return View(dataa);
+        //}
+        //[HttpPost]
+        //public async Task<IActionResult> Edit(Question q)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Questions.Update(q);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Questionshow");
+        //    }
+        //    return View();
+        //}
 
 
 

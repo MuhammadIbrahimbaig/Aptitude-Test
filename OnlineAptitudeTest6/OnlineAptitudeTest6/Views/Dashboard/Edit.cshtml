@@ -4,39 +4,44 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Edit</h1>
-
 @model OnlineAptitudeTest6.Models.QuestionAddViewModel
-
-
+<main class="main-content  mt-0">
+    <div class="page-header align-items-start min-vh-100" ">
+        <span class="mask bg-gradient-light opacity-6"></span>
+        <div class="container my-auto">
+            <div class="row">
+                <div class="col-lg-12 col-md-8 col-12 mx-auto">
+                    <div class="card z-index-0 fadeIn3 fadeInBottom">
+                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                            <div class="bg-gradient-primary shadow-primary border-radius-lg py-1 pe-1">
+                                <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Edit Question</h4>
+                                <div class="row mt-3">
+                                </div>
+                            </div>
+                        </div>
 <div class="container">
-    <h1 class="text-center">Edit Work Item</h1>
-    <hr />
     <form asp-action="Edit" method="post">
         <div class="form-group">
-            <input type="hidden" class="form-control" asp-for="Question.QuestionId" />
-            <div class="form-group">
-                <label for="Test" class="form-label">Test</label>
-                <select class="form-control" asp-for="Testlist.TestId">
-                    @foreach (var tem in Model.Testlist.Testname)
+
+                  <input type="hidden" class="form-control" asp-for="Question.QuestionId" />
+                  <div class="form-group">
+                <label for="test" class="form-label">Choose the Subject:</label>
+                <select class="form-control" asp-for="Question.TestId">
+                    @foreach (var tem in Model.Testlist)
                     {
-                        <option value="@tem.Id"> @tem.CatName</option>
+                        <option value="@tem.TestId"> @tem.TestName</option>
                     }
                 </select>
-
-
-
-                <input type="text" class="form-control" asp-for="Question.QuestionText" />
-                <input type="text" class="form-control" asp-for="Question.OptionA" />
-                <input type="text" class="form-control" asp-for="Question.OptionB" />
-                <input type="text" class="form-control" asp-for="Question.OptionC" />
-                <input type="text" class="form-control" asp-for="Question.OptionD" />
-                <input type="text" class="form-control" asp-for="Question.CorrectOption" />
-                <input type="text" class="form-control" asp-for="Question.Marks" />
-
-
-
-
+                                        <div class="input-group input-group-outline my-3">
+                <input type="text" class="form-control border-dark" asp-for="Question.QuestionText" />
+               <br>
+                <input type="text" class="form-control border-dark" asp-for="Question.OptionA" />
+                <input type="text" class="form-control border-dark" asp-for="Question.OptionB" />
+                <input type="text" class="form-control border-dark" asp-for="Question.OptionC" />
+                <input type="text" class="form-control border-dark" asp-for="Question.OptionD" />
+                <input type="text" class="form-control border-dark" asp-for="Question.CorrectOption" />
+                <input type="text" class="form-control border-dark" asp-for="Question.Marks" />
+                </div>
         </div>
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
