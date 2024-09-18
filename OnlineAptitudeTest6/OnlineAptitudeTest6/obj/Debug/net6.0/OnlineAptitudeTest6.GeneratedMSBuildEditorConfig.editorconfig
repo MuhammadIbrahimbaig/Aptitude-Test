@@ -9,67 +9,65 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = OnlineAptitudeTest6
 build_property.RootNamespace = OnlineAptitudeTest6
-build_property.ProjectDir = C:\Users\USER\Desktop\Aptitude-Test\OnlineAptitudeTest6\OnlineAptitudeTest6\
-build_property.EnableComHosting = 
-build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.ProjectDir = C:\Users\asp\Desktop\Aptitude-Test\OnlineAptitudeTest6\OnlineAptitudeTest6\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\USER\Desktop\Aptitude-Test\OnlineAptitudeTest6\OnlineAptitudeTest6
+build_property.MSBuildProjectDirectory = C:\Users\asp\Desktop\Aptitude-Test\OnlineAptitudeTest6\OnlineAptitudeTest6
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/USER/Desktop/Aptitude-Test/OnlineAptitudeTest6/OnlineAptitudeTest6/Views/Dashboard/Edit.cshtml]
+[C:/Users/asp/Desktop/Aptitude-Test/OnlineAptitudeTest6/OnlineAptitudeTest6/Views/Dashboard/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/Desktop/Aptitude-Test/OnlineAptitudeTest6/OnlineAptitudeTest6/Views/Dashboard/QuestionAdd.cshtml]
+[C:/Users/asp/Desktop/Aptitude-Test/OnlineAptitudeTest6/OnlineAptitudeTest6/Views/Dashboard/QuestionAdd.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXFF1ZXN0aW9uQWRkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/Desktop/Aptitude-Test/OnlineAptitudeTest6/OnlineAptitudeTest6/Views/Dashboard/Questionshow.cshtml]
+[C:/Users/asp/Desktop/Aptitude-Test/OnlineAptitudeTest6/OnlineAptitudeTest6/Views/Dashboard/Questionshow.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXFF1ZXN0aW9uc2hvdy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/Desktop/Aptitude-Test/OnlineAptitudeTest6/OnlineAptitudeTest6/Views/Home/Edit.cshtml]
+[C:/Users/asp/Desktop/Aptitude-Test/OnlineAptitudeTest6/OnlineAptitudeTest6/Views/Home/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/Desktop/Aptitude-Test/OnlineAptitudeTest6/OnlineAptitudeTest6/Views/Home/Index.cshtml]
+[C:/Users/asp/Desktop/Aptitude-Test/OnlineAptitudeTest6/OnlineAptitudeTest6/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/Desktop/Aptitude-Test/OnlineAptitudeTest6/OnlineAptitudeTest6/Views/Home/Registration.cshtml]
+[C:/Users/asp/Desktop/Aptitude-Test/OnlineAptitudeTest6/OnlineAptitudeTest6/Views/Home/Registration.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZWdpc3RyYXRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/Desktop/Aptitude-Test/OnlineAptitudeTest6/OnlineAptitudeTest6/Views/Home/Role.cshtml]
+[C:/Users/asp/Desktop/Aptitude-Test/OnlineAptitudeTest6/OnlineAptitudeTest6/Views/Home/Role.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSb2xlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/Desktop/Aptitude-Test/OnlineAptitudeTest6/OnlineAptitudeTest6/Views/Home/RoleAdd.cshtml]
+[C:/Users/asp/Desktop/Aptitude-Test/OnlineAptitudeTest6/OnlineAptitudeTest6/Views/Home/RoleAdd.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSb2xlQWRkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/Desktop/Aptitude-Test/OnlineAptitudeTest6/OnlineAptitudeTest6/Views/Home/Signin.cshtml]
+[C:/Users/asp/Desktop/Aptitude-Test/OnlineAptitudeTest6/OnlineAptitudeTest6/Views/Home/Signin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTaWduaW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/Desktop/Aptitude-Test/OnlineAptitudeTest6/OnlineAptitudeTest6/Views/Shared/Error.cshtml]
+[C:/Users/asp/Desktop/Aptitude-Test/OnlineAptitudeTest6/OnlineAptitudeTest6/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/Desktop/Aptitude-Test/OnlineAptitudeTest6/OnlineAptitudeTest6/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/asp/Desktop/Aptitude-Test/OnlineAptitudeTest6/OnlineAptitudeTest6/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/Desktop/Aptitude-Test/OnlineAptitudeTest6/OnlineAptitudeTest6/Views/_ViewImports.cshtml]
+[C:/Users/asp/Desktop/Aptitude-Test/OnlineAptitudeTest6/OnlineAptitudeTest6/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/Desktop/Aptitude-Test/OnlineAptitudeTest6/OnlineAptitudeTest6/Views/_ViewStart.cshtml]
+[C:/Users/asp/Desktop/Aptitude-Test/OnlineAptitudeTest6/OnlineAptitudeTest6/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/USER/Desktop/Aptitude-Test/OnlineAptitudeTest6/OnlineAptitudeTest6/Views/Shared/_Layout.cshtml]
+[C:/Users/asp/Desktop/Aptitude-Test/OnlineAptitudeTest6/OnlineAptitudeTest6/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-sxg0fcm91x

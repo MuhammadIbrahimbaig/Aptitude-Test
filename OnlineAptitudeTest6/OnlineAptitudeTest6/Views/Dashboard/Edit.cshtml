@@ -3,7 +3,20 @@
     ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    <style >
+    .form-control {
+        border: 1px solid #000; /* Set the border color to black */
+        border-radius: 4px; /* Optional: adds rounded corners */
+        box-shadow: none; /* Remove any box shadow */
+    }
 
+    .form-control:focus {
+        border-color: #007bff; /* Change border color on focus */
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Optional: add shadow on focus */
+    }
+
+</style>
 @model OnlineAptitudeTest6.Models.QuestionAddViewModel
 <main class="main-content  mt-0">
     <div class="page-header align-items-start min-vh-100" ">
@@ -21,28 +34,43 @@
                         </div>
 <div class="container">
     <form asp-action="Edit" method="post">
-        <div class="form-group">
+     
 
                   <input type="hidden" class="form-control" asp-for="Question.QuestionId" />
-                  <div class="form-group">
-                <label for="test" class="form-label">Choose the Subject:</label>
+                  <div class="form-group mt-2">
+                                    <div class="input-group input-group-outline mb-3">
+
                 <select class="form-control" asp-for="Question.TestId">
                     @foreach (var tem in Model.Testlist)
                     {
                         <option value="@tem.TestId"> @tem.TestName</option>
                     }
                 </select>
-                                        <div class="input-group input-group-outline my-3">
-                <input type="text" class="form-control border-dark" asp-for="Question.QuestionText" />
-               <br>
-                <input type="text" class="form-control border-dark" asp-for="Question.OptionA" />
-                <input type="text" class="form-control border-dark" asp-for="Question.OptionB" />
-                <input type="text" class="form-control border-dark" asp-for="Question.OptionC" />
-                <input type="text" class="form-control border-dark" asp-for="Question.OptionD" />
-                <input type="text" class="form-control border-dark" asp-for="Question.CorrectOption" />
-                <input type="text" class="form-control border-dark" asp-for="Question.Marks" />
                 </div>
-        </div>
+                                    <div class="input-group input-group-outline mb-3">
+                                        <input type="text" class="form-control " asp-for="Question.QuestionText"  />
+                                    </div>
+                                    <div class="input-group input-group-outline mb-3">
+
+                <input type="text" class="form-control" asp-for="OptionA" />
+                </div>
+                                    <div class="input-group input-group-outline mb-3">
+                <input type="text" class="form-control" asp-for="OptionB" />
+                </div>
+                 <div class="input-group input-group-outline mb-3">
+                <input type="text" class="form-control" asp-for="OptionC" />
+                </div>
+                  <div class="input-group input-group-outline mb-3">
+                <input type="text" class="form-control" asp-for="OptionD" />
+                </div>
+                     <div class="input-group input-group-outline mb-3">
+                <input type="text" class="form-control" asp-for="CorrectOption" />
+                     </div>
+                      <div class="input-group input-group-outline mb-3">
+                <input type="text" class="form-control" asp-for="Marks" />
+                     </div>
+                </div>
+                              
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
 </div>
