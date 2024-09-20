@@ -20,12 +20,20 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/asp/Desktop/Aptitude-Test/OnlineAptitudeTest6/OnlineAptitudeTest6/Views/Dashboard/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXFByb2ZpbGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/asp/Desktop/Aptitude-Test/OnlineAptitudeTest6/OnlineAptitudeTest6/Views/Dashboard/QuestionAdd.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXFF1ZXN0aW9uQWRkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/asp/Desktop/Aptitude-Test/OnlineAptitudeTest6/OnlineAptitudeTest6/Views/Dashboard/Questionshow.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXFF1ZXN0aW9uc2hvdy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/asp/Desktop/Aptitude-Test/OnlineAptitudeTest6/OnlineAptitudeTest6/Views/Dashboard/Usershow.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXFVzZXJzaG93LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/asp/Desktop/Aptitude-Test/OnlineAptitudeTest6/OnlineAptitudeTest6/Views/Home/Edit.cshtml]

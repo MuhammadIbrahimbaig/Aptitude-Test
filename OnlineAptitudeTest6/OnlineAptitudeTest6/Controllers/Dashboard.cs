@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.Differencing;
+
 using OnlineAptitudeTest6.Models;
 namespace OnlineAptitudeTest6.Controllers
 {
@@ -17,7 +19,55 @@ namespace OnlineAptitudeTest6.Controllers
             this.Contx = contx;
         }
 
+
+
+
         [HttpGet]
+
+        public IActionResult Usershow()
+        {
+            var show = db.Users.ToList();
+
+            return View(show);
+        }
+
+        public IActionResult userdelete(int id)
+        {
+            var dlt = id;
+            var User = db.Users.FirstOrDefault(option => option.UserId == dlt);
+            db.Users.Remove(User);
+            db.SaveChanges();
+            return RedirectToAction("Usershow");
+
+        }
+        //Edit profile
+
+        public IActionResult Profile(int id)
+        {
+
+            var dataa = db.Users.Find(id);
+            ViewBag.testt = db.Tests.ToList();
+            if (dataa == null)
+            {
+                return NotFound();
+            }
+            return View(dataa);
+
+        }
+
+        //[HttpPost]
+        //public async Task<IActionResult> Profile(Question qa)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Users.Update(qa);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View();
+        //}
+
+        //Add Question table work
         public IActionResult QuestionAdd()
         {
             QuestionAddViewModel add = new QuestionAddViewModel
@@ -46,29 +96,28 @@ namespace OnlineAptitudeTest6.Controllers
         //Edit Work Question
         public IActionResult Edit(int id)
         {
-            QuestionAddViewModel editform = new QuestionAddViewModel
+
+            var dataa = db.Questions.Find(id);
+            ViewBag.testt = db.Tests.ToList();
+            if (dataa == null)
             {
-                Testlist = db.Tests.ToList(),
-                Question = new Question()
-            };
-            return View(editform);
+                return NotFound();
+            }
+            return View(dataa);
+
         }
+
         [HttpPost]
-        public IActionResult Edit(QuestionAddViewModel nayadata, int id)
+        public async Task<IActionResult> Edit(Question q)
         {
-            var puranadata = db.Questions.Find(id);
-
-            puranadata.QuestionText = nayadata.Question.QuestionText;
-            puranadata.OptionA = nayadata.Question.OptionA;
-            puranadata.OptionB = nayadata.Question.OptionB;
-            puranadata.OptionC = nayadata.Question.OptionC;
-            puranadata.OptionD = nayadata.Question.OptionD;
-            puranadata.CorrectOption = nayadata.Question.CorrectOption;
-            puranadata.Marks = nayadata.Question.Marks;
-            db.SaveChanges();
-            return RedirectToAction("Questionshow");
+            if (ModelState.IsValid)
+            {
+                db.Questions.Update(q);
+                db.SaveChanges();
+                return RedirectToAction("Questionshow");
+            }
+            return View();
         }
-        
 
 
 
@@ -81,30 +130,6 @@ namespace OnlineAptitudeTest6.Controllers
 
 
 
-
-
-
-
-        //public async Task<IActionResult> Edit(int id)
-        //{
-        //    var dataa = await db.Questions.FindAsync(id);
-        //    if (dataa == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return View(dataa);
-        //}
-        //[HttpPost]
-        //public async Task<IActionResult> Edit(Question q)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Questions.Update(q);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Questionshow");
-        //    }
-        //    return View();
-        //}
 
 
 
