@@ -119,7 +119,12 @@ namespace OnlineAptitudeTest6.Controllers
             return View();
         }
 
-
+        //Test work 
+        public IActionResult Testshow()
+        {
+            var showtest = db.Tests.ToList();
+            return View(showtest);
+        }
 
 
 
