@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.Differencing;
-
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using OnlineAptitudeTest6.Models;
 namespace OnlineAptitudeTest6.Controllers
 {
@@ -118,14 +118,74 @@ namespace OnlineAptitudeTest6.Controllers
             }
             return View();
         }
+        //DLt
+        public IActionResult questdelete(int id)
+        {
+            var dlt = id;
+            var Question = db.Questions.FirstOrDefault(option => option.QuestionId == dlt);
+            db.Questions.Remove(Question);
+            db.SaveChanges();
+            return RedirectToAction("Questionshow");
 
+        }
         //Test work 
         public IActionResult Testshow()
         {
             var showtest = db.Tests.ToList();
             return View(showtest);
         }
+        //ADDTEST
+        public IActionResult TestAdd()
+        {
+            TestAddViewModel add = new TestAddViewModel
+            {
+               // Testlist = db.Tests.ToList(),
+                Testadding = new Test()
+            };
 
+            return View(add);
+
+        }
+        [HttpPost]
+        public IActionResult TestAdd(TestAddViewModel add)
+        {
+            db.Tests.Add(add.Testadding);
+            db.SaveChanges();
+            return RedirectToAction("Testshow");
+        }
+        //Edit TEST
+        [HttpGet]
+         public IActionResult Edittest(int id)
+        {
+            var testing = db.Tests.Find(id);
+            if (testing == null)
+            {
+                return NotFound();
+            }
+            return View(testing);
+
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edittest(Test t)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Tests.Update(t);
+                db.SaveChanges();
+                return RedirectToAction("Testshow");
+            }
+            return View();
+        }
+        //delete TEST
+       
+        public IActionResult TestDlt(int id)
+        {
+            var test = id;
+            var Testing = db.Tests.FirstOrDefault(option => option.TestId == test);
+            db.Tests.Remove(Testing);
+            db.SaveChanges();
+            return RedirectToAction("Testshow");
+        }
 
 
 

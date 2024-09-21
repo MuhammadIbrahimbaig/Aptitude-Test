@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewData["Title"] = "TestAdd";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model OnlineAptitudeTest6.Models.TestAddViewModel
+
+<main class="main-content mt-0">
+    <section>
+        <!-- Corrected form tag -->
+        <form asp-action="TestAdd" method="post">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 start-0 text-center justify-content-center flex-column">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-5 col-md-7 d-flex flex-column ms-auto me-auto ms-lg-auto">
+                    <div class="card card-plain">
+                        <div class="card-header bg-primary">
+                            <h4 class="font-weight-bolder text-light text-center">Add Test</h4>
+                        </div>
+                        <div class="card-body bg-light">
+
+
+                            <div class="input-group input-group-outline mb-3">
+                                <input asp-for="Testadding.TestName" type="text" placeholder="Enter TestName" class="form-control">
+                            </div>
+
+                            <div class="input-group input-group-outline mb-3">
+                                <input asp-for="Testadding.TotalQuestions" placeholder="Enter TotalQuestions" type="text" class="form-control">
+                            </div>
+
+                            <div class="input-group input-group-outline mb-3">
+                                <input asp-for="Testadding.TotalMarks" placeholder="Enter TotalMarks" type="text" class="form-control">
+                            </div>
+
+                            <div class="input-group input-group-outline mb-3">
+                                <input asp-for="Testadding.TimeLimit" placeholder="Enter TimeLimit" type="text" class="form-control">
+                            </div>
+
+
+                            <!-- Button -->
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Add Test</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            </div>
+
+        </form>
+
+    </section>
+</main>
+
+
+
+                          @*   <div class="input-group input-group-outline mb-3">
+                                <select asp-for="Question.TestId" class="control-label">
+                                    @foreach (var tem in Model.Testlist)
+                                    {
+                                        <option value="@tem.TestId">@tem.TestName</option>
+                                    }
+                                </select>
+                            </div> *@
+
+                            
+
+                           
