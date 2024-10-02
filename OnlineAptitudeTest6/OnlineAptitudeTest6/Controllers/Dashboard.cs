@@ -55,16 +55,16 @@ namespace OnlineAptitudeTest6.Controllers
 
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> Profile(Question qa)
+        //[HttpGet EDITUSER]
+        //public IActionResult Profile(int id)
         //{
-        //    if (ModelState.IsValid)
+        //    ProductListingViewModel productForm = new ProductListingViewModel
         //    {
-        //        db.Users.Update(qa);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View();
+        //        CategoryList = db.Categories.ToList(),
+        //        productTable = new ProductFk()
+        //    };
+        //    //ViewBag.CatId = new SelectList(productForm.CategoryList, "Id", "CatName");
+        //    return View(productForm);
         //}
 
         //Add Question table work
