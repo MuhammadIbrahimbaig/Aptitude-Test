@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Differencing;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using OnlineAptitudeTest6.Models;
@@ -41,31 +43,119 @@ namespace OnlineAptitudeTest6.Controllers
 
         }
         //Edit profile
-
-        public IActionResult Profile(int id)
-        {
-
-            var dataa = db.Users.Find(id);
-            ViewBag.testt = db.Tests.ToList();
-            if (dataa == null)
-            {
-                return NotFound();
-            }
-            return View(dataa);
-
-        }
-
-        //[HttpGet EDITUSER]
         //public IActionResult Profile(int id)
         //{
-        //    ProductListingViewModel productForm = new ProductListingViewModel
+        //    RegistrationRoleViewModel updateuser = new RegistrationRoleViewModel
         //    {
-        //        CategoryList = db.Categories.ToList(),
-        //        productTable = new ProductFk()
+        //        RoleList = db.Roles.ToList(),
+        //        Registration = new User()
         //    };
-        //    //ViewBag.CatId = new SelectList(productForm.CategoryList, "Id", "CatName");
-        //    return View(productForm);
+        //    return View(updateuser);
+
         //}
+        //[HttpPost]
+        //public IActionResult Edit(RegistrationRoleViewModel Newdata, int id, IFormFile newimg)
+        //{
+        //    var Olddata = db.Users.Find(id);
+        //    if (newimg != null && newimg.Length > 0)
+        //    {
+        //        // GETTING IMAGE FILE EXTENSION 
+        //        var fileExt = System.IO.Path.GetExtension(newimg.FileName).Substring(1);
+        //        // GETTING IMAGE NAME
+        //        var random = Path.GetFileName(newimg.FileName);
+        //        // GUID ID COMBINE WITH IMAGE NAME - TO ESCAPE IMAGE NAME REDENDNCY 
+        //        var Filename = Guid.NewGuid() + random;
+        //        // GET PATH OF CUSTOM IMAGE FOLDER
+        //        string imgfolder = Path.Combine(HttpContext.Request.PathBase.Value, "wwwroot/myfiles");
+        //        // CHECKING FOLDER EXIST OR NOT - IF NOT THEN CREATE F0LDER 
+        //        if (!Directory.Exists(imgfolder))
+        //        {
+        //            Directory.CreateDirectory(imgfolder);
+        //        }
+        //        // MAKING CUSTOM AND COMBINE FOLDER PATH WITH IMAGE 
+        //        string filepath = Path.Combine(imgfolder, Filename);
+        //        // COPY IMAGE TO REAL PATH TO DEVELOPER PATH
+        //        using (var stream = new FileStream(filepath, FileMode.Create))
+        //        {
+        //            newimg.CopyTo(stream);
+        //        }
+        //        // READY SEND PATH TO  IMAGE TO DB  
+        //        var dbAddress = Path.Combine("myfiles", Filename);
+
+        //        Newdata.Registration.UserImage = dbAddress;
+
+        //        Olddata.Username = Newdata.Registration.Username;
+        //        Olddata.Password = Newdata.Registration.Password;
+        //        Olddata.PersonalDetails = Newdata.Registration.PersonalDetails;
+        //        Olddata.EducationDetails = Newdata.Registration.EducationDetails;
+        //        Olddata.WorkExperience = Newdata.Registration.WorkExperience;
+
+        //        Olddata.UserImage = dbAddress;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Usershow");
+
+        //    }
+        //    return View();
+        //}
+
+        //ChatGpt
+        // Inject UserManager<ApplicationUser> to manage users
+        //private readonly UserManager<OnlineAptitudeTest6> _userManager;
+
+        //public Dashboard(UserManager<ApplicationUser> userManager)
+        //{
+        //    _userManager = userManager;
+        //}
+
+        //// GET: Profile (without passing ID)
+        //public async Task<IActionResult> Profile()
+        //{
+        //    // Get the logged-in user
+        //    var user = await _userManager.GetUserAsync(User);
+
+        //    if (user == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    // Populate the ViewModel with the user's data
+        //    var updateUser = new RegistrationRoleViewModel
+        //    {
+        //        RoleList = db.Roles.ToList(),
+        //        Registration = new User
+        //        {
+        //            Username = user.UserName,
+        //            PersonalDetails = user.PersonalDetails,
+        //            EducationDetails = user.EducationDetails,
+        //            WorkExperience = user.WorkExperience,
+        //            UserImage = user.UserImage
+        //        }
+        //    };
+
+        //    return View(updateUser);
+        //}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         //Add Question table work
         public IActionResult QuestionAdd()
