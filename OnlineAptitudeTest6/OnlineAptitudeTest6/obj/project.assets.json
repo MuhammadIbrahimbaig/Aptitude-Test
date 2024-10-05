@@ -10320,11 +10320,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\USER\\Desktop\\OnlineAptitudeTest6\\OnlineAptitudeTest6\\OnlineAptitudeTest6.csproj",
+      "projectUniqueName": "C:\\Users\\USER\\Desktop\\Aptitude-Test\\OnlineAptitudeTest6\\OnlineAptitudeTest6\\OnlineAptitudeTest6.csproj",
       "projectName": "OnlineAptitudeTest6",
-      "projectPath": "C:\\Users\\USER\\Desktop\\OnlineAptitudeTest6\\OnlineAptitudeTest6\\OnlineAptitudeTest6.csproj",
+      "projectPath": "C:\\Users\\USER\\Desktop\\Aptitude-Test\\OnlineAptitudeTest6\\OnlineAptitudeTest6\\OnlineAptitudeTest6.csproj",
       "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\USER\\Desktop\\OnlineAptitudeTest6\\OnlineAptitudeTest6\\obj\\",
+      "outputPath": "C:\\Users\\USER\\Desktop\\Aptitude-Test\\OnlineAptitudeTest6\\OnlineAptitudeTest6\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\USER\\AppData\\Roaming\\NuGet\\NuGet.Config",
