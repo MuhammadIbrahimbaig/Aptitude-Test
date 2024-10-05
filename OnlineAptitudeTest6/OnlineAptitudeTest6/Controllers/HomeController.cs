@@ -94,6 +94,7 @@ namespace OnlineAptitudeTest6.Controllers
                 else if (userRole == "Canditate")
                 {
                     var userrole = "Canditate";
+                    Contx.HttpContext.Session.SetInt32("UserId", findUser[0].UserId);
                     Contx.HttpContext.Session.SetString("Name", findUser[0].Username);
                     Contx.HttpContext.Session.SetString("Password", findUser[0].Password);
                     Contx.HttpContext.Session.SetString("PersonalDetails", findUser[0].PersonalDetails);
@@ -101,7 +102,7 @@ namespace OnlineAptitudeTest6.Controllers
                     Contx.HttpContext.Session.SetString("WorkExperience", findUser[0].WorkExperience);
                     Contx.HttpContext.Session.SetString("userimg", findUser[0].UserImage);
                     Contx.HttpContext.Session.SetString("userrole", userrole);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "User");
                 }
                 else
                 {

@@ -1,0 +1,107 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Corrected Paths -->
+    <link rel="apple-touch-icon" sizes="76x76" href="~/assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="~/assets/img/favicon.png">
+    <title>Online Aptitude Test</title>
+
+    <!-- Fonts and icons -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+    <link href="~/assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="~/assets/css/nucleo-svg.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+
+    <!-- CSS Files -->
+    <link id="pagestyle" href="~/assets/css/material-dashboard.css?v=3.1.0" rel="stylesheet" />
+
+    <!-- Nepcha Analytics -->
+    <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+
+</head>
+<style>
+    .question-block {
+        margin-bottom: 20px;
+    }
+
+    .options {
+        margin-left: 15px;
+    }
+
+    .btn-primary {
+        margin-top: 20px;
+    }
+    /* Styling the h2 title */
+    .test-title {
+        text-align: center;
+        font-size: 28px;
+        font-weight: bold;
+        color: #343a40;
+        margin-bottom: 20px;
+        padding: 10px;
+        background-color: #e9ecef;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+</style>
+<body>
+<div class="container">
+    @model OnlineAptitudeTest6.Models.QuestionWithTestViewModel
+
+    @{
+        ViewBag.Title = "Aptitude Test";
+            var questionNumber = 1; // Initialize question number
+    }
+
+        <h2 class="test-title">Aptitude Test (Math , General Knowledge & Computer)</h2>
+
+    <form asp-action="submit" method="post" >
+        @foreach (var question in Model.QuestionList)
+        {
+            <div class="question-block">
+                    <h4>Question no: @questionNumber  </h4>
+                    <p>@question.QuestionText</p>
+                    @{
+                        questionNumber++;
+                    }
+                    
+
+                <div class="options">
+                    <label>
+                        <input type="radio" name="question_@question.QuestionId" value="A" />
+                        @question.OptionA
+                    </label><br />
+
+                    <label>
+                        <input type="radio" name="question_@question.QuestionId" value="B" />
+                        @question.OptionB
+                    </label><br />
+
+                    <label>
+                        <input type="radio" name="question_@question.QuestionId" value="C" />
+                        @question.OptionC
+                    </label><br />
+
+                    <label>
+                        <input type="radio" name="question_@question.QuestionId" value="D" />
+                        @question.OptionD
+                    </label>
+                </div>
+                <hr />
+            </div>
+        }
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+</div>
+</body>

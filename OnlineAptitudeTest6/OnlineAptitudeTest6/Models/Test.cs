@@ -8,7 +8,6 @@ namespace OnlineAptitudeTest6.Models
         public Test()
         {
             Questions = new HashSet<Question>();
-            Results = new HashSet<Result>();
         }
 
         public int TestId { get; set; }
@@ -18,6 +17,5 @@ namespace OnlineAptitudeTest6.Models
         public int? TimeLimit { get; set; }
 
         public virtual ICollection<Question> Questions { get; set; }
-        public virtual ICollection<Result> Results { get; set; }
     }
 }

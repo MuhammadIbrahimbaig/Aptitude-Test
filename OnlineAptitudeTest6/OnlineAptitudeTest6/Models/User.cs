@@ -7,7 +7,7 @@ namespace OnlineAptitudeTest6.Models
     {
         public User()
         {
-            Results = new HashSet<Result>();
+            Finalresults = new HashSet<Finalresult>();
         }
 
         public int UserId { get; set; }
@@ -20,6 +20,6 @@ namespace OnlineAptitudeTest6.Models
         public string? UserImage { get; set; }
 
         public virtual Role? RoleIdFkNavigation { get; set; }
-        public virtual ICollection<Result> Results { get; set; }
+        public virtual ICollection<Finalresult> Finalresults { get; set; }
     }
 }

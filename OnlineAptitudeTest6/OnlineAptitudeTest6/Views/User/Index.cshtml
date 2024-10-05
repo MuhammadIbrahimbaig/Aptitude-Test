@@ -1,0 +1,111 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Corrected Paths -->
+    <link rel="apple-touch-icon" sizes="76x76" href="~/assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="~/assets/img/favicon.png">
+    <title>Online Aptitude Test</title>
+
+    <!-- Fonts and icons -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+    <link href="~/assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="~/assets/css/nucleo-svg.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+
+    <!-- CSS Files -->
+    <link id="pagestyle" href="~/assets/css/material-dashboard.css?v=3.1.0" rel="stylesheet" />
+
+    <!-- Nepcha Analytics -->
+    <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+    <style>
+        /* Style for the Box container */
+      
+
+        /* Style for the buttons */
+        .btn {
+            width: 150px;
+            height: 50px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: #E91E63;
+            color: white;
+            border: none;
+        }
+
+            .btn-primary:hover {
+                background-color: #E91E63;
+            }
+
+        .mb-3 {
+            margin-bottom: 15px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container border-1">
+        <!-- Heading Section -->
+        <div class="text-center my-4">
+            <h1 class="display-4">Welcome to the Aptitude Test Portal</h1>
+        </div>
+
+        <!-- Instructions Section -->
+        <div class="container">
+            <div class="welcome-section-content">
+                <h3 class="section-title-welcome">Before You Begin:</h3>
+                <p>Please read the following information before you start your test:</p>
+
+                <h4 class="section-title-welcome">Test Sections Overview:</h4>
+                <ul>
+                    <li><strong>General Knowledge:</strong> Contains 5 questions. This is the first section you need to complete.</li>
+                    <li><strong>Mathematics:</strong> This section will become available after you finish the General Knowledge section.</li>
+                    <li><strong>Computer Technology:</strong> The final section of the test, accessible after completing the Mathematics section.</li>
+                </ul>
+
+                <h4 class="section-title-welcome">Test Process:</h4>
+                <ul>
+                    <li><strong>Sequential Access:</strong> Complete each section in sequence. The next section unlocks after you finish the current one.</li>
+                    <li><strong>Time Limit:</strong> Each section has a specific time limit. Manage your time effectively.</li>
+                    <li><strong>Submit Button:</strong> Submit each section before the timer runs out. Once submitted, you cannot return to that section.</li>
+                    <li><strong>Marking Scheme:</strong> Each question is worth 5 marks. Unanswered questions when time runs out will receive zero marks.</li>
+                </ul>
+
+                <h4 class="section-title-welcome">Test Rules:</h4>
+                <ul>
+                    <li><strong>Changes to Answers:</strong> You can change answers until you submit the section.</li>
+                    <li><strong>Session Management:</strong> Log out after completing your test to secure your session.</li>
+                </ul>
+
+                <h4 class="section-title-welcome">Results:</h4>
+                <ul>
+                    <li><strong>After Submitting All Tests:</strong> Your results will display after submitting all sections. Unanswered questions receive zero marks.</li>
+                </ul>
+            </div>
+
+            <!-- Start Test and Logout Buttons -->
+            <div class="d-grid gap-2 col-md-6 col-sm-8 mx-auto my-4">
+                <a asp-action="ApptitudeTest">
+                    <button type="submit" class="btn btn-primary mb-3">Start Test</button>
+                </a>
+
+                <form id="logoutForm" asp-controller="Home" asp-action="Logout" method="post">
+                    <button type="submit" class="btn btn-primary">Logout</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
