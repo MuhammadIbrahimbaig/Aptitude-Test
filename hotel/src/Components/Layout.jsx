@@ -1,7 +1,6 @@
-import Header from './Header';
-import Footer from './Footer';
+import Header from '../Components/partial/Header';
+import Footer from '../Components/partial/Footer';
 import { Outlet } from 'react-router-dom';
-import carousel1 from '..//assets/images/carousel-1.jpg'
 const Layout = () => {
   return (
     <div className="d-flex flex-column min-vh-100">
