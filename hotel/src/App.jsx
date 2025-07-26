@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 // Template CSS IMPORT
-import './assets/css/main_styles.css';
-import './assets/css/responsive.css';
-
-//END Template CSS IMPORT
+import './assets/css/style.css';
+import './assets/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+ 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './Components'
 import Layout from './Components/layout'
