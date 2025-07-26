@@ -18,7 +18,7 @@ export default function Footer() {
                                     />
                                     <button
                                         type="button"
-                                        className="btn btn-primary py-2 px-3 position-absolute top-0 end-0 mt-2 me-2"
+                                        className="btn border-0 btn-primary py-2 px-3 position-absolute top-0 end-0 mt-2 me-2"
                                     >
                                         Submit
                                     </button>
@@ -34,16 +34,12 @@ export default function Footer() {
                     <div className="container pb-5">
                         <div className="row g-5">
                             <div className="col-md-6 col-lg-4">
-                                <div className="bg-primary rounded p-4">
-                                    <a href="index.html">
+                                <div className="bg-warning rounded p-4">
+                                    <a className="text-decoration-none" href="index.html">
                                         <h1 className="text-white text-uppercase mb-3">Hotelier</h1>
                                     </a>
                                     <p className="text-white mb-0">
-                                        Download{" "}
-                                        <a className="text-dark fw-medium" href="https://htmlcodex.com/hotel-html-template-pro">
-                                            Hotelier – Premium Version
-                                        </a>
-                                        , build a professional website for your hotel business and grab the attention of new visitors upon your site’s launch.
+                                       lorem  build a professional website for your hotel business and grab the attention of new visitors upon your site’s launch.
                                     </p>
                                 </div>
                             </div>
@@ -91,11 +87,7 @@ export default function Footer() {
                         <div className="copyright">
                             <div className="row">
                                 <div className="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                                    &copy; <a className="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
-                                    <br />
-                                    Designed By <a className="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
-                                    <br />
-                                    Distributed By: <a className="border-bottom" href="https://themewagon.com" target="_blank" rel="noreferrer">ThemeWagon</a>
+                                    &copy; <a className="text-decoration border-bottom" href="#">Your Site Name</a>, All Right Reserved.
                                 </div>
                                 <div className="col-md-6 text-center text-md-end">
                                     <div className="footer-menu">

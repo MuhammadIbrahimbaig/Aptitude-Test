@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+import logo from '../../assets/images/logo.png'
 export default function Header() {
     return (
         <div className="container bg-dark px-0">
@@ -5,6 +7,7 @@ export default function Header() {
                 <div className="col-lg-3 bg-dark d-none d-lg-block">
                     <a href="index.html" className="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
                         <h1 className="m-0 text-primary text-uppercase">Hotelier</h1>
+                        {/* <img src={logo} className='img-fluid custom-logo' alt="" /> */}
                     </a>
                 </div>
                 <div className="col-lg-9">
@@ -21,11 +24,11 @@ export default function Header() {
                         </div>
                         <div className="col-lg-5 px-5 text-end">
                             <div className="d-inline-flex align-items-center py-2">
-                                <a className="me-3" href="#"><i className="fab fa-facebook-f"></i></a>
-                                <a className="me-3" href="#"><i className="fab fa-twitter"></i></a>
-                                <a className="me-3" href="#"><i className="fab fa-linkedin-in"></i></a>
-                                <a className="me-3" href="#"><i className="fab fa-instagram"></i></a>
-                                <a href="#"><i className="fab fa-youtube"></i></a>
+                                <a className="me-3" href="#"><i className="text-primary fab fa-facebook-f"></i></a>
+                                <a className="me-3" href="#"><i className="text-primary fab fa-twitter"></i></a>
+                                <a className="me-3" href="#"><i className="text-primary fab fa-linkedin-in"></i></a>
+                                <a className="me-3" href="#"><i className="text-primary fab fa-instagram"></i></a>
+                                <a href="#"><i className="text-primary fab fa-youtube"></i></a>
                             </div>
                         </div>
                     </div>
@@ -38,22 +41,22 @@ export default function Header() {
                         </button>
                         <div className="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div className="navbar-nav mr-auto py-0">
-                                <a href="index.html" className="nav-item nav-link active">Home</a>
-                                <a href="about.html" className="nav-item nav-link">About</a>
-                                <a href="service.html" className="nav-item nav-link">Services</a>
-                                <a href="room.html" className="nav-item nav-link">Rooms</a>
+                                <Link to="/" className="nav-item nav-link active">Home</Link>
+                                <Link to="/about" className="nav-item nav-link">About</Link>
+                                <Link to="/service" className="nav-item nav-link">Services</Link>
+                                <Link to="/room" className="nav-item nav-link">Rooms</Link>
                                 <div className="nav-item dropdown">
                                     <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                                     <div className="dropdown-menu rounded-0 m-0">
                                         <a href="booking.html" className="dropdown-item">Booking</a>
                                         <a href="team.html" className="dropdown-item">Our Team</a>
-                                        <a href="testimonial.html" className="dropdown-item">Testimonial</a>
+                                        <Link to="testimonal" className="dropdown-item">Testimonial</Link>
                                     </div>
                                 </div>
                                 <a href="contact.html" className="nav-item nav-link">Contact</a>
                             </div>
-                            <a href="https://htmlcodex.com/hotel-html-template-pro" className="btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block">
-                                Premium Version<i className="fa fa-arrow-right ms-3"></i>
+                            <a href="https://htmlcodex.com/hotel-html-template-pro" className="border-0 btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block">
+                                Services<i className="fa fa-arrow-right ms-3"></i>
                             </a>
                         </div>
                     </nav>

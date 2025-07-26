@@ -1,10 +1,16 @@
 /********** Template CSS **********/
 :root {
-    --primary: #FEA116;
+    --primary: #FEA116 !important;
     --light: #F1F8FF;
     --dark: #0F172B;
 }
-
+/* .text-primary{
+    color: #FEA116 !important;
+} */
+ .text-primary {
+    --bs-text-opacity: 1;
+    color: rgba(var(--bs-warning-rgb), var(--bs-text-opacity)) !important;
+}
 .fw-medium {
     font-weight: 500 !important;
 }
@@ -46,7 +52,10 @@
 
 .btn.btn-primary,
 .btn.btn-secondary {
-    color: #FFFFFF;
+    color: #ffffff;
+}
+.btn.btn-primary{
+    background-color: #FEA116;
 }
 
 .btn-square {
@@ -346,7 +355,7 @@
 
 /*** Testimonial ***/
 .testimonial {
-    background: linear-gradient(rgba(15, 23, 43, .7), rgba(15, 23, 43, .7)), url(../img/carousel-2.jpg);
+    background: linear-gradient(rgba(15, 23, 43, .7), rgba(15, 23, 43, .7)), url(../images/carousel-1.jpg);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -372,19 +381,15 @@
     z-index: 1;
 }
 
-.testimonial-carousel .owl-nav .owl-prev,
-.testimonial-carousel .owl-nav .owl-next {
-    position: relative;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #FFFFFF;
-    background: var(--primary);
-    border-radius: 2px;
-    font-size: 18px;
-    transition: .5s;
+.splide__arrow--prev,
+.splide__arrow--next {
+    width: 40px !important;
+    height: 40px !important;
+    color: #FFFFFF !important;
+    background: var(--primary) !important;
+    border-radius: 2px !important;
+    font-size: 18px !important;
+    transition: .5s !important;
 }
 
 .testimonial-carousel .owl-nav .owl-prev:hover,
@@ -488,4 +493,8 @@
     margin-right: 0;
     padding-right: 0;
     border-right: none;
+}
+.custom-logo{
+    height: 60px;
+    width: 60px;
 }
