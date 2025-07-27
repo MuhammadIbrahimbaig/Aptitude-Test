@@ -7,7 +7,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import '@splidejs/react-splide/css';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
- 
+
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './Components'
 import Layout from './Components/layout'
@@ -15,6 +15,8 @@ import About from './Components/About'
 import Services from './Components/services.jsx';
 import Room from './Components/room.jsx';
 import Testimonial from './Components/testimonial.jsx';
+import Booking from './Components/booking.jsx';
+import Contact from './Components/contact.jsx';
 
 
 function App() {
@@ -22,18 +24,20 @@ function App() {
   return (
     <div>
       <StrictMode>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route path='/' element={<Home />} />
-            <Route path='/about' element={<About />} />
-            <Route path='/service' element={<Services/>} />
-            <Route path='/testimonal' element={<Testimonial/>} />
-            <Route path='/room' element={<Room/>}  />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route path='/' element={<Home />} />
+              <Route path='/about' element={<About />} />
+              <Route path='/service' element={<Services />} />
+              <Route path='/testimonal' element={<Testimonial />} />
+              <Route path='/room' element={<Room />} />
+              <Route path='/booking' element={<Booking />} />
+              <Route path='/contact' element={<Contact />} />
 
-          </Route>
-        </Routes>
-      </BrowserRouter>
+            </Route>
+          </Routes>
+        </BrowserRouter>
 
       </StrictMode>
     </div>

@@ -48,12 +48,12 @@ export default function Header() {
                                 <div className="nav-item dropdown">
                                     <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                                     <div className="dropdown-menu rounded-0 m-0">
-                                        <a href="booking.html" className="dropdown-item">Booking</a>
+                                        <Link to="/booking" className="dropdown-item">Booking</Link>
                                         <a href="team.html" className="dropdown-item">Our Team</a>
                                         <Link to="testimonal" className="dropdown-item">Testimonial</Link>
                                     </div>
                                 </div>
-                                <a href="contact.html" className="nav-item nav-link">Contact</a>
+                                <Link to="contact" className="nav-item nav-link">Contact</Link>
                             </div>
                             <a href="https://htmlcodex.com/hotel-html-template-pro" className="border-0 btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block">
                                 Services<i className="fa fa-arrow-right ms-3"></i>
