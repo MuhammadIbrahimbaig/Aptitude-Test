@@ -26,10 +26,14 @@ let room_structure = mongo.Schema({
         type: [String], // e.g. ['AC', 'Wi-Fi', 'TV']
         default: []
     },
+    image: {
+        type: String, // URL or file path
+        default: ""   // e.g. "/uploads/room1.jpg"
+    },
     Record_time: {
         type: Date,
         default: Date.now()
     }
 });
 
-module.exports = mongoose.model("rooms", room_structure);
+module.exports = mongo.model("rooms", room_structure);

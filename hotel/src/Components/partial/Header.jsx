@@ -24,7 +24,7 @@ export default function Header() {
                         </div>
                         <div className="col-lg-5 px-5 text-end">
                             <div className="d-inline-flex align-items-center py-2">
-                                <a className="me-3" href="#"><i className="text-primary fab fa-facebook-f"></i></a>
+                                <Link to="/create" className="me-3"><i className="text-primary fab fa-facebook-f"></i></Link>
                                 <a className="me-3" href="#"><i className="text-primary fab fa-twitter"></i></a>
                                 <a className="me-3" href="#"><i className="text-primary fab fa-linkedin-in"></i></a>
                                 <a className="me-3" href="#"><i className="text-primary fab fa-instagram"></i></a>
