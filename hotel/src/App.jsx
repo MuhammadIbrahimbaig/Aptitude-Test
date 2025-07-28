@@ -17,6 +17,10 @@ import Room from './Components/room.jsx';
 import Testimonial from './Components/testimonial.jsx';
 import Booking from './Components/booking.jsx';
 import Contact from './Components/contact.jsx';
+import Registration from './Components/registration.jsx';
+import Loginform from './Components/login.jsx';
+
+
 
 
 function App() {
@@ -34,6 +38,10 @@ function App() {
               <Route path='/room' element={<Room />} />
               <Route path='/booking' element={<Booking />} />
               <Route path='/contact' element={<Contact />} />
+              <Route path='/registration' element={<Registration />} />
+              <Route path='/login' element={<Loginform />} />
+
+
 
             </Route>
           </Routes>
