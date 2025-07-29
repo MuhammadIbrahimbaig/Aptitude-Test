@@ -31,19 +31,18 @@ function App() {
       <StrictMode>
         <BrowserRouter>
           <Routes>
+            <Route path='/' element={<Registration />} />
+              <Route path='/login' element={<Loginform />} />
             <Route path="/" element={<Layout />}>
-              {/* <Route path='/' element={<Loginform />} /> */}
+              <Route path='/home' element={<About />} />
+
               <Route path='/about' element={<About />} />
               <Route path='/service' element={<Services />} />
               <Route path='/testimonal' element={<Testimonial />} />
               <Route path='/room' element={<Room />} />
               <Route path='/booking' element={<Booking />} />
               <Route path='/contact' element={<Contact />} />
-              <Route path='/' element={<Registration />} />
-              <Route path='/login' element={<Loginform />} />
-              <Route path='/create' element={<CreateRoom/>} />
-
-
+              <Route path='/create' element={<CreateRoom />} />
             </Route>
           </Routes>
         </BrowserRouter>

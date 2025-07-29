@@ -20,9 +20,9 @@ export const CreateRoom = () => {
             formData.append("price", price);
             formData.append("capacity", capacity);
             formData.append("is_available", isAvailable);
-            formData.append("features", features); // convert to comma-separated if needed
+            formData.append("features", features);  
             if (image) {
-                formData.append("image", image); // ✅ Append image file
+                formData.append("image", image);  
             }
 
             await axios.post("http://localhost:4001/saveroom", formData, {

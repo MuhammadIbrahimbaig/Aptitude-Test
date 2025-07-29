@@ -27,7 +27,7 @@ export default function Loginform() {
     autoClose: 500,
     theme: "colored",
     onClose: () => {
-      navigate("/about");  
+      navigate("/home");  
     }
   });
       } else if (role === 2) {

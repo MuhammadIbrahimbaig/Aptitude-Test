@@ -1,14 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const UserController = require("../Controller/function");
-<<<<<<< Updated upstream
 const Room = require("../Controller/Room");
 const multer = require("multer");
-router.post("/save", UserController.Register);
-router.get("/read", UserController.read)
-router.delete("/remove/:id", UserController.DeleteRecord);
-router.put("/edit/:a", UserController.EditRecord);
-// HOtel Routes
+// router.post("/save", UserController.Register);
+// router.get("/read", UserController.read)
+// router.delete("/remove/:id", UserController.DeleteRecord);
+// router.put("/edit/:a", UserController.EditRecord);
+
+// Ibrahim Routing Section
 // Setup multer to save image in 'uploads' folder with original filename
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -16,15 +16,12 @@ const storage = multer.diskStorage({
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + "-" + file.originalname);
-  },
+  },      
 });
 const upload = multer({ storage });
-
-// Pass image through multer middleware, and then to controller
 router.post("/saveroom", upload.single("image"), Room.CreateRoom);
-=======
 
+// Asfhan Routing Section
 router.post("/", UserController.Register);
 router.post("/login", UserController.Login);
->>>>>>> Stashed changes
 module.exports = router;
