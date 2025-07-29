@@ -1,18 +1,21 @@
-const express = require("express");
-const cors = require("cors");
-let db = require("./dbconnection")
-const app = express();
-const port = 4001;
+let exp = require("express");
+require("dotenv").config();
+let route = require("./Routes/route");
+let cors = require("cors");
+let db = require("./dbconnection");
+let port_no = process.env.PORT||4001;
+let app = exp();
 
+app.use(exp.json());
 app.use(cors());
-app.use(express.json());
+app.use('/Mywork/',route);
 
-const route = require("./Routes/route");
-const User = require("./Collection/User");
-app.use("/", route);
 
-db().then(() => {
-  app.listen(port, () => {
-    console.log(`Server started at http://localhost:${port}`);
-  });
+db().then(()=>{
+app.listen(port_no , function () {
+    console.log(`server at started at http://localhost:${port_no}/Mywork/`);
+})
+
+}).catch((e)=>{
+    console.log(e);
 })

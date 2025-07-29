@@ -1,36 +1,35 @@
-let mongo = require("mongoose");
+const mongoose = require('mongoose');
 
-let user_structure = mongo.Schema({
-    name :{
-        type:String,
-        required:true
+const userSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true
     },
-    email:{
-        type:String,
-        required:true,
-        unique:true
-    },
-    password:{
-        type:String,
-        required:true,
-       
-    },
-    age:{
-        type:String,
-        required:true,
-        
-    },
-    city:{
-        type:String,
-        default: "karachi"
-        
-    },
-    Record_time:{
-        type:Date,
-        default:Date.now()
 
+    email: {
+        type: String,
+        required: true,
+        unique: true
+    },
+
+    password: {
+        type: String,
+        required: true
+    },
+
+    roleId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "roles",
+        required: true
     }
+});
 
+const roleSchema = new mongoose.Schema({
+    name: { type: String, required: true, unique: true },
+    code: { type: Number, required: true, unique: true }
+});
 
-})
-module.exports = mongo.model("users",user_structure)
+const Role = mongoose.model("roles", roleSchema);
+const User = mongoose.model("users", userSchema);
+
+module.exports = { Role, User };

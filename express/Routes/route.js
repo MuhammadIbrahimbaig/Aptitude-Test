@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const UserController = require("../Controller/function");
+<<<<<<< Updated upstream
 const Room = require("../Controller/Room");
 const multer = require("multer");
 router.post("/save", UserController.Register);
@@ -21,4 +22,9 @@ const upload = multer({ storage });
 
 // Pass image through multer middleware, and then to controller
 router.post("/saveroom", upload.single("image"), Room.CreateRoom);
+=======
+
+router.post("/", UserController.Register);
+router.post("/login", UserController.Login);
+>>>>>>> Stashed changes
 module.exports = router;
