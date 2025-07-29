@@ -9,7 +9,6 @@ const multer = require("multer");
 // router.put("/edit/:a", UserController.EditRecord);
 
 // Ibrahim Routing Section
-// Setup multer to save image in 'uploads' folder with original filename
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "uploads/");

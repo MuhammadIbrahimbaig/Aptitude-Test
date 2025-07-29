@@ -1,12 +1,13 @@
-const Room = require("../Collection/Room"); // import your Room model
+const Room = require("../Collection/Room");
 require("dotenv").config();
 
 let data = {
   CreateRoom: async function (req, res) {
     try {
-      let { room_number, type, price, capacity, features, is_available } = req.body;
+      let { room_number, type, price, capacity, features, } = req.body;
+      let is_available = req.body.is_available === 'true';
 
-      // Convert comma-separated features to array
+      // Convert comma-separated 
       const featuresArray = features.split(',').map(item => item.trim());
 
       // Check if room already exists
@@ -18,7 +19,7 @@ let data = {
       // Handle image file
       let imagePath = "";
       if (req.file) {
-        imagePath = req.file.path; // e.g. uploads/16900000-room.jpg
+        imagePath = req.file.path;
       }
 
       // Create new Room
@@ -29,7 +30,7 @@ let data = {
         capacity,
         features: featuresArray,
         is_available,
-        image: imagePath, // Save image path to MongoDB
+        image: imagePath,
       });
 
       await newRoom.save();
@@ -39,7 +40,15 @@ let data = {
       res.status(500).json({ msg: error.message });
       console.log("Room creation error:", error);
     }
+  },
+  // READ DATA
+  Read: async function (req, res) {
+    try {
+      const rooms = await Room.find()
+      req.json(rooms)
+    } catch (error) {
+      res.status(500).json({e: error.message})
+    }
   }
 };
-
 module.exports = data;

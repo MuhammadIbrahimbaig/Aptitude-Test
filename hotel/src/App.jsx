@@ -11,6 +11,7 @@ import { Splide, SplideSlide } from '@splidejs/react-splide';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './Components'
 import Layout from './Components/layout'
+
 import About from './Components/About'
 import Services from './Components/services.jsx';
 import Room from './Components/room.jsx';
@@ -32,10 +33,9 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<Registration />} />
-              <Route path='/login' element={<Loginform />} />
+            <Route path='/login' element={<Loginform />} />
             <Route path="/" element={<Layout />}>
-              <Route path='/home' element={<About />} />
-
+              <Route path='/home' element={<Home />} />
               <Route path='/about' element={<About />} />
               <Route path='/service' element={<Services />} />
               <Route path='/testimonal' element={<Testimonial />} />

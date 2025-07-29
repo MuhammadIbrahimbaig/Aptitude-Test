@@ -25,7 +25,7 @@ export const CreateRoom = () => {
                 formData.append("image", image);  
             }
 
-            await axios.post("http://localhost:4001/saveroom", formData, {
+            await axios.post("http://localhost:4001/Mywork/saveroom", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data"
                 }
