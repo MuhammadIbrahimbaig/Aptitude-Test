@@ -1,19 +1,16 @@
 import { Outlet } from "react-router-dom";
 import Header from "./Partials/Header";
-import Footer from "./Partials/Footer";
-
 
 export default function Layout() {
-    
-     return (
-    <div className="d-flex flex-column min-vh-100">
+  return (
+    <div className="d-flex min-vh-100">
+      {/* Sidebar (Header component as your sidebar) */}
       <Header />
-      
-      <main className="flex-grow-1 w-100">
+
+      {/* Main content area */}
+      <main className="flex-grow-1 p-3 w-100">
         <Outlet />
       </main>
-
-      <Footer />
     </div>
   );
 }
