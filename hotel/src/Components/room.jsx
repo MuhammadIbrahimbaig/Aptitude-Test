@@ -1,17 +1,22 @@
 import { Link } from 'react-router-dom';
-import room1 from '../assets/images/room-1.jpg';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-// import room2 from '../assets/images/room-2.jpg';
-// import room3 from '../assets/images/room-3.jpg';
+
 
 export default function Room() {
     const [rooms, setRooms] = useState([]);
+
     useEffect(() => {
-        axios.get('http://localhost:4001/read')
-            .then($result => setRooms($result.data))
-            .catch(err => console.log(err))
-    })
+        axios.get('http://localhost:4001/Mywork/read')
+            .then(res => {
+                console.log('Room issue', res.data);
+
+                setRooms(res.data);
+            })
+            .catch(err => console.log(err));
+    }, []);
+
+
     return (
 
         <div>
@@ -47,7 +52,9 @@ export default function Room() {
                                 <div className="col-lg-4 col-md-6" key={index}>
                                     <div className="room-item shadow rounded overflow-hidden">
                                         <div className="position-relative">
+                                            {/* <img className="img-fluid" src={`http://localhost:4001/uploads/${room.image}`} alt="room" /> */}
                                             <img className="img-fluid" src={`http://localhost:4001/${room.image}`} alt="room" />
+
                                             <small className="position-absolute start-0 top-100 translate-middle-y btn border-0 btn-primary text-white rounded py-1 px-3 ms-4">
                                                 ${room.price}/Night
                                             </small>

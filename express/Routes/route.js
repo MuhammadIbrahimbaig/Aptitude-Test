@@ -9,6 +9,7 @@ const multer = require("multer");
 // router.put("/edit/:a", UserController.EditRecord);
 
 // Ibrahim Routing Section
+router.get("/read", Room.Read);
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "uploads/");

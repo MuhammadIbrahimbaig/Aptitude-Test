@@ -45,10 +45,11 @@ let data = {
   Read: async function (req, res) {
     try {
       const rooms = await Room.find()
-      req.json(rooms)
+      res.json(rooms)
     } catch (error) {
       res.status(500).json({e: error.message})
     }
   }
+
 };
 module.exports = data;
