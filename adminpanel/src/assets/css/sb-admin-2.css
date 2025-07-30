@@ -46,7 +46,13 @@
 *::after {
   box-sizing: border-box;
 }
-
+.custom-hover-set{
+  color: whitesmoke !important;
+}
+.custom-hover-set:hover{
+  background-color: rgb(0, 0, 0) !important;
+  color: rgb(255, 255, 255) !important;
+}
 html {
   font-family: sans-serif;
   line-height: 1.15;
