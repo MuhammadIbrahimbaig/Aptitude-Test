@@ -17,12 +17,14 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
   
 import Index from './Components/Index';
 import Layout from './Components/Layout';
+import LoginForm from './Components/LoginForm.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path="/" element={<LoginForm/>}>
+        <Route path="/" element={<Layout />}/>
           <Route path='/' element={<Index />} />
          
         </Route>

@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const UserController = require("../Controller/function");
+const AdminLogin = require("../AdminController/AdminAuth");
 const Room = require("../Controller/Room");
 const multer = require("multer");
 // router.post("/save", UserController.Register);
@@ -24,4 +25,7 @@ router.post("/saveroom", upload.single("image"), Room.CreateRoom);
 // Asfhan Routing Section
 router.post("/", UserController.Register);
 router.post("/login", UserController.Login);
+router.post("/AdminLogin", AdminLogin.AdminLogin);
+
 module.exports = router;
+
