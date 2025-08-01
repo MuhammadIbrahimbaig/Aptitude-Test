@@ -51,7 +51,7 @@ export default function Header() {
                     <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo">
                         <div className="bg-primary text-white  collapse-inner rounded">
                             <Link to="/createroom" className="collapse-item  custom-hover-set">Create</Link>
-                            <a className="collapse-item custom-hover-set" href="cards.html">All</a>
+                            <Link to="/allrooms" className="collapse-item custom-hover-set" >All</Link>
                         </div>
                     </div>
                 </li>

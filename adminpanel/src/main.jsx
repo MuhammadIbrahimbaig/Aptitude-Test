@@ -19,6 +19,7 @@ import Index from './Components/Index';
 import Layout from './Components/Layout';
 import LoginForm from './Components/LoginForm.jsx';
 import { CreateRoom } from './Components/createroom.jsx';
+import RoomRead from './Components/showrooms.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -28,6 +29,8 @@ createRoot(document.getElementById('root')).render(
         <Route path="/" element={<Layout />} >
           <Route path='/' element={<Index />} />
           <Route path='/createroom' element={<CreateRoom/>} />
+          <Route path='/allrooms' element={<RoomRead/>} />
+
         </Route>
       </Routes>
     </BrowserRouter>

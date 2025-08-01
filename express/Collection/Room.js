@@ -8,7 +8,7 @@ let room_structure = mongo.Schema({
     },
     type: {
         type: String,
-        required: true, // e.g. Single, Double, Deluxe
+        required: true, 
     },
     price: {
         type: Number,
@@ -23,12 +23,12 @@ let room_structure = mongo.Schema({
         required: true
     },
     features: {
-        type: [String], // e.g. ['AC', 'Wi-Fi', 'TV']
+        type: [String],  
         default: []
     },
     image: {
-        type: String, // URL or file path
-        default: ""   // e.g. "/uploads/room1.jpg"
+        type: String,  
+        default: ""    
     },
     Record_time: {
         type: Date,
