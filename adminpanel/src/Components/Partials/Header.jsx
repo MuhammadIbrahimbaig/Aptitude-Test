@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Header() {
 
 
@@ -32,21 +34,7 @@ export default function Header() {
                     Menu
                 </div>
 
-                {/* <!-- Nav Item - Pages Collapse Menu --> */}
-                {/* <li className="nav-item">
-                <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i className="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
-                </a>
-                <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div className="bg-white py-2 collapse-inner rounded">
-                        <h6 className="collapse-header">Custom Components:</h6>
-                        <a className="collapse-item" href="buttons.html">Buttons</a>
-                        <a className="collapse-item" href="cards.html">Cards</a>
-                    </div>
-                </div>
-            </li> */}
+               
                 <li className="nav-item">
                     <a
                         className="nav-link collapsed"
@@ -62,7 +50,7 @@ export default function Header() {
 
                     <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo">
                         <div className="bg-primary text-white  collapse-inner rounded">
-                            <a className="collapse-item  custom-hover-set">Create</a>
+                            <Link to="/createroom" className="collapse-item  custom-hover-set">Create</Link>
                             <a className="collapse-item custom-hover-set" href="cards.html">All</a>
                         </div>
                     </div>
