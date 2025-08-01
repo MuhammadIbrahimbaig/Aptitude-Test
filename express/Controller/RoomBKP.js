@@ -17,12 +17,10 @@ let data = {
       }
 
       // Handle image file
-      // Handle image file
       let imagePath = "";
       if (req.file) {
-        imagePath = req.file.path.replace(/\\/g, '/'); // ✅ Fix Windows-style path
+        imagePath = req.file.path;
       }
-
 
       // Create new Room
       let newRoom = new Room({
@@ -49,7 +47,7 @@ let data = {
       const rooms = await Room.find()
       res.json(rooms)
     } catch (error) {
-      res.status(500).json({ e: error.message })
+      res.status(500).json({e: error.message})
     }
   }
 

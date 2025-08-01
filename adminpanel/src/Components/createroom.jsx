@@ -4,6 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export const CreateRoom = () => {
+    const [room_name, setRoomName] = useState("");
     const [roomNumber, setRoomNumber] = useState("");
     const [type, setType] = useState("");
     const [price, setPrice] = useState("");
@@ -30,6 +31,7 @@ export const CreateRoom = () => {
     const SubmitFunc = async () => {
         try {
             const formData = new FormData();
+            formData.append("room_name", room_name);
             formData.append("room_number", roomNumber);
             formData.append("type", type);
             formData.append("price", price);
@@ -73,7 +75,17 @@ export const CreateRoom = () => {
                                 onChange={(e) => setRoomNumber(e.target.value)}
                             />
                         </div>
-
+                        <div className="mb-3">
+                            <label htmlFor="roomName" className="form-label">Room Name</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="roomName"
+                                placeholder="Enter room name"
+                                value={room_name}
+                                onChange={(e) => setRoomName(e.target.value)}
+                            />
+                        </div>
                         <div className="mb-3">
                             <label htmlFor="type" className="form-label">Room Type</label>
                             <select

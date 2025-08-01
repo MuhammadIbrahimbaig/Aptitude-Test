@@ -6,9 +6,13 @@ let room_structure = mongo.Schema({
         required: true,
         unique: true
     },
+    room_name: {
+        type: String,  
+        required: true
+    },
     type: {
         type: String,
-        required: true, 
+        required: true
     },
     price: {
         type: Number,
@@ -23,12 +27,12 @@ let room_structure = mongo.Schema({
         required: true
     },
     features: {
-        type: [String],  
+        type: [String],
         default: []
     },
     image: {
-        type: String,  
-        default: ""    
+        type: String,
+        default: ""
     },
     Record_time: {
         type: Date,

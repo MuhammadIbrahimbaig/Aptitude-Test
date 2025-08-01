@@ -20,7 +20,6 @@ import Booking from './Components/booking.jsx';
 import Contact from './Components/contact.jsx';
 import Registration from './Components/registration.jsx';
 import Loginform from './Components/login.jsx';
-import { CreateRoom } from './Components/CreateRoom.jsx';
 
 
 
@@ -42,7 +41,7 @@ function App() {
               <Route path='/room' element={<Room />} />
               <Route path='/booking' element={<Booking />} />
               <Route path='/contact' element={<Contact />} />
-              <Route path='/create' element={<CreateRoom />} />
+              
             </Route>
           </Routes>
         </BrowserRouter>

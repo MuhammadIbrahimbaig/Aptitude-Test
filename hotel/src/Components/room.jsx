@@ -16,7 +16,6 @@ export default function Room() {
             .catch(err => console.log(err));
     }, []);
 
-
     return (
 
         <div>
@@ -52,8 +51,9 @@ export default function Room() {
                                 <div className="col-lg-4 col-md-6" key={index}>
                                     <div className="room-item shadow rounded overflow-hidden">
                                         <div className="position-relative">
-                                            {/* <img className="img-fluid" src={`http://localhost:4001/uploads/${room.image}`} alt="room" /> */}
-                                            <img className="img-fluid" src={`http://localhost:4001/${room.image}`} alt="room" />
+                                            <img className="img-fluid fixed-wh object-fit-cover" src={`http://localhost:4001/Mywork/${room.image}`} alt="room" />
+
+
                                             <small className="position-absolute start-0 top-100 translate-middle-y btn border-0 btn-primary text-white rounded py-1 px-3 ms-4">
                                                 ${room.price}/Night
                                             </small>
