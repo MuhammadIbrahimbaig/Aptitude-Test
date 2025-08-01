@@ -23,8 +23,8 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LoginForm/>}>
-        <Route path="/" element={<Layout />}/>
+        <Route path="/log" element={<LoginForm/>}/>
+        <Route path="/" element={<Layout />}>
           <Route path='/' element={<Index />} />
          
         </Route>

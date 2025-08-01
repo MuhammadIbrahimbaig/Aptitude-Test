@@ -29,7 +29,7 @@ export default function LoginForm() {
         autoClose: 500,
         theme: "colored",
         onClose: () => {
-          navigate("/Home");  
+          navigate("/");  
         }
       });
 
