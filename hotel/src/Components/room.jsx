@@ -59,8 +59,11 @@ export default function Room() {
                                             </small>
                                         </div>
                                         <div className="p-4 mt-2">
+                                            <div className="">
+                                                <h6 className='fs-3'>{room.room_name}</h6>
+                                            </div>
                                             <div className="d-flex justify-content-between mb-3">
-                                                <h5 className="mb-0">{room.type}</h5>
+                                                <p className="mb-0 fw-bold">{room.type}</p>
                                                 <div className="ps-2">
                                                     {Array(3).fill().map((_, i) => (
                                                         <small key={i} className="fa fa-star text-primary"></small>

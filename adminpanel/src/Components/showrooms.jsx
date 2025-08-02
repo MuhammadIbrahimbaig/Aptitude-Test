@@ -49,16 +49,27 @@ export default function RoomRead() {
             break;
     }
 
-    const deleteRoom = async (roomId, roomName) => {
-        if (window.confirm(`Delete room: ${roomName}?`)) {
-            await axios.delete(`http://localhost:4001/Mywork/rooms/${roomId}`)
-                .then(() => {
-                    toast.success("Room deleted");
-                    setRooms((prev) => prev.filter((room) => room._id !== roomId));
-                })
-                .catch((e) => toast.error(e.message));
+    // const deleteRoom = async (roomId, roomName) => {
+    //     if (window.confirm(`Delete room: ${roomName}?`)) {
+    //         await axios.delete(`http://localhost:4001/Mywork/remove/${roomId}`)
+    //             .then(() => {
+    //                 toast.success("Room deleted");
+    //                 setRooms((prev) => prev.filter((room) => room._id !== roomId));
+    //             })
+    //             .catch((e) => toast.error(e.message));
+    //     }
+    // };
+    // Delete
+    async function DeleteRecord(id, n) {
+        if (window.confirm(`Are you sure want to delete ${n} record `)) {
+            await axios.delete(`http://localhost:4001/Mywork/remove/${id}`).then(() => {
+                toast.success("Record Deleted Successfully");
+                RoomRead()
+            }).catch((e) => {
+                toast.error(e.message)
+            })
         }
-    };
+    }
 
     const editRoom = async () => {
         try {
@@ -139,7 +150,7 @@ export default function RoomRead() {
                                         <i class="fa-solid fa-pencil"></i>
                                     </button>
                                     <button className="btn btn-sm text-danger"
-                                        onClick={() => deleteRoom(room._id, room.room_name)}>
+                                        onClick={() => DeleteRecord(room._id, room.room_name)}>
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </td>

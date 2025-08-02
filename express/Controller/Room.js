@@ -4,19 +4,17 @@ require("dotenv").config();
 let data = {
   CreateRoom: async function (req, res) {
     try {
-      let { room_number, type, price, capacity, features, } = req.body;
+      let { room_name, room_number, type, price, capacity, features, } = req.body;
       let is_available = req.body.is_available === 'true';
 
-      // Convert comma-separated 
       const featuresArray = features.split(',').map(item => item.trim());
-
       // Check if room already exists
       let existingRoom = await Room.findOne({ room_number });
       if (existingRoom) {
         return res.status(409).json({ msg: "Room number already exists!" });
       }
 
-      // Handle image file
+
       // Handle image file
       let imagePath = "";
       if (req.file) {
@@ -26,6 +24,7 @@ let data = {
 
       // Create new Room
       let newRoom = new Room({
+        room_name,
         room_number,
         type,
         price,
@@ -51,7 +50,23 @@ let data = {
     } catch (error) {
       res.status(500).json({ e: error.message })
     }
-  }
+  },
+   // DLt
+    DeleteRecord : async  function(req, res){
+      try {
+        let { id } = req.params
+        let find = await Room.findById(id)
+        if (!find) {
+          res.status(404).json({msg: "Record Not Found"})
+        }
+        else{
+          await Room.findByIdAndDelete(find)
+          res.status(200).json({msg: "Room Deleted Succesfully"})
+        }
+      } catch (error) {
+        res.status(404).json({msg:error.message})
+      }
+    },
 
 };
 module.exports = data;

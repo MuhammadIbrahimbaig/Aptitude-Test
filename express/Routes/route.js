@@ -10,10 +10,7 @@ const multer = require("multer");
 // router.put("/edit/:a", UserController.EditRecord);
 
 // Ibrahim Routing Section
-router.get("/read", Room.Read);
-// ✅ Add this line to serve static files from the uploads folder
 router.use('/uploads', express.static('uploads'));
-
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "uploads/");
@@ -24,6 +21,10 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 router.post("/saveroom", upload.single("image"), Room.CreateRoom);
+router.get("/read", Room.Read);
+router.delete("/remove/:id", Room.DeleteRecord);
+ 
+
 
 // Asfhan Routing Section
 router.post("/", UserController.Register);
