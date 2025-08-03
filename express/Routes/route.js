@@ -22,8 +22,8 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 router.post("/saveroom", upload.single("image"), Room.CreateRoom);
 router.get("/read", Room.Read);
+router.put("/edit/:a", Room.EditRecord);
 router.delete("/remove/:id", Room.DeleteRecord);
- 
 
 
 // Asfhan Routing Section

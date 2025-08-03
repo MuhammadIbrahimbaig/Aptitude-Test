@@ -11,7 +11,6 @@ import { Splide, SplideSlide } from '@splidejs/react-splide';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './Components'
 import Layout from './Components/layout'
-
 import About from './Components/About'
 import Services from './Components/services.jsx';
 import Room from './Components/room.jsx';

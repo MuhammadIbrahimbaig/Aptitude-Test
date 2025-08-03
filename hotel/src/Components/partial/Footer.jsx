@@ -36,7 +36,7 @@ export default function Footer() {
                             <div className="col-md-6 col-lg-4">
                                 <div className="bg-warning rounded p-4">
                                     <a className="text-decoration-none" href="index.html">
-                                        <h1 className="text-white text-uppercase mb-3">Hotelier</h1>
+                                        <h1 className="text-white text-uppercase mb-3">LuxuryStay</h1>
                                     </a>
                                     <p className="text-white mb-0">
                                        lorem  build a professional website for your hotel business and grab the attention of new visitors upon your site’s launch.

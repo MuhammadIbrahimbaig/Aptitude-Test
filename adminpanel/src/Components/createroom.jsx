@@ -9,7 +9,7 @@ export const CreateRoom = () => {
     const [type, setType] = useState("");
     const [price, setPrice] = useState("");
     const [capacity, setCapacity] = useState("");
-    const [isAvailable, setIsAvailable] = useState(true);
+    const [status, setStatus] = useState("");
     const [features, setFeatures] = useState("");
     const [image, setImage] = useState(null);
 
@@ -36,7 +36,7 @@ export const CreateRoom = () => {
             formData.append("type", type);
             formData.append("price", price);
             formData.append("capacity", capacity);
-            formData.append("is_available", isAvailable);
+            formData.append("status", status);
             formData.append("features", features);
             if (image) {
                 formData.append("image", image);
@@ -47,7 +47,16 @@ export const CreateRoom = () => {
                     "Content-Type": "multipart/form-data"
                 }
             });
-
+            //Clear form inputs
+            setRoomName("");
+            setRoomNumber("");
+            setType("");
+            setPrice("");
+            setCapacity("");
+            setStatus("");
+            setFeatures("");
+            setImage(null);
+            document.getElementById("image").value = null;
             toast.success("Room Added Successfully");
         } catch (e) {
             console.log(e);
@@ -126,17 +135,20 @@ export const CreateRoom = () => {
                         </div>
 
                         <div className="mb-3">
-                            <label htmlFor="isAvailable" className="form-label">Availability</label>
+                            <label htmlFor="status" className="form-label">Room Status</label>
                             <select
                                 className="form-select"
-                                id="isAvailable"
-                                value={isAvailable}
-                                onChange={(e) => setIsAvailable(e.target.value === "true")}
+                                id="status"
+                                value={status}
+                                onChange={(e) => setStatus(e.target.value)}
                             >
-                                <option value="true">Yes</option>
-                                <option value="false">No</option>
+                                <option value="available">Available</option>
+                                <option value="booked">Booked</option>
+                                <option value="cleaning">Cleaning</option>
+                                <option value="maintenance">Maintenance</option>
                             </select>
                         </div>
+
 
                         <div className="mb-3">
                             <label htmlFor="image" className="form-label">Room Image</label>

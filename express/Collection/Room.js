@@ -7,7 +7,7 @@ let room_structure = mongo.Schema({
         unique: true
     },
     room_name: {
-        type: String,  
+        type: String,
         required: true
     },
     type: {
@@ -18,9 +18,14 @@ let room_structure = mongo.Schema({
         type: Number,
         required: true
     },
-    is_available: {
-        type: Boolean,
-        default: true
+    // is_available: {
+    //     type: Boolean,
+    //     default: true
+    // },
+    status: {
+        type: String,
+        enum: ["available", "booked", "cleaning", "maintenance"],
+        default: "available"
     },
     capacity: {
         type: Number,

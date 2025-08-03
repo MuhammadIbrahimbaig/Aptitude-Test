@@ -2,10 +2,15 @@ import carousel1 from '..//assets/images/carousel-1.jpg';
 import carousel2 from '..//assets/images/carousel-2.jpg';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Home = () => {
+
     const [rooms, setRooms] = useState([]);
+    useEffect(() => {
+        AOS.init({ duration: 800 });
+    }, []);
 
     useEffect(() => {
         axios.get('http://localhost:4001/Mywork/read')
@@ -60,39 +65,8 @@ const Home = () => {
                 <div class="container">
                     <div class="bg-white shadow" style={{ padding: '35px' }}>
                         <div class="row g-2">
-                            <div class="col-md-10">
-                                <div class="row g-2">
-                                    <div class="col-md-3">
-                                        <div class="date" id="date1" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input"
-                                                placeholder="Check in" data-target="#date1" data-toggle="datetimepicker" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="date" id="date2" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" placeholder="Check out" data-target="#date2" data-toggle="datetimepicker" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <select class="form-select">
-                                            <option selected>Adult</option>
-                                            <option value="1">Adult 1</option>
-                                            <option value="2">Adult 2</option>
-                                            <option value="3">Adult 3</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <select class="form-select">
-                                            <option selected>Child</option>
-                                            <option value="1">Child 1</option>
-                                            <option value="2">Child 2</option>
-                                            <option value="3">Child 3</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <button class="btn border-0 btn-primary w-100">Submit</button>
+                            <div class="col-12">
+
                             </div>
                         </div>
                     </div>
@@ -150,45 +124,56 @@ const Home = () => {
                                     <h5 className="text-muted">No record found</h5>
                                 </div>
                             ) : (
-                                rooms.map((room, index) => (
-                                    <div className="col-lg-4 col-md-6" key={index}>
-                                        <div className="room-item shadow rounded overflow-hidden">
-                                            <div className="position-relative">
-                                                <img className="img-fluid fixed-wh object-fit-cover" src={`http://localhost:4001/Mywork/${room.image}`} alt="room" />
+
+                                rooms
+                                    .filter(room => room.status === "available")
+                                    .slice(0, 6).map((room, index) => (
+                                        <div className="col-lg-4 col-md-6" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
+                                            <div className="room-item shadow rounded overflow-hidden">
+                                                <div className="position-relative">
+                                                    <img className="mg-fluid fixed-wh object-fit-cover room-img-hover rounded-top zoom-hover" src={`http://localhost:4001/Mywork/${room.image}`} alt="room" />
 
 
-                                                <small className="position-absolute start-0 top-100 translate-middle-y btn border-0 btn-primary text-white rounded py-1 px-3 ms-4">
-                                                    ${room.price}/Night
-                                                </small>
-                                            </div>
-                                            <div className="p-4 mt-2">
-                                                <div className="d-flex justify-content-between mb-3">
-                                                    <h5 className="mb-0">{room.type}</h5>
-                                                    <div className="ps-2">
-                                                        {Array(3).fill().map((_, i) => (
-                                                            <small key={i} className="fa fa-star text-primary"></small>
-                                                        ))}
+                                                    <small className="position-absolute start-0 top-100 translate-middle-y btn border-0 btn-primary text-white rounded py-1 px-3 ms-4 book-btn scale-hover">
+                                                        ${room.price}/Night
+                                                    </small>
+                                                </div>
+                                                <div className="p-4 mt-2">
+                                                    <div className="">
+                                                        <h6 className='cardroom'>{room.room_name}</h6>
                                                     </div>
-                                                </div>
-                                                <div className="d-flex mb-3">
-                                                    <small className="border-end me-3 pe-3">
-                                                        <i className="fa fa-users text-primary me-2"></i>{room.capacity} People
-                                                    </small>
-                                                    <small className="border-end me-3 pe-3">
-                                                        <i className="fa fa-check text-primary me-2"></i>
-                                                        {room.is_available ? "Available" : "Booked"}
-                                                    </small>
-                                                    <small><i className="fa fa-wifi text-primary me-2"></i>Wifi</small>
-                                                </div>
-                                                <p className="text-body mb-3">{room.features.join(', ')}</p>
-                                                <div className="d-flex justify-content-between">
-                                                    <a className="btn btn-sm btn-primary rounded py-2 px-4 border-0" href="#">View Detail</a>
-                                                    <a className="btn btn-sm btn-dark rounded py-2 px-4" href="#">Book Now</a>
+                                                    <div className="d-flex justify-content-between mb-3">
+                                                        <p className="mb-0 fw-bold">{room.type}</p>
+                                                        <div className="ps-2">
+                                                            {Array(3).fill().map((_, i) => (
+                                                                <small key={i} className="fa fa-star text-primary"></small>
+                                                            ))}
+                                                        </div>
+                                                    </div>
+                                                    <div className="d-flex mb-3">
+                                                        <small className="border-end me-3 pe-3">
+                                                            <i className="fa fa-users text-primary me-2"></i>{room.capacity} People
+                                                        </small>
+                                                        <small className="border-end me-3 pe-3">
+                                                            <i className="fa fa-check text-primary me-2"></i>
+                                                            {room.status.charAt(0).toUpperCase() + room.status.slice(1)}
+                                                        </small>
+
+
+                                                        <small><i className="fa fa-wifi text-primary me-2"></i>Wifi</small>
+                                                    </div>
+                                                    <p className="text-body mb-3">{room.features.join(', ')}</p>
+                                                    <div className="d-flex justify-content-between">
+                                                        <a className="btn btn-sm btn-primary rounded py-2 px-4 border-0 book-btn scale-hover" href="#">View Detail</a>
+                                                        <button className="btn btn-primary btn-sm  px-3 book-btn scale-hover">
+                                                            Book Now
+                                                        </button>
+
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                ))
+                                    ))
                             )}
                         </div>
 
