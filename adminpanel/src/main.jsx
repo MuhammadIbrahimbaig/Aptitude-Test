@@ -25,9 +25,9 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/log" element={<LoginForm />} />
+        <Route path="/" element={<LoginForm />} />
         <Route path="/" element={<Layout />} >
-          <Route path='/' element={<Index />} />
+          <Route path='/home' element={<Index />} />
           <Route path='/createroom' element={<CreateRoom/>} />
           <Route path='/allrooms' element={<RoomRead/>} />
 

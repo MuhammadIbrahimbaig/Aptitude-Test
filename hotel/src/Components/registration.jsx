@@ -87,8 +87,11 @@ export default function registration() {
                         <button type="submit" className="btn btn-primary w-100 border-0">
                             Register
                         </button>
+                     
+                                             
+                                          
                     <small>
-                                              Already Create account? <Link className="text-decoration-non" to="/login">Register</Link>
+                                              Already Create account? <Link className="text-decoration-non" to="/login">Login</Link>
                                           </small>
                     </form>
                 </div>
