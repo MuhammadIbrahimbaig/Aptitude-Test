@@ -23,7 +23,7 @@ const Home = () => {
     }, []);
     return (
         <div>
-            <div className="container p-0 mb-5">
+            <div className=" p-0 mb-5">
                 <div id="header-carousel" className="carousel slide" data-bs-ride="carousel">
                     <div className="carousel-inner">
                         <div className="carousel-item active">
