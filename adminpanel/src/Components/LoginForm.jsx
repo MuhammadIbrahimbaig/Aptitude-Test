@@ -29,7 +29,7 @@ export default function LoginForm() {
         autoClose: 500,
         theme: "colored",
         onClose: () => {
-          navigate("/");  
+          navigate("/home");  
         }
       });
 
@@ -80,7 +80,6 @@ export default function LoginForm() {
             required
                         />
                     </div>
-
                     <button type="submit" className="btn btn-primary w-100">Login</button>
 
                     

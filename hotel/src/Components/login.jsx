@@ -94,6 +94,11 @@ localStorage.setItem("email", res.data.email);
                     </div>
 
                     <button type="submit" className="btn btn-primary w-100">Login</button>
+                    <Link className="text-decoration-non" to="/login">Forgot Password</Link>
+
+                  
+
+
 
                     <div className="mt-3 text-center">
                         <small>
