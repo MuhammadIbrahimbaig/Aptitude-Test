@@ -54,7 +54,9 @@ let all_pages = {
     // JWT token
     let token = jwt.sign({
       id: user._id,
-      role: user.roleId.code  
+      role: user.roleId.code  ,
+        name: user.name,
+  email: user.email
     }, "secret_key", { expiresIn: "1h" });
 
     res.status(200).json({

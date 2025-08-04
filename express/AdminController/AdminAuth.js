@@ -66,7 +66,15 @@ let all_pages = {
     });
   },
   
-
+ // READ DATA
+  // UserData: async function (req, res) {
+  //   try {
+  //     const Datafetch = await user.find()
+  //     res.json(rooms)
+  //   } catch (error) {
+  //     res.status(500).json({ e: error.message })
+  //   }
+  // },
 
 };
 

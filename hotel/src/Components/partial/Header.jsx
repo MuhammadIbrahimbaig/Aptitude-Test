@@ -1,6 +1,22 @@
-import { Link } from 'react-router-dom';
-import logo from '../../assets/images/logo.png'
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import logo from '../../assets/images/logo.png';
+
 export default function Header() {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        setIsLoggedIn(!!token);
+    }, []);
+
+    const handleLogout = () => {
+        localStorage.clear();
+        setIsLoggedIn(false);
+        navigate("/login");
+    };
+
     return (
         <div className="container bg-dark px-0">
             <div className="row gx-0">
@@ -53,17 +69,23 @@ export default function Header() {
                                     </div>
                                 </div>
                                 <Link to="/contact" className="nav-item nav-link">Contact</Link>
+
+                            
                                 <div className="nav-item dropdown">
                                     <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Account</a>
-                                    <div className="dropdown-menu rounded-0 m-0">
-                                        <Link to="/registration" className="dropdown-item">Signup</Link>
-                                        <Link to="/login" className="dropdown-item">Login</Link>
+                                    <div className="dropdown-menu p-0 rounded-0 m-0">
+                                        {!isLoggedIn ? (
+                                            <>
+                                                <Link to="/registration" className="dropdown-item">Signup</Link>
+                                                <Link to="/login" className="dropdown-item">Login</Link>
+                                            </>
+                                        ) : (
+                                            <button className="dropdown-item" onClick={handleLogout}>Logout</button>
+                                        )}
                                     </div>
                                 </div>
-
-
-
                             </div>
+
                             <a href="https://htmlcodex.com/hotel-html-template-pro" className="border-0 btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block">
                                 Services<i className="fa fa-arrow-right ms-3"></i>
                             </a>
