@@ -4,7 +4,7 @@ require("dotenv").config();
 let data = {
   CreateRoom: async function (req, res) {
     try {
-      let { room_name, room_number, type, price, capacity, features, status} = req.body;
+      let { room_name, room_number, type, price, capacity, features, status , short_description} = req.body;
 
       const featuresArray = features.split(',').map(item => item.trim());
       // Check if room already exists
@@ -30,6 +30,7 @@ let data = {
         features: featuresArray,
         status,
         image: imagePath,
+        shortdescription : short_description
       });
 
       await newRoom.save();

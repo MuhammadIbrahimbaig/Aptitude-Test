@@ -11,6 +11,8 @@ export const CreateRoom = () => {
     const [capacity, setCapacity] = useState("");
     const [status, setStatus] = useState("");
     const [features, setFeatures] = useState("");
+    const [shortdescription, setDescription] = useState("");
+
     const [image, setImage] = useState(null);
 
     useEffect(() => {
@@ -38,6 +40,7 @@ export const CreateRoom = () => {
             formData.append("capacity", capacity);
             formData.append("status", status);
             formData.append("features", features);
+            formData.append("short_description", shortdescription);
             if (image) {
                 formData.append("image", image);
             }
@@ -55,6 +58,7 @@ export const CreateRoom = () => {
             setCapacity("");
             setStatus("");
             setFeatures("");
+            setDescription("");
             setImage(null);
             document.getElementById("image").value = null;
             toast.success("Room Added Successfully");
@@ -159,7 +163,16 @@ export const CreateRoom = () => {
                                 onChange={(e) => setImage(e.target.files[0])}
                             />
                         </div>
-
+                        <div className="mb-3">
+                            <label htmlFor="shortdescription" className="form-label">Short Description</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="shortdescription"
+                                value={shortdescription}
+                                 
+                            />
+                        </div>
                         <div className="mb-3">
                             <label htmlFor="features" className="form-label">Features (comma-separated)</label>
                             <input
