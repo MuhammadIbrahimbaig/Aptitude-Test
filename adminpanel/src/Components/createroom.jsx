@@ -32,6 +32,7 @@ export const CreateRoom = () => {
 
     const SubmitFunc = async () => {
         try {
+
             const formData = new FormData();
             formData.append("room_name", room_name);
             formData.append("room_number", roomNumber);
@@ -170,8 +171,8 @@ export const CreateRoom = () => {
                                 type="text"
                                 className="form-control"
                                 id="shortdescription"
-                                value={shortdescription} onChange={(e)=> setDescription(e.target.value)}
-                                 
+                                value={shortdescription} onChange={(e) => setDescription(e.target.value)}
+
                             />
                         </div>
                         <div className="mb-3">
