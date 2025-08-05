@@ -30,7 +30,7 @@ let data = {
         features: featuresArray,
         status,
         image: imagePath,
-        shortdescription : short_description
+         short_description : short_description
       });
 
       await newRoom.save();

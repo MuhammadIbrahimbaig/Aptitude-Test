@@ -146,6 +146,7 @@ export const CreateRoom = () => {
                                 value={status}
                                 onChange={(e) => setStatus(e.target.value)}
                             >
+                                <option value="" selected>Select Status</option>
                                 <option value="available">Available</option>
                                 <option value="booked">Booked</option>
                                 <option value="cleaning">Cleaning</option>
@@ -165,11 +166,11 @@ export const CreateRoom = () => {
                         </div>
                         <div className="mb-3">
                             <label htmlFor="shortdescription" className="form-label">Short Description</label>
-                            <input
+                            <textarea
                                 type="text"
                                 className="form-control"
                                 id="shortdescription"
-                                value={shortdescription}
+                                value={shortdescription} onChange={(e)=> setDescription(e.target.value)}
                                  
                             />
                         </div>
