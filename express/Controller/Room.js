@@ -4,7 +4,7 @@ require("dotenv").config();
 let data = {
   CreateRoom: async function (req, res) {
     try {
-      let { room_name, room_number, type, price, capacity, features, status , short_description} = req.body;
+      let { room_name, room_number, type, price, capacity, features, status, short_description } = req.body;
 
       const featuresArray = features.split(',').map(item => item.trim());
       // Check if room already exists
@@ -30,7 +30,7 @@ let data = {
         features: featuresArray,
         status,
         image: imagePath,
-         short_description : short_description
+        short_description: short_description
       });
 
       await newRoom.save();
@@ -50,60 +50,60 @@ let data = {
       res.status(500).json({ e: error.message })
     }
   },
-   // DLt
-    DeleteRecord : async  function(req, res){
-      try {
-        let { id } = req.params
-        let find = await Room.findById(id)
-        if (!find) {
-          res.status(404).json({msg: "Record Not Found"})
-        }
-        else{
-          await Room.findByIdAndDelete(find)
-          res.status(200).json({msg: "Room Deleted Succesfully"})
-        }
-      } catch (error) {
-        res.status(404).json({msg:error.message})
-      }
-    },
-// Edit
- // Edit
-  
-EditRecord: async function (req, res) {
+  // DLt
+  DeleteRecord: async function (req, res) {
     try {
-        let { a } = req.params; // 'a' is the room ID
-        const {
-            room_number,
-            room_name,
-            type,
-            price,
-            capacity,
-            status
-        } = req.body;
+      let { id } = req.params
+      let find = await Room.findById(id)
+      if (!find) {
+        res.status(404).json({ msg: "Record Not Found" })
+      }
+      else {
+        await Room.findByIdAndDelete(find)
+        res.status(200).json({ msg: "Room Deleted Succesfully" })
+      }
+    } catch (error) {
+      res.status(404).json({ msg: error.message })
+    }
+  },
+  // Edit
+  // Edit
 
-        // Find room by ID
-        const existingRoom = await Room.findById(a);
-        if (!existingRoom) {
-            return res.status(404).json({ msg: "Room not found" });
-        }
+  EditRecord: async function (req, res) {
+    try {
+      let { a } = req.params; // 'a' is the room ID
+      const {
+        room_number,
+        room_name,
+        type,
+        price,
+        capacity,
+        status
+      } = req.body;
 
-        // Update room
-        await Room.findByIdAndUpdate(a, {
-            room_number,
-            room_name,
-            type,
-            price,
-            capacity,
-            status
-        }, { new: true, runValidators: true });
+      // Find room by ID
+      const existingRoom = await Room.findById(a);
+      if (!existingRoom) {
+        return res.status(404).json({ msg: "Room not found" });
+      }
 
-        return res.status(200).json({ msg: "Room updated successfully" });
+      // Update room
+      await Room.findByIdAndUpdate(a, {
+        room_number,
+        room_name,
+        type,
+        price,
+        capacity,
+        status
+      }, { new: true, runValidators: true });
+
+      return res.status(200).json({ msg: "Room updated successfully" });
 
     } catch (error) {
-        console.error("Room edit error:", error.message);
-        return res.status(500).json({ msg: error.message });
+      console.error("Room edit error:", error.message);
+      return res.status(500).json({ msg: error.message });
     }
-}
+  }
 
 };
 module.exports = data;
