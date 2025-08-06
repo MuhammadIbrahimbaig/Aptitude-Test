@@ -11,6 +11,8 @@ export const CreateRoom = () => {
     const [capacity, setCapacity] = useState("");
     const [status, setStatus] = useState("");
     const [features, setFeatures] = useState("");
+    const [shortdescription, setDescription] = useState("");
+
     const [image, setImage] = useState(null);
 
     useEffect(() => {
@@ -30,6 +32,7 @@ export const CreateRoom = () => {
 
     const SubmitFunc = async () => {
         try {
+
             const formData = new FormData();
             formData.append("room_name", room_name);
             formData.append("room_number", roomNumber);
@@ -38,6 +41,7 @@ export const CreateRoom = () => {
             formData.append("capacity", capacity);
             formData.append("status", status);
             formData.append("features", features);
+            formData.append("short_description", shortdescription);
             if (image) {
                 formData.append("image", image);
             }
@@ -55,6 +59,7 @@ export const CreateRoom = () => {
             setCapacity("");
             setStatus("");
             setFeatures("");
+            setDescription("");
             setImage(null);
             document.getElementById("image").value = null;
             toast.success("Room Added Successfully");
@@ -142,6 +147,7 @@ export const CreateRoom = () => {
                                 value={status}
                                 onChange={(e) => setStatus(e.target.value)}
                             >
+                                <option value="" selected>Select Status</option>
                                 <option value="available">Available</option>
                                 <option value="booked">Booked</option>
                                 <option value="cleaning">Cleaning</option>
@@ -159,7 +165,16 @@ export const CreateRoom = () => {
                                 onChange={(e) => setImage(e.target.files[0])}
                             />
                         </div>
+                        <div className="mb-3">
+                            <label htmlFor="shortdescription" className="form-label">Short Description</label>
+                            <textarea
+                                type="text"
+                                className="form-control"
+                                id="shortdescription"
+                                value={shortdescription} onChange={(e) => setDescription(e.target.value)}
 
+                            />
+                        </div>
                         <div className="mb-3">
                             <label htmlFor="features" className="form-label">Features (comma-separated)</label>
                             <input
