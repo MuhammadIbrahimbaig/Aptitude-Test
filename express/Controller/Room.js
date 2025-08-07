@@ -1,27 +1,63 @@
 const Room = require("../Collection/Room");
+const cloudinary = require("../cloudinaryConfig");
 require("dotenv").config();
 
 let data = {
   CreateRoom: async function (req, res) {
     try {
-      let { room_name, room_number, type, price, capacity, features, status, short_description } = req.body;
+      console.log("Incoming request to /saveroom");
+      console.log("Body:", req.body);
+      console.log("Files:", req.files);
 
-      const featuresArray = features.split(',').map(item => item.trim());
-      // Check if room already exists
-      let existingRoom = await Room.findOne({ room_number });
+      let { room_name, room_number, type, price, capacity, features, status } =
+        req.body;
+
+      if (!room_name || !room_number || !type || !price) {
+        return res.status(400).json({ msg: "Missing required fields" });
+      }
+
+      const featuresArray = features
+        ? features.split(",").map((f) => f.trim())
+        : [];
+
+      const existingRoom = await Room.findOne({ room_number });
       if (existingRoom) {
         return res.status(409).json({ msg: "Room number already exists!" });
       }
 
-      // Handle image file
-      let imagePath = "";
-      if (req.file) {
-        imagePath = req.file.path.replace(/\\/g, '/'); // ✅ Fix Windows-style path
+      const images = req.files;
+
+      if (!images || images.length === 0) {
+        return res
+          .status(400)
+          .json({ success: false, message: "No image file uploaded." });
       }
 
+      const uploadToCloudinary = (fileBuffer) => {
+        return new Promise((resolve, reject) => {
+          cloudinary.uploader
+            .upload_stream({ folder: "hotel-management" }, (error, result) => {
+              if (error) return reject(error);
+              resolve({ src: result.secure_url });
+            })
+            .end(fileBuffer);
+        });
+      };
 
-      // Create new Room
-      let newRoom = new Room({
+      const uploadPromises = images.map((image) => {
+        if (!image.buffer || image.buffer.length === 0) {
+          throw new Error("Invalid image buffer.");
+        }
+        const MAX_FILE_SIZE = 10 * 1024 * 1024;
+        if (image.size > MAX_FILE_SIZE) {
+          throw new Error("File size exceeds the 10MB limit.");
+        }
+        return uploadToCloudinary(image.buffer);
+      });
+
+      const uploadedImages = await Promise.all(uploadPromises);
+
+      const newRoom = new Room({
         room_name,
         room_number,
         type,
@@ -29,41 +65,41 @@ let data = {
         capacity,
         features: featuresArray,
         status,
-        image: imagePath,
-        short_description: short_description
+        short_description: short_description,
+        image: uploadedImages[0].src,
       });
 
       await newRoom.save();
-      res.status(200).json({ msg: "Room created successfully!" });
+      console.log("Room saved:", newRoom);
 
+      res.status(200).json({ msg: "Room created successfully!" });
     } catch (error) {
+      console.error("Room creation error:", error);
       res.status(500).json({ msg: error.message });
-      console.log("Room creation error:", error);
     }
   },
   // READ DATA
   Read: async function (req, res) {
     try {
-      const rooms = await Room.find()
-      res.json(rooms)
+      const rooms = await Room.find();
+      res.json(rooms);
     } catch (error) {
-      res.status(500).json({ e: error.message })
+      res.status(500).json({ e: error.message });
     }
   },
   // DLt
   DeleteRecord: async function (req, res) {
     try {
-      let { id } = req.params
-      let find = await Room.findById(id)
+      let { id } = req.params;
+      let find = await Room.findById(id);
       if (!find) {
-        res.status(404).json({ msg: "Record Not Found" })
-      }
-      else {
-        await Room.findByIdAndDelete(find)
-        res.status(200).json({ msg: "Room Deleted Succesfully" })
+        res.status(404).json({ msg: "Record Not Found" });
+      } else {
+        await Room.findByIdAndDelete(find);
+        res.status(200).json({ msg: "Room Deleted Succesfully" });
       }
     } catch (error) {
-      res.status(404).json({ msg: error.message })
+      res.status(404).json({ msg: error.message });
     }
   },
   // Edit
@@ -72,14 +108,8 @@ let data = {
   EditRecord: async function (req, res) {
     try {
       let { a } = req.params; // 'a' is the room ID
-      const {
-        room_number,
-        room_name,
-        type,
-        price,
-        capacity,
-        status
-      } = req.body;
+      const { room_number, room_name, type, price, capacity, status } =
+        req.body;
 
       // Find room by ID
       const existingRoom = await Room.findById(a);
@@ -88,22 +118,24 @@ let data = {
       }
 
       // Update room
-      await Room.findByIdAndUpdate(a, {
-        room_number,
-        room_name,
-        type,
-        price,
-        capacity,
-        status
-      }, { new: true, runValidators: true });
+      await Room.findByIdAndUpdate(
+        a,
+        {
+          room_number,
+          room_name,
+          type,
+          price,
+          capacity,
+          status,
+        },
+        { new: true, runValidators: true }
+      );
 
       return res.status(200).json({ msg: "Room updated successfully" });
-
     } catch (error) {
       console.error("Room edit error:", error.message);
       return res.status(500).json({ msg: error.message });
     }
-  }
-
+  },
 };
 module.exports = data;

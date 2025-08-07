@@ -1,32 +1,36 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
+  name: {
+    type: String,
+    required: true,
+  },
 
-    email: {
-        type: String,
-        required: true,
-        unique: true
-    },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
 
-    password: {
-        type: String,
-        required: true
-    },
+  password: {
+    type: String,
+    required: true,
+  },
 
-    roleId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "roles",
-        required: true
-    }
+  roleId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "roles",
+    required: true,
+  },
+  isVerified: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const roleSchema = new mongoose.Schema({
-    name: { type: String, required: true, unique: true },
-    code: { type: Number, required: true, unique: true }
+  name: { type: String, required: true, unique: true },
+  code: { type: Number, required: true, unique: true },
 });
 
 const Role = mongoose.model("roles", roleSchema);
