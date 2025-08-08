@@ -12,7 +12,7 @@ export default function registration() {
   async function submit(e) {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:4001/Mywork/", {
+      await axios.post("http://localhost:4001/Mywork/register", {
         n: username,
         e: email,
         p: password,
