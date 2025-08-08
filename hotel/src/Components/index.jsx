@@ -13,13 +13,22 @@ const Home = () => {
     }, []);
 
     useEffect(() => {
-        axios.get('http://localhost:4001/Mywork/read')
-            .then(res => {
-                console.log('Room issue', res.data);
+        const token = localStorage.getItem('token');
+        axios.get('http://localhost:4001/Mywork/read', {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
 
+        })
+
+            .then(res => {
                 setRooms(res.data);
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                console.error('Error fetching room data:', err);
+            }
+            );
     }, []);
     return (
         <div>

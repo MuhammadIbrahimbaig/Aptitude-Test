@@ -5,10 +5,19 @@ import { toast } from "react-toastify";
 export default function RoomRead() {
     const [rooms, setRooms] = useState([]);
 
+
     useEffect(() => {
-        axios.get('http://localhost:4001/Mywork/read')
+        const token = localStorage.getItem("token"); // token fetch from storage
+
+        axios.get("http://localhost:4001/Mywork/read", {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            }
+        })
             .then(result => setRooms(result.data))
             .catch(err => console.log(err));
+
     }, []);
 
     const [roomNumber, setRoomNumber] = useState("");
