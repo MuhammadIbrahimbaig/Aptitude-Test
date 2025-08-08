@@ -30,6 +30,14 @@ router.delete("/remove/:id", Room.DeleteRecord);
 router.post("/", UserController.Register);
 router.post("/login", UserController.Login);
 router.post("/AdminLogin", AdminLogin.AdminLogin);
+router.get("/UserFetch", AdminLogin.UserData);
+router.delete("/UserDelete/:id", AdminLogin.UserDelete);
+router.put("/editUser/:id", AdminLogin.UserUpdate);
+router.post("/addstaff", AdminLogin.StaffRegister);
+
+
+
+
 
 module.exports = router;
 

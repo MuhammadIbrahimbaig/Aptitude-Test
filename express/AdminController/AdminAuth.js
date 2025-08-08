@@ -1,39 +1,51 @@
-let { User, Role } = require("../Collection/User");
+
+let { User, Role , Staff} = require("../Collection/User");
 let bcrypt = require('bcrypt');
 let jwt = require('jsonwebtoken');
 
 let all_pages = {
 
   // Register
-  StaffRegister: async function (req, res) {
-    let { n, e, p } = req.body;
+StaffRegister: async function (req, res) {
+ try {
+    const { name, email, phone, password, joiningDate, salary, designation } = req.body;
 
-    // Check if email exists
-    let email_check = await User.findOne({ email: e });
-    if (email_check) {
-      return res.status(409).json({ msg: 'Email Already Exist' });
+    // Check if email already exists
+    const emailExists = await Staff.findOne({ email });
+    if (emailExists) {
+      return res.status(409).json({ msg: "Email already exists" });
     }
 
-    // Find role by code (3 = user)
-    let roleData = await Role.findOne({ code: 3 });
-    if (!roleData) {
-      return res.status(500).json({ msg: "User role not found" });
+    // Find role with code = 2 (staff role)
+    const staffRole = await Role.findOne({ code: 2 });
+    if (!staffRole) {
+      return res.status(400).json({ msg: "Staff role not defined in database" });
     }
 
     // Hash password
-    let secure_password = bcrypt.hashSync(p, 15);
+    const hashedPassword = bcrypt.hashSync(password, 15);
 
-    // Create user
-    let user = new User({
-      name: n,
-      email: e,
-      password: secure_password,
-      roleId: roleData._id
+    // Create staff with roleId set to staffRole._id
+    const staff = new Staff({
+      name,
+      email,
+      phone,
+      password: hashedPassword,
+      roleId: staffRole._id,
+      joiningDate,
+      salary,
+      designation
     });
 
-    await user.save();
-    res.status(200).json({ msg: "Registration Successful" });
-  },
+    await staff.save();
+    return res.status(200).json({ msg: "Staff registered successfully" });
+
+  } catch (error) {
+    console.error("StaffRegister error:", error);
+    return res.status(500).json({ msg: "Internal Server Error" });
+  }
+},
+
 
   // Login
   AdminLogin: async function (req, res) {
@@ -67,14 +79,66 @@ let all_pages = {
   },
   
  // READ DATA
-  // UserData: async function (req, res) {
-  //   try {
-  //     const Datafetch = await user.find()
-  //     res.json(rooms)
-  //   } catch (error) {
-  //     res.status(500).json({ e: error.message })
-  //   }
-  // },
+ UserData: async function (req, res) {
+  try {
+   
+    const users = await User.find().populate('roleId');
+
+   
+    const filteredUsers = users.filter(user => user.roleId?.code === 3);
+
+
+    const safeUsers = filteredUsers.map(user => ({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      password: user.password, 
+      role: user.roleId.name,
+      roleCode: user.roleId.code
+    }));
+
+    res.json(safeUsers);
+  } catch (error) {
+    console.error('Error fetching users ', error);
+    res.status(500).json({ error: error.message });
+  }
+},
+
+UserDelete:async function (req, res) {
+ try {
+    const deletedUser = await User.findByIdAndDelete(req.params.id);
+    if (!deletedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.json({ message: "User deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+},
+
+UserUpdate:async function (req, res) {
+  try {
+    const { name, email, password } = req.body;
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const updatedUser = await User.findByIdAndUpdate(
+      req.params.id,
+      {
+        name,
+        email,
+        password: hashedPassword
+      },
+      { new: true }
+    );
+
+    res.status(200).json(updatedUser);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+}
+
+
 
 };
 
