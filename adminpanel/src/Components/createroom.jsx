@@ -12,7 +12,6 @@ export const CreateRoom = () => {
     const [status, setStatus] = useState("");
     const [features, setFeatures] = useState("");
     const [shortdescription, setDescription] = useState("");
-
     const [image, setImage] = useState(null);
 
     useEffect(() => {
@@ -32,6 +31,7 @@ export const CreateRoom = () => {
 
     const SubmitFunc = async () => {
         try {
+            const tokendata = localStorage.getItem('token'); // fetch fresh token
 
             const formData = new FormData();
             formData.append("room_name", room_name);
@@ -48,10 +48,12 @@ export const CreateRoom = () => {
 
             await axios.post("http://localhost:4001/Mywork/saveroom", formData, {
                 headers: {
-                    "Content-Type": "multipart/form-data"
+                    "Content-Type": "multipart/form-data",
+                    "Authorization": `Bearer ${tokendata}` // use fresh token here
                 }
             });
-            //Clear form inputs
+
+            // Clear form inputs
             setRoomName("");
             setRoomNumber("");
             setType("");
@@ -64,7 +66,7 @@ export const CreateRoom = () => {
             document.getElementById("image").value = null;
             toast.success("Room Added Successfully");
         } catch (e) {
-            console.log(e);
+            console.error(e);
             toast.error(e?.response?.data?.msg || "Something went wrong!");
         }
     };
@@ -147,14 +149,13 @@ export const CreateRoom = () => {
                                 value={status}
                                 onChange={(e) => setStatus(e.target.value)}
                             >
-                                <option value="" selected>Select Status</option>
+                                <option value="">Select Status</option>
                                 <option value="available">Available</option>
                                 <option value="booked">Booked</option>
                                 <option value="cleaning">Cleaning</option>
                                 <option value="maintenance">Maintenance</option>
                             </select>
                         </div>
-
 
                         <div className="mb-3">
                             <label htmlFor="image" className="form-label">Room Image</label>
@@ -168,11 +169,10 @@ export const CreateRoom = () => {
                         <div className="mb-3">
                             <label htmlFor="shortdescription" className="form-label">Short Description</label>
                             <textarea
-                                type="text"
                                 className="form-control"
                                 id="shortdescription"
-                                value={shortdescription} onChange={(e) => setDescription(e.target.value)}
-
+                                value={shortdescription}
+                                onChange={(e) => setDescription(e.target.value)}
                             />
                         </div>
                         <div className="mb-3">

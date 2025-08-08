@@ -65,6 +65,7 @@ let data = {
         capacity,
         features: featuresArray,
         status,
+        short_description: short_description,
         image: uploadedImages[0].src,
       });
 
