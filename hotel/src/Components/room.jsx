@@ -70,7 +70,13 @@ export default function Room() {
                                     <div className="col-lg-4 col-md-6" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
                                         <div className="room-item shadow rounded overflow-hidden">
                                             <div className="position-relative">
-                                                <img className="img-fluid fixed-wh object-fit-cover" src={`http://localhost:4001/Mywork/${room.image}`} alt="room" />
+                                                <img
+                                                    className="img-fluid fixed-wh object-fit-cover"
+                                                    src={room.image}
+                                                    alt="room"
+                                                />
+
+                                                {/* <img className="img-fluid fixed-wh object-fit-cover" src={`http://localhost:4001/Mywork/${room.image}`} alt="room" /> */}
                                                 <small className="position-absolute start-0 top-100 translate-middle-y btn border-0 btn-primary text-white rounded py-1 px-3 ms-4">
                                                     ${room.price}/Night
                                                 </small>

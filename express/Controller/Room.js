@@ -9,7 +9,7 @@ let data = {
       console.log("Body:", req.body);
       console.log("Files:", req.files);
 
-      let { room_name, room_number, type, price, capacity, features, status } =
+      let { room_name, room_number, type, price, capacity, features, status, short_description } =
         req.body;
 
       if (!room_name || !room_number || !type || !price) {
@@ -102,7 +102,7 @@ let data = {
       res.status(404).json({ msg: error.message });
     }
   },
-  // Edit
+ 
   // Edit
 
   EditRecord: async function (req, res) {

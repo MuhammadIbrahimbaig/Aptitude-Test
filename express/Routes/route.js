@@ -24,9 +24,9 @@ const protect = require("../Midleware/ProtectedRoutes");
 // });
 
 router.post("/saveroom", protect, uploadMiddleware, Room.CreateRoom);
-router.get("/read", protect, Room.Read);
+router.get("/read", protect, uploadMiddleware, Room.Read);
 router.put("/edit/:a", protect, Room.EditRecord);
-router.delete("/remove/:id", protect, Room.DeleteRecord);
+router.delete("/remove/:id",  Room.DeleteRecord);
 
 // Asfhan Routing Section
 router.post("/register", UserController.Register);
