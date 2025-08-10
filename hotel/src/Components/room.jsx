@@ -76,8 +76,7 @@ export default function Room() {
                                                     alt="room"
                                                 />
 
-                                                {/* <img className="img-fluid fixed-wh object-fit-cover" src={`http://localhost:4001/Mywork/${room.image}`} alt="room" /> */}
-                                                <small className="position-absolute start-0 top-100 translate-middle-y btn border-0 btn-primary text-white rounded py-1 px-3 ms-4">
+                                                <small className="book-btn position-absolute start-0 top-100 translate-middle-y btn border-0 btn-primary text-white rounded py-1 px-3 ms-4">
                                                     ${room.price}/Night
                                                 </small>
                                             </div>
@@ -104,7 +103,7 @@ export default function Room() {
                                                 <p className="text-body mb-3">{room.features.join(', ')}</p>
                                                 <div className="d-flex justify-content-between">
                                                     <button
-                                                        className="btn btn-sm btn-primary rounded py-2 px-4 border-0"
+                                                        className="book-btn btn btn-sm btn-primary rounded py-2 px-4 border-0"
                                                         data-bs-toggle="modal"
                                                         data-bs-target="#roomDetailModal"
                                                         onClick={() => setSelectedRoom(room)}
@@ -112,7 +111,7 @@ export default function Room() {
                                                         View Detail
                                                     </button>
 
-                                                    <button className="btn btn-sm btn-dark rounded py-2 px-4">Book Now</button>
+                                                    <button className="btn btn-primary btn-sm  px-3 book-btn scale-hover">Book Now</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -125,46 +124,78 @@ export default function Room() {
 
             {/* Room Detail Modal */}
             <div className="modal fade" id="roomDetailModal" tabIndex="-1" aria-labelledby="roomDetailModalLabel" aria-hidden="true">
-                <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                <div className="modal-dialog modal-dialog-centered  modal-lg">
                     <div className="modal-content">
-                        <div className="modal-header">
-                            <h5 className="modal-title" id="roomDetailModalLabel">Room Details</h5>
+                        <div className="modal-header bg-theme text-white ">
+                            <h5 className="modal-title fw-bold" id="roomDetailModalLabel">Room Details</h5>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
 
-                        <div className="modal-body">
+                        <div className="modal-body border-0">
                             {selectedRoom ? (
-                                <>
-                                    <h6 className="fw-bold">Room Number:</h6>
-                                    <p>{selectedRoom.room_number}</p>
+                                <div className="card mb-3 border shadow rounded-4  overflow-hidden" >
+                                    <div className="row g-0">
 
-                                    <h6 className="fw-bold">Room Type:</h6>
-                                    <p>{selectedRoom.type}</p>
+                                        {/* Left Image with VIP Badge */}
+                                        <div className="col-md-6 position-relative">
+                                            <img
+                                                src={selectedRoom.image}
+                                                className="img-fluid h-100"
+                                                style={{ objectFit: "cover" }}
+                                                alt={selectedRoom.room_name}
+                                            />
+                                        </div>
 
-                                    <h6 className="fw-bold">Price:</h6>
-                                    <p>${selectedRoom.price} / night</p>
+                                        {/* Right Content */}
+                                        <div className="col-md-6">
+                                            <div className="card-body p-3">
+                                                <h4 className="fw-bold text-uppercase text-primary mb-2">{selectedRoom.room_name}</h4>
 
-                                    <h6 className="fw-bold">Capacity:</h6>
-                                    <p>{selectedRoom.capacity} Guests</p>
+                                                <p className="mb-1">
+                                                    <i className="bi bi-hash text-secondary me-2"></i>
+                                                    <strong>Room Number:</strong> {selectedRoom.room_number}
+                                                </p>
+                                                <p className="mb-1">
+                                                    <i className="bi bi-house-door text-secondary me-2"></i>
+                                                    <strong>Type:</strong> {selectedRoom.type}
+                                                </p>
+                                                <p className="mb-1">
+                                                    <i className="bi bi-people text-secondary me-2"></i>
+                                                    <strong>Capacity:</strong> {selectedRoom.capacity} Guests
+                                                </p>
+                                                <p className="mb-2">
+                                                    <i className="bi bi-currency-rupee text-success me-2"></i>
+                                                    <strong className="text-success">Price:</strong> Rs {selectedRoom.price} / night
+                                                </p>
 
-                                    <h6 className="fw-bold">Features:</h6>
-                                    <ul>
-                                        {selectedRoom.features.map((feature, i) => (
-                                            <li key={i}>{feature}</li>
-                                        ))}
-                                    </ul>
+                                                {/* Features */}
+                                                <p className="mb-1 fw-bold">Features:</p>
+                                                <div className="mb-2">
+                                                    {selectedRoom.features.map((feature, i) => (
+                                                        <span key={i} className="badge bg-light text-dark border me-1 mb-1">
+                                                            {feature}
+                                                        </span>
+                                                    ))}
+                                                </div>
 
-                                    <h6 className="fw-bold">Short Description:</h6>
-                                    <p>{selectedRoom.short_description}</p>
-                                </>
+                                                {/* Short Description */}
+                                                {selectedRoom.short_description && (
+                                                    <p className="text-muted fst-italic mt-2">
+                                                        {selectedRoom.short_description}
+                                                    </p>
+                                                )}
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
                             ) : (
                                 <p>Loading...</p>
                             )}
                         </div>
 
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        </div>
+
+                       
                     </div>
                 </div>
             </div>

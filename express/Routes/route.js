@@ -13,20 +13,12 @@ const protect = require("../Midleware/ProtectedRoutes");
 // router.put("/edit/:a", UserController.EditRecord);
 
 // Ibrahim Routing Section
-// router.use("/uploads", express.static("uploads"));
-// const storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, "uploads/");
-//   },
-//   filename: function (req, file, cb) {
-//     cb(null, Date.now() + "-" + file.originalname);
-//   },
-// });
-
 router.post("/saveroom", protect, uploadMiddleware, Room.CreateRoom);
 router.get("/read", protect, uploadMiddleware, Room.Read);
 router.put("/edit/:a", protect, Room.EditRecord);
-router.delete("/remove/:id",  Room.DeleteRecord);
+// router.delete("/remove/:id",  Room.DeleteRecord);
+router.delete("/remove/:id", uploadMiddleware, Room.DeleteRecord);
+
 
 // Asfhan Routing Section
 router.post("/register", UserController.Register);

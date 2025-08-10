@@ -7,7 +7,7 @@ export default function RoomRead() {
 
 
     useEffect(() => {
-        const token = localStorage.getItem("token"); // token fetch from storage
+        const token = localStorage.getItem("token");
 
         axios.get("http://localhost:4001/Mywork/read", {
             headers: {
@@ -28,27 +28,27 @@ export default function RoomRead() {
     const [status, setStatus] = useState("");
     const [id, setID] = useState("");
 
-
     // Delete
-async function DeleteRecord(id, n) {
-    if (!window.confirm(`Are you sure you want to delete "${n}" record?`)) {
-        return;
-    }
+    async function DeleteRecord(id, n) {
+        console.log("DeleteRecord called with id:", id);
+        if (!window.confirm(`Are you sure you want to delete "${n}" record?`)) {
+            return;
+        }
 
-    try {
-        await axios.delete(`http://localhost:4001/Mywork/remove/${id}`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-Type": "application/json",
-            }
-        });
+        try {
+            await axios.delete(`http://localhost:4001/Mywork/remove/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                }
+            });
 
-        toast.success("Record Deleted Successfully");
-        RoomRead(); // refresh table/list
-    } catch (e) {
-        toast.error(e.response?.data?.msg || e.message);
+            toast.success("Record Deleted Successfully");
+            RoomRead(); // refresh table/list
+        } catch (e) {
+            toast.error(e.response?.data?.msg || e.message);
+        }
     }
-}
 
     async function EditRoom() {
         try {

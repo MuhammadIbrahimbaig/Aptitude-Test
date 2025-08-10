@@ -19,6 +19,14 @@ let booking_structure = mongo.Schema({
         type: Date,
         required: true
     },
+    adult: {
+        type: Number,
+        required: true
+    },
+    child: {
+        type: Number,
+        required: true
+    },
     total_price: {
         type: Number,
         required: true

@@ -92,17 +92,21 @@ let data = {
     try {
       let { id } = req.params;
       let find = await Room.findById(id);
+
       if (!find) {
-        res.status(404).json({ msg: "Record Not Found" });
-      } else {
-        await Room.findByIdAndDelete(find);
-        res.status(200).json({ msg: "Room Deleted Succesfully" });
+        return res.status(404).json({ msg: "Record Not Found" });
       }
+
+      await Room.findByIdAndDelete(id); // ✅ Corrected here
+      return res.status(200).json({ msg: "Room Deleted Successfully" });
+
     } catch (error) {
-      res.status(404).json({ msg: error.message });
+      return res.status(500).json({ msg: error.message });
     }
   },
- 
+
+
+
   // Edit
 
   EditRecord: async function (req, res) {

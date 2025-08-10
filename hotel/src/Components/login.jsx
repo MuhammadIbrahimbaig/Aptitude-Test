@@ -8,7 +8,7 @@ export default function Loginform() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  
+
 
   async function login(e) {
     e.preventDefault();
@@ -22,37 +22,37 @@ export default function Loginform() {
       const role = res.data.role;
 
       if (role === 3) {
-         toast.success("User Login Successful!", {
-    position: "top-center",
-    autoClose: 500,
-    theme: "colored",
-    onClose: () => {
-      navigate("/home");  
-    }
-  });
+        toast.success("User Login Successful!", {
+          position: "top-center",
+          autoClose: 500,
+          theme: "colored",
+          onClose: () => {
+            navigate("/home");
+          }
+        });
       } else if (role === 2) {
-      toast.success("Staff Login Successful!", {
-    position: "top-center",
-    autoClose: 500,
-    theme: "colored",
-    onClose: () => {
-      navigate("/about");  
-    }
-  });
+        toast.success("Staff Login Successful!", {
+          position: "top-center",
+          autoClose: 500,
+          theme: "colored",
+          onClose: () => {
+            navigate("/about");
+          }
+        });
       } else if (role === 1) {
-  toast.success("Admin Login Successful!", {
-    position: "top-center",
-    autoClose: 500,
-    theme: "colored",
-    onClose: () => {
-      navigate("/about");  
-    }
-  });
-}
+        toast.success("Admin Login Successful!", {
+          position: "top-center",
+          autoClose: 500,
+          theme: "colored",
+          onClose: () => {
+            navigate("/about");
+          }
+        });
+      }
 
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("name", res.data.name);
-localStorage.setItem("email", res.data.email);
+      localStorage.setItem("email", res.data.email);
 
     } catch (err) {
       toast.error("Invalid Credentials", {
@@ -63,50 +63,50 @@ localStorage.setItem("email", res.data.email);
     }
   }
 
-    return (
-        <div className="container d-flex align-items-center justify-content-center vh-100 bg-light">
-            <ToastContainer/>
-            <div className="card shadow p-4" style={{ width: '100%', maxWidth: '400px' }}>
-                <h2 className="text-center text-primary mb-4">Login</h2>
-                <form  onSubmit={login}>
-                    <div className="mb-3">
-                        <label className="form-label">Email address</label>
-                        <input
-                            type="email"
-                            name="email"
-                            className="form-control"
-                            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-                        />
-                    </div>
+  return (
+    <div className="container d-flex align-items-center justify-content-center vh-100 bg-light">
+      <ToastContainer />
+      <div className="card shadow p-4" style={{ width: '100%', maxWidth: '400px' }}>
+        <h2 className="text-center text-primary mb-4">Login</h2>
+        <form onSubmit={login}>
+          <div className="mb-3">
+            <label className="form-label">Email address</label>
+            <input
+              type="email"
+              name="email"
+              className="form-control"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
 
-                    <div className="mb-3">
-                        <label className="form-label">Password</label>
-                        <input
-                            type="password"
-                            name="password"
-                            className="form-control"
-                             value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-                        />
-                    </div>
+          <div className="mb-3">
+            <label className="form-label">Password</label>
+            <input
+              type="password"
+              name="password"
+              className="form-control"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
 
-                    <button type="submit" className="btn btn-primary w-100">Login</button>
-                    <Link className="text-decoration-non" to="/login">Forgot Password</Link>
-
-                  
+          <button type="submit" className="btn btn-primary w-100">Login</button>
+          <Link className="text-decoration-non" to="/login">Forgot Password</Link>
 
 
 
-                    <div className="mt-3 text-center">
-                        <small>
-                            Don't have an account? <Link className="text-decoration-non" to="/">Register</Link>
-                        </small>
-                    </div>
-                </form>
-            </div>
-        </div>
-    );
+
+
+          <div className="mt-3 text-center">
+            <small>
+              Don't have an account? <Link className="text-decoration-non" to="/">Register</Link>
+            </small>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
 }

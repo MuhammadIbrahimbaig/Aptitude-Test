@@ -6,6 +6,9 @@
     --dark: #0F172B;
     overflow-x: hidden;
 }
+.bg-theme{
+    background-color: #FEA116 !important;
+}
 *{
     font-family: Poopins;
 }
