@@ -1,39 +1,42 @@
 const mongoose = require('mongoose');
 
+// Department Schema and staff
 // Department Schema
 const departmentSchema = new mongoose.Schema({
   name: { type: String, required: true, unique: true }
 });
-const Department = mongoose.model('departments', departmentSchema);
-
-// Role Schema
-const roleSchema = new mongoose.Schema({
-  name: { type: String, required: true, unique: true },
-  code: { type: Number, required: true, unique: true }
-});
-const Role = mongoose.model('roles', roleSchema);
+const Department = mongoose.model('Department', departmentSchema);
 
 // Staff Schema
 const staffSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  phone: { type: String },
-  roleId: { type: mongoose.Schema.Types.ObjectId, ref: 'roles', required: true },
-  joiningDate: { type: Date },
-  salary: { type: Number },
-  designation: { type: String }
+  phone: String,
+  roleId: { type: mongoose.Schema.Types.ObjectId, ref: 'Role', required: true },
+  joiningDate: Date,
+  salary: Number,
+  designation: { type: mongoose.Schema.Types.ObjectId, ref: 'Department', required: true }
 });
-const Staff = mongoose.model('staff', staffSchema);
+const Staff = mongoose.model('Staff', staffSchema);
+
+// Role Schema
+const roleSchema = new mongoose.Schema({
+  name: { type: String, required: true, unique: true },
+  code: { type: Number, required: true, unique: true }
+});
+const Role = mongoose.model('Role', roleSchema);
 
 
+
+// User Schema
 const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  roleId: { type: mongoose.Schema.Types.ObjectId, ref: 'roles', required: true }
+  roleId: { type: mongoose.Schema.Types.ObjectId, ref: 'Role', required: true }
 });
-const User = mongoose.model('users', userSchema);
+const User = mongoose.model('User', userSchema);
 
-// **Single export for all models**
-module.exports = { Department, Role, Staff, User };
+// ✅ Export sab models
+module.exports = { Role, User, Department, Staff };

@@ -22,6 +22,10 @@ import { CreateRoom } from './Components/createroom.jsx';
 import RoomRead from './Components/showrooms.jsx';
 import UserFetch from './Components/UserFetch.jsx';
 import StaffCreate from './Components/StaffCreate.jsx';
+import StaffFetch from './Components/StaffFetch.jsx';
+import DepartFetch from './Components/DepartFetch.jsx';
+
+
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -34,6 +38,12 @@ createRoot(document.getElementById('root')).render(
           <Route path='/allrooms' element={<RoomRead/>} />
           <Route path='/UserFetch' element={<UserFetch/>} />
           <Route path='/StaffCreate' element={<StaffCreate/>} />
+          <Route path='/StaffFetch' element={<StaffFetch/>} />
+          <Route path='/DepartFetch' element={<DepartFetch/>} />
+
+
+         
+
 
           
 

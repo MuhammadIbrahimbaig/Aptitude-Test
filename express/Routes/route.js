@@ -34,6 +34,22 @@ router.get("/UserFetch", AdminLogin.UserData);
 router.delete("/UserDelete/:id", AdminLogin.UserDelete);
 router.put("/editUser/:id", AdminLogin.UserUpdate);
 router.post("/addstaff", AdminLogin.StaffRegister);
+router.post("/AddDepart", AdminLogin.AddDepart);
+router.get("/StaffFetch", AdminLogin.StaffFetch);
+router.get("/DepartFetch", AdminLogin.DepartFetch);
+router.put("/DepartEdit/:id", AdminLogin.DepartEdit);
+router.delete("/DepartDelete/:id", AdminLogin.DepartDelete);
+router.put("/staffEdit/:id", AdminLogin.StaffEdit);
+router.delete("/staffDelete/:id", AdminLogin.StaffDelete);
+
+
+
+
+
+
+
+
+
 
 
 

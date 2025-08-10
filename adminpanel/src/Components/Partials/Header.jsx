@@ -61,7 +61,7 @@ export default function Header() {
                         className="nav-link collapsed"
                         href="#"
                         data-bs-toggle="collapse"
-                        data-bs-target="#collapseTwo"
+                        data-bs-target="#collapseThree"
                         aria-expanded="false"
                         aria-controls="collapseTwo"
                     >
@@ -69,7 +69,7 @@ export default function Header() {
                         <span>User</span>
                     </a>
 
-                    <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo">
+                    <div id="collapseThree" className="collapse" aria-labelledby="headingTwo">
                         <div className="bg-primary text-white  collapse-inner rounded">
                          
                             <Link to="/UserFetch" className="collapse-item custom-hover-set" >All</Link>
@@ -78,6 +78,53 @@ export default function Header() {
                 </li>
 
              
+
+             <li className="nav-item">
+                    <a
+                        className="nav-link collapsed"
+                        href="#"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapsefour"
+                        aria-expanded="false"
+                        aria-controls="collapseTwo"
+                    >
+                        <i class="fa-solid fa-user"></i>&nbsp;
+                        <span>Staff</span>
+                    </a>
+
+                    <div id="collapsefour" className="collapse" aria-labelledby="headingTwo">
+                        <div className="bg-primary text-white  collapse-inner rounded">
+                         
+                            <Link to="/StaffCreate" className="collapse-item custom-hover-set" >Create</Link>
+                             <Link to="/StaffFetch" className="collapse-item custom-hover-set" >All</Link>
+                        </div>
+                    </div>
+                </li>
+
+
+  
+
+             <li className="nav-item">
+                    <a
+                        className="nav-link collapsed"
+                        href="#"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapsefive"
+                        aria-expanded="false"
+                        aria-controls="collapseTwo"
+                    >
+                        <i class="fa-solid fa-user"></i>&nbsp;
+                        <span>Department</span>
+                    </a>
+
+                    <div id="collapsefive" className="collapse" aria-labelledby="headingTwo">
+                        <div className="bg-primary text-white  collapse-inner rounded">
+                         
+                         
+                             <Link to="/departFetch" className="collapse-item custom-hover-set" >All</Link>
+                        </div>
+                    </div>
+                </li>
 
                 {/* <!-- Divider --> */}
                 <hr className="sidebar-divider" />
