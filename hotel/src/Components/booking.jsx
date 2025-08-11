@@ -10,6 +10,7 @@ import { jwtDecode } from "jwt-decode";
 
 
 export default function Booking() {
+    
     const [roomId, setRoomId] = useState("");
     const [checkIn, setCheckIn] = useState("");
     const [checkOut, setCheckOut] = useState("");
@@ -45,7 +46,7 @@ export default function Booking() {
                 special_request: specialRequest
             };
 
-            await axios.post("http://localhost:4001/create-booking", payload, {
+            await axios.post("http://localhost:4001/Mywork/create-booking", payload, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`

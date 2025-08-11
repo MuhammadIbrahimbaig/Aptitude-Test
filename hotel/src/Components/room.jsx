@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import AOS from 'aos';
@@ -7,7 +7,7 @@ import 'aos/dist/aos.css';
 export default function Room() {
     const [rooms, setRooms] = useState([]);
     const [selectedRoom, setSelectedRoom] = useState(null);
-
+    const navigate = useNavigate();
     useEffect(() => {
         AOS.init({ duration: 800 });
     }, []);
@@ -110,8 +110,14 @@ export default function Room() {
                                                     >
                                                         View Detail
                                                     </button>
+                                                    <button
+                                                        className="btn btn-primary btn-sm px-3 book-btn scale-hover"
+                                                        onClick={() => navigate(`/booking/${room._id || room.id}`)}
+                                                    >
+                                                        Book Now
+                                                    </button>
+                                                    {/* <button className="btn btn-primary btn-sm  px-3 book-btn scale-hover">Book Now</button> */}
 
-                                                    <button className="btn btn-primary btn-sm  px-3 book-btn scale-hover">Book Now</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -195,7 +201,7 @@ export default function Room() {
                         </div>
 
 
-                       
+
                     </div>
                 </div>
             </div>
