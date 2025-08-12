@@ -63,50 +63,77 @@ localStorage.setItem("email", res.data.email);
     }
   }
 
-    return (
-        <div className="container d-flex align-items-center justify-content-center vh-100 bg-light">
-            <ToastContainer/>
-            <div className="card shadow p-4" style={{ width: '100%', maxWidth: '400px' }}>
-                <h2 className="text-center text-primary mb-4">Login</h2>
-                <form  onSubmit={login}>
-                    <div className="mb-3">
-                        <label className="form-label">Email address</label>
-                        <input
-                            type="email"
-                            name="email"
-                            className="form-control"
-                            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-                        />
-                    </div>
-
-                    <div className="mb-3">
-                        <label className="form-label">Password</label>
-                        <input
-                            type="password"
-                            name="password"
-                            className="form-control"
-                             value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-                        />
-                    </div>
-
-                    <button type="submit" className="btn btn-primary w-100">Login</button>
-                    <Link className="text-decoration-non" to="/login">Forgot Password</Link>
-
-                  
-
-
-
-                    <div className="mt-3 text-center">
-                        <small>
-                            Don't have an account? <Link className="text-decoration-non" to="/">Register</Link>
-                        </small>
-                    </div>
-                </form>
-            </div>
+return (
+  <div className="container-fluid vh-100 d-flex align-items-center justify-content-center">
+    <ToastContainer />
+    <div className="row w-100 shadow rounded overflow-hidden" style={{ maxWidth: "900px" }}>
+      
+      {/* Left Side */}
+      <div className="col-md-6 d-flex flex-column align-items-center justify-content-center text-white"
+        style={{
+          background: "linear-gradient(135deg, #9d97ff, #9d97ff)",
+          padding: "2rem",
+        }}
+      >
+        <div className="text-center">
+        
+          <h3 className="fw-bold">YOUR COMPANY</h3>
+          <p>Login system slogan goes here</p>
         </div>
-    );
+      </div>
+
+      {/* Right Side */}
+      <div className="col-md-6 bg-white p-5">
+        <h2 className="text-center text-black  mb-4">Members Log in</h2>
+        <form onSubmit={login}>
+          <div className="mb-3">
+            <label className="form-label">Email address</label>
+            <input
+              type="email"
+              name="email"
+              className="form-control"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className="mb-3">
+            <label className="form-label">Password</label>
+            <input
+              type="password"
+              name="password"
+              className="form-control"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className="d-flex justify-content-between mb-3">
+            <div>
+              <input type="checkbox" /> Remember Me
+            </div>
+            <Link className="text-decoration-none" to="/forgot">Forgot Password?</Link>
+          </div>
+          <button
+  type="submit"
+  className="btn w-100 text-white fw-bold"
+  style={{ background: "#9d97ff" }}
+>
+  Log In
+</button>
+
+          <div className="mt-3 text-center">
+            <small>
+              Don’t have an account?{" "}
+              <Link className="text-decoration-none" to="/">Register Here</Link>
+            </small>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+);
+
 }

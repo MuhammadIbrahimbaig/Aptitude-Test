@@ -46,7 +46,7 @@ export default function registration() {
     {/* Left side image */}
    <div className="col-6 d-none d-md-block">
       <img
-        src="/src/assets/images/pexels-maceiras-2467558.jpg"
+        src="/src/assets/images/christian-lambert-vmIWr0NnpCQ-unsplash.jpg"
         className=""
         alt="Left Side"
         style={{
@@ -59,70 +59,82 @@ export default function registration() {
     </div>
 
     {/* Right side form */}
-  <div className="col-12 col-md-6 d-flex flex-column justify-content-center align-items-center">
-      <div style={{ width: "80%", maxWidth: "420px" }}>
-        <h5 className="fs-5">Wellcome to User</h5>
-        <div className="d-flex gap-2">
-        <p className="text-secondary">  Already Created account?</p>
-           <Link className="text-decoration-none" to="/login">
-              Login
-            </Link>
+  {/* Right side form */}
+    <div className="col-12 col-md-6 d-flex justify-content-center align-items-center bg-light">
+      <div
+        className="shadow p-4 p-md-5 rounded"
+        style={{ width: "85%", maxWidth: "420px", backgroundColor: "#fff" }}
+      >
+        {/* Header */}
+        <h5 className="fw-semibold text-center mb-1">Welcome to <span className="text-warning">Luxurystay</span> </h5>
+        <div className="d-flex justify-content-center gap-2 mb-4">
+          <p className="text-secondary mb-0">Already have an account?</p>
+          <Link className="text-decoration-none fw-medium" to="/login">
+            Login
+          </Link>
         </div>
-         
-      
-        <h2 className=" mb-4 font-bold text-warning">
-          Sign Up 
-        </h2>
+
+        {/* Title */}
+        <h2 className="mb-4 fw-medium text-warning text-center">Sign Up</h2>
+
+        {/* Form */}
         <form onSubmit={submit}>
           <div className="mb-3">
-            <label className="form-label">Username</label>
+            <label className="form-label fw-semibold">Username</label>
             <input
               type="text"
               name="fullName"
-              className="form-control py-2 rounded-1 shadow-none"
+              className="form-control py-2 rounded-2 shadow-sm"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
+              placeholder="Enter your username"
               required
             />
           </div>
 
           <div className="mb-3">
-            <label className="form-label">Email address</label>
+            <label className="form-label fw-semibold">Email address</label>
             <input
               type="email"
               name="email"
-              className="form-control py-2 rounded-1 shadow-none"
+              className="form-control py-2 rounded-2 shadow-sm"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email"
               required
             />
           </div>
 
-          <div className="mb-4">
-            <label className="form-label">Password</label>
+          <div className="mb-3">
+            <label className="form-label fw-semibold">Password</label>
             <input
               type="password"
               name="password"
-              className="form-control py-2 rounded-1 shadow-none"
+              className="form-control py-2 rounded-2 shadow-sm"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter your password"
               required
             />
           </div>
-          <div>
-           <Link className="text-decoration-none " to="/Forgot">
-              Forgot Password
+
+          {/* Forgot password link */}
+          <div className="text-end mb-4">
+            <Link className="text-decoration-none small" to="/Forgot">
+              Forgot Password?
             </Link>
           </div>
 
-          <button type="submit" className="btn btn-primary mt-4 rounded-0 rounded-1 w-100 border-0">
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="btn btn-primary py-2 rounded-2 w-100 fw-semibold"
+          >
             Register
           </button>
-
-        
         </form>
       </div>
-    </div>
+  </div>
   </div>
 );
 

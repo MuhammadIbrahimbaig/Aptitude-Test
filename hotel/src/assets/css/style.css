@@ -1,7 +1,7 @@
 /********** Template CSS **********/
 
 :root {
-    --primary: #FEA116 !important;
+    --primary: #9d97ff !important;
     --light: #F1F8FF;
     --dark: #0F172B;
 }
@@ -16,7 +16,7 @@
 
 .text-primary {
     --bs-text-opacity: 1;
-    color: rgba(var(--bs-warning-rgb), var(--bs-text-opacity)) !important;
+    color:#9d97ff !important;
 }
 
 .fw-medium {
@@ -64,7 +64,7 @@
 }
 
 .btn.btn-primary {
-    background-color: #FEA116;
+    background-color: #9d97ff;
 }
 
 .btn-square {

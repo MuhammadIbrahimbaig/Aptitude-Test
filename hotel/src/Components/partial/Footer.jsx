@@ -34,7 +34,7 @@ export default function Footer() {
                     <div className="container pb-5">
                         <div className="row g-5">
                             <div className="col-md-6 col-lg-4">
-                                <div className="bg-warning rounded p-4">
+                                <div className="btn btn-primary rounded p-4">
                                     <a className="text-decoration-none" href="index.html">
                                         <h1 className="text-white text-uppercase mb-3">LuxuryStay</h1>
                                     </a>
