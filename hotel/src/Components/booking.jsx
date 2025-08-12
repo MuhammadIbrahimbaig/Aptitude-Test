@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import about1 from '../assets/images/about-1.jpg';
 import about2 from '../assets/images/about-2.jpg';
 import about3 from '../assets/images/about-3.jpg';
@@ -10,7 +10,7 @@ import { jwtDecode } from "jwt-decode";
 
 
 export default function Booking() {
-    
+
     const [roomId, setRoomId] = useState("");
     const [checkIn, setCheckIn] = useState("");
     const [checkOut, setCheckOut] = useState("");
@@ -19,20 +19,21 @@ export default function Booking() {
     const [totalPrice, setTotalPrice] = useState(0);
     const [status, setStatus] = useState("booked");
     const [specialRequest, setSpecialRequest] = useState("");
+    const [rooms, setRooms] = useState([]);
 
     const SubmitBooking = async (e) => {
         e.preventDefault();
 
         try {
-            const token = localStorage.getItem("token"); // ✅ pehle yahan define karo
+            const token = localStorage.getItem("token");
             if (!token) {
                 toast.error("User not logged in");
                 return;
             }
 
-            // ✅ ab decode karo
+
             const decoded = jwtDecode(token);
-            const userId = decoded?.id; // payload key adjust karo
+            const userId = decoded?.id;
 
             const payload = {
                 user_id: userId,
@@ -69,7 +70,23 @@ export default function Booking() {
             toast.error(err?.response?.data?.msg || "Something went wrong!");
         }
     };
+    //   Fetch Room Data
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        axios.get('http://localhost:4001/Mywork/read', {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
 
+        })
+            .then(res => {
+                setRooms(res.data);
+            })
+            .catch(err => {
+                console.error('Error fetching room data:', err);
+            });
+    }, []);
     return (
         <div>
             {/* Header */}
@@ -155,16 +172,32 @@ export default function Booking() {
                                                 <label htmlFor="child">Select Child</label>
                                             </div>
                                         </div>
-                                        <div className="col-12">
-                                            <div className="form-floating">
+                                        {/* <div className="form-floating">
                                                 <select className="form-select" id="room" value={roomId} onChange={(e) => setRoomId(e.target.value)} required>
-                                                    <option value="">Select a Room</option>
-                                                    <option value="room1">Room 1</option>
-                                                    <option value="room2">Room 2</option>
-                                                    <option value="room3">Room 3</option>
+                                                <option value="">Select a Room</option>
+                                                <option value="room1">Room </option>
+                                                <option value="room2">Room 2</option>
+                                                <option value="room3">Room 3</option>
                                                 </select>
                                                 <label htmlFor="room">Select A Room</label>
-                                            </div>
+                                                </div> */}
+                                        <div className="col-12">
+                                            <select
+                                                className="form-select"
+                                                id="room"
+                                                value={roomId}
+                                                onChange={(e) => setRoomId(e.target.value)}
+                                                required
+                                            >
+                                                <option value="">Select a Room</option>
+                                                {
+                                                rooms.filter(room => room.status === "available")
+                                                .map((room) => (
+                                                    <option key={room._id} value={room._id}>
+                                                        {room.room_name}
+                                                    </option>
+                                                ))}
+                                            </select>
                                         </div>
                                         <div className="col-12">
                                             <div className="form-floating">
