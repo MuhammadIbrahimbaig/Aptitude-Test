@@ -41,6 +41,13 @@ export default function RoomRead() {
                     Authorization: `Bearer ${token}`,
                     "Content-Type": "application/json",
                 }
+            }).then((a) =>{
+                toast.success(a.data.msg);
+            }
+
+            ).catch((e) => {
+                console.log(e)
+                toast.error(e);
             });
 
             toast.success("Record Deleted Successfully");
