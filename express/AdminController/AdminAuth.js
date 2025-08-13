@@ -164,36 +164,64 @@ AddDepart: async function (req, res) {
 
 
   // Login
-  AdminLogin: async function (req, res) {
-    let { e, p } = req.body;
+  // AdminLogin: async function (req, res) {
+  //   let { e, p } = req.body;
 
-    // Find user and populate role
-    let user = await User.findOne({ email: e }).populate("roleId");
-    if (!user) {
-      return res.status(401).json({ msg: "Invalid Email" });
-    }
+  //   // Find user and populate role
+  //   let user = await User.findOne({ email: e }).populate("roleId");
+  //   if (!user) {
+  //     return res.status(401).json({ msg: "Invalid Email" });
+  //   }
 
-    // Password check
-    let isMatch = bcrypt.compareSync(p, user.password);
-    if (!isMatch) {
-      return res.status(401).json({ msg: "Incorrect Password" });
-    }
+  //   // Password check
+  //   let isMatch = bcrypt.compareSync(p, user.password);
+  //   if (!isMatch) {
+  //     return res.status(401).json({ msg: "Incorrect Password" });
+  //   }
 
-    // JWT token
-    let token = jwt.sign({
-      id: user._id,
-      role: user.roleId.code  
-    }, "secret_key", { expiresIn: "1h" });
+  //   // JWT token
+  //   let token = jwt.sign({
+  //     id: user._id,
+  //     role: user.roleId.code  
+  //   }, "secret_key", { expiresIn: "1h" });
 
-    res.status(200).json({
-      msg: "Login Success",
-      token: token,
-      role: user.roleId.code,   // or name
-      name: user.name,
-      email: user.email
-    });
-  },
+  //   res.status(200).json({
+  //     msg: "Login Success",
+  //     token: token,
+  //     role: user.roleId.code,   // or name
+  //     name: user.name,
+  //     email: user.email
+  //   });
+  // },
+    AdminLogin: async function (req, res) {
+      let { e, p } = req.body;
   
+      let user = await User.findOne({ email: e }).populate("roleId");
+      if (!user) return res.status(401).json({ msg: "Invalid Email" });
+  
+      if (!user?.isVerified) {
+        return res.status(400).json({
+          success: false,
+          error: "Please verify your email before logging in",
+        });
+      }
+  
+      let isMatch = bcrypt.compareSync(p, user.password);
+      if (!isMatch) return res.status(401).json({ msg: "Incorrect Password" });
+  
+      const token = jwt.sign(
+        { userId: user._id, email: user.email },
+        process.env.JWT_SECRET_KEY
+      );
+  
+      res.status(200).json({
+        msg: "Login Success",
+        token: token,
+        role: user.roleId.code,
+        name: user.name,
+        email: user.email,
+      });
+    },
  // READ DATA
  UserData: async function (req, res) {
   try {

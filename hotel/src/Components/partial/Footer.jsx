@@ -1,8 +1,7 @@
 export default function Footer() {
     return (
-
         <div>
-            <div className="container newsletter mt-5 wow fadeIn" data-wow-delay="0.1s">
+            <div className="newsletter mt-5 wow fadeIn" data-wow-delay="0.1s">
                 <div className="row justify-content-center">
                     <div className="col-lg-10 border rounded p-1">
                         <div className="border rounded text-center p-1">
@@ -28,7 +27,7 @@ export default function Footer() {
                     </div>
                 </div>
             </div>
-            <div className="container">
+            <div className="">
 
                 <div className=" bg-dark text-light footer wow fadeIn" data-wow-delay="0.1s">
                     <div className="container pb-5">

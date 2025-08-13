@@ -13,17 +13,26 @@ const Home = () => {
     }, []);
 
     useEffect(() => {
-        axios.get('http://localhost:4001/Mywork/read')
-            .then(res => {
-                console.log('Room issue', res.data);
+        const token = localStorage.getItem('token');
+        axios.get('http://localhost:4001/Mywork/read', {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
 
+        })
+
+            .then(res => {
                 setRooms(res.data);
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                console.error('Error fetching room data:', err);
+            }
+            );
     }, []);
     return (
         <div>
-            <div className="container p-0 mb-5">
+            <div className=" p-0 mb-5">
                 <div id="header-carousel" className="carousel slide" data-bs-ride="carousel">
                     <div className="carousel-inner">
                         <div className="carousel-item active">
@@ -131,7 +140,12 @@ const Home = () => {
                                         <div className="col-lg-4 col-md-6" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
                                             <div className="room-item shadow rounded overflow-hidden">
                                                 <div className="position-relative">
-                                                    <img className="mg-fluid fixed-wh object-fit-cover room-img-hover rounded-top zoom-hover" src={`http://localhost:4001/Mywork/${room.image}`} alt="room" />
+                                                    <img
+                                                        className="img-fluid fixed-wh object-fit-cover"
+                                                        src={room.image}
+                                                        alt="room"
+                                                    />
+
 
 
                                                     <small className="position-absolute start-0 top-100 translate-middle-y btn border-0 btn-primary text-white rounded py-1 px-3 ms-4 book-btn scale-hover">

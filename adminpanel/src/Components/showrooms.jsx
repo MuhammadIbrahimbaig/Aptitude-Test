@@ -5,10 +5,19 @@ import { toast } from "react-toastify";
 export default function RoomRead() {
     const [rooms, setRooms] = useState([]);
 
+
     useEffect(() => {
-        axios.get('http://localhost:4001/Mywork/read')
+        const token = localStorage.getItem("token");
+
+        axios.get("http://localhost:4001/Mywork/read", {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            }
+        })
             .then(result => setRooms(result.data))
             .catch(err => console.log(err));
+
     }, []);
 
     const [roomNumber, setRoomNumber] = useState("");
@@ -19,33 +28,57 @@ export default function RoomRead() {
     const [status, setStatus] = useState("");
     const [id, setID] = useState("");
 
-
     // Delete
     async function DeleteRecord(id, n) {
-        if (window.confirm(`Are you sure want to delete ${n} record `)) {
-            await axios.delete(`http://localhost:4001/Mywork/remove/${id}`).then(() => {
-                toast.success("Record Deleted Successfully");
-                RoomRead()
-            }).catch((e) => {
-                toast.error(e.message)
-            })
+        console.log("DeleteRecord called with id:", id);
+        if (!window.confirm(`Are you sure you want to delete "${n}" record?`)) {
+            return;
+        }
+
+        try {
+            await axios.delete(`http://localhost:4001/Mywork/remove/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                }
+            });
+
+            toast.success("Record Deleted Successfully");
+            RoomRead(); // refresh table/list
+        } catch (e) {
+            toast.error(e.response?.data?.msg || e.message);
         }
     }
 
     async function EditRoom() {
         try {
-            await axios.put(`http://localhost:4001/Mywork/edit/${id}`, {
-                room_number: roomNumber,
-                room_name: roomName,
-                type: type,
-                price: price,
-                capacity: capacity,
-                status: status
-            });
+            await axios.put(
+                `http://localhost:4001/Mywork/edit/${a}`,
+                {
+                    room_number: roomNumber,
+                    room_name: roomName,
+                    type: type,
+                    price: price,
+                    capacity: capacity,
+                    status: status
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    }
+                }
+            );
 
             toast.success("Record Updated Successfully");
+
             // Refresh the data
-            axios.get('http://localhost:4001/Mywork/read')
+            axios.get('http://localhost:4001/Mywork/read', {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                }
+            })
                 .then(result => setRooms(result.data))
                 .catch(err => console.log(err));
 
@@ -56,6 +89,7 @@ export default function RoomRead() {
             toast.error(error.response?.data?.msg || error.message);
         }
     }
+
 
 
     const setRoomData = (r) => {

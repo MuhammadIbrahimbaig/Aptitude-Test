@@ -1,12 +1,34 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-// Department Schema and staff
-// Department Schema
-const departmentSchema = new mongoose.Schema({
-  name: { type: String, required: true, unique: true }
+const userSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+
+  password: {
+    type: String,
+    required: true,
+  },
+
+  roleId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "roles",
+    required: true,
+  },
+  isVerified: {
+    type: Boolean,
+    default: false,
+  },
 });
-const Department = mongoose.model('Department', departmentSchema);
 
+const User = mongoose.model('user', userSchema);
 // Staff Schema
 const staffSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -23,20 +45,14 @@ const Staff = mongoose.model('Staff', staffSchema);
 // Role Schema
 const roleSchema = new mongoose.Schema({
   name: { type: String, required: true, unique: true },
-  code: { type: Number, required: true, unique: true }
+  code: { type: Number, required: true, unique: true },
 });
 const Role = mongoose.model('Role', roleSchema);
 
 
 
 // User Schema
-const userSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-  roleId: { type: mongoose.Schema.Types.ObjectId, ref: 'Role', required: true }
-});
-const User = mongoose.model('User', userSchema);
+ 
 
 // ✅ Export sab models
-module.exports = { Role, User, Department, Staff };
+module.exports = { Role, User };

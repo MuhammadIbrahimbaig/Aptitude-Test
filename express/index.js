@@ -13,7 +13,7 @@ app.use('/Mywork/',route);
 
 db().then(()=>{
 app.listen(port_no , function () {
-    console.log(`server at started at http://localhost:${port_no}/Mywork/`);
+    console.log(`server at started at  `);
 })
 
 }).catch((e)=>{

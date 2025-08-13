@@ -8,7 +8,7 @@ export default function Loginform() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  
+
 
   async function login(e) {
     e.preventDefault();
@@ -22,37 +22,37 @@ export default function Loginform() {
       const role = res.data.role;
 
       if (role === 3) {
-         toast.success("User Login Successful!", {
-    position: "top-center",
-    autoClose: 500,
-    theme: "colored",
-    onClose: () => {
-      navigate("/home");  
-    }
-  });
+        toast.success("User Login Successful!", {
+          position: "top-center",
+          autoClose: 500,
+          theme: "colored",
+          onClose: () => {
+            navigate("/home");
+          }
+        });
       } else if (role === 2) {
-      toast.success("Staff Login Successful!", {
-    position: "top-center",
-    autoClose: 500,
-    theme: "colored",
-    onClose: () => {
-      navigate("/about");  
-    }
-  });
+        toast.success("Staff Login Successful!", {
+          position: "top-center",
+          autoClose: 500,
+          theme: "colored",
+          onClose: () => {
+            navigate("/about");
+          }
+        });
       } else if (role === 1) {
-  toast.success("Admin Login Successful!", {
-    position: "top-center",
-    autoClose: 500,
-    theme: "colored",
-    onClose: () => {
-      navigate("/about");  
-    }
-  });
-}
+        toast.success("Admin Login Successful!", {
+          position: "top-center",
+          autoClose: 500,
+          theme: "colored",
+          onClose: () => {
+            navigate("/about");
+          }
+        });
+      }
 
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("name", res.data.name);
-localStorage.setItem("email", res.data.email);
+      localStorage.setItem("email", res.data.email);
 
     } catch (err) {
       toast.error("Invalid Credentials", {

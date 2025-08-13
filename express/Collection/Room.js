@@ -18,10 +18,6 @@ let room_structure = mongo.Schema({
         type: Number,
         required: true
     },
-    // is_available: {
-    //     type: Boolean,
-    //     default: true
-    // },
     status: {
         type: String,
         enum: ["available", "booked", "cleaning", "maintenance"],
@@ -37,6 +33,11 @@ let room_structure = mongo.Schema({
     },
     image: {
         type: String,
+        default: ""
+    },
+     short_description: {
+        type: String,
+        maxlength: 300,
         default: ""
     },
     Record_time: {

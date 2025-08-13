@@ -4,12 +4,12 @@ let booking_structure = mongo.Schema({
     user_id: {
         type: mongo.Schema.Types.ObjectId,
         ref: "users",
-        required: true
+        required: false
     },
     room_id: {
         type: mongo.Schema.Types.ObjectId,
         ref: "rooms",
-        required: true
+        required: false
     },
     check_in: {
         type: Date,
@@ -17,6 +17,14 @@ let booking_structure = mongo.Schema({
     },
     check_out: {
         type: Date,
+        required: true
+    },
+    adult: {
+        type: Number,
+        required: true
+    },
+    child: {
+        type: Number,
         required: true
     },
     total_price: {
