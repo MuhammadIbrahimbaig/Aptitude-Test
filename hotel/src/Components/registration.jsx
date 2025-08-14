@@ -66,7 +66,10 @@ export default function registration() {
         style={{ width: "85%", maxWidth: "420px", backgroundColor: "#fff" }}
       >
         {/* Header */}
-        <h5 className="fw-semibold text-center mb-1">Welcome to <span className="text-warning">Luxurystay</span> </h5>
+        <h5 className="fw-semibold text-center mb-1">Welcome to   <span className="bg-gradient-to-r from-[#1351d8] to-[#9c00ff] bg-clip-text text-transparent font-semibold">
+               Luxurystay
+</span>
+ </h5>
         <div className="d-flex justify-content-center gap-2 mb-4">
           <p className="text-secondary mb-0">Already have an account?</p>
           <Link className="text-decoration-none fw-medium" to="/login">
@@ -75,16 +78,16 @@ export default function registration() {
         </div>
 
         {/* Title */}
-        <h2 className="mb-4 fw-medium text-warning text-center">Sign Up</h2>
+        <p className="mb-4  text-[32px] text-dark font-medium text-center">Sign Up</p>
 
         {/* Form */}
         <form onSubmit={submit}>
           <div className="mb-3">
-            <label className="form-label fw-semibold">Username</label>
+            {/* <label className="form-label fw-semibold">Username</label> */}
             <input
               type="text"
               name="fullName"
-              className="form-control py-2 rounded-2 shadow-sm"
+              className="form-control py-3 rounded-2 shadow-sm"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               placeholder="Enter your username"
@@ -93,11 +96,11 @@ export default function registration() {
           </div>
 
           <div className="mb-3">
-            <label className="form-label fw-semibold">Email address</label>
+            {/* <label className="form-label fw-semibold">Email address</label> */}
             <input
               type="email"
               name="email"
-              className="form-control py-2 rounded-2 shadow-sm"
+              className="form-control py-3 mt-4 rounded-2 shadow-sm"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
@@ -106,11 +109,11 @@ export default function registration() {
           </div>
 
           <div className="mb-3">
-            <label className="form-label fw-semibold">Password</label>
+            {/* <label className="form-label fw-semibold">Password</label> */}
             <input
               type="password"
               name="password"
-              className="form-control py-2 rounded-2 shadow-sm"
+              className="form-control py-3 mt-4    rounded-2 shadow-sm"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter your password"
@@ -126,12 +129,14 @@ export default function registration() {
           </div>
 
           {/* Submit Button */}
-          <button
-            type="submit"
-            className="btn btn-primary py-2 rounded-2 w-100 fw-semibold"
-          >
-            Register
-          </button>
+ <button
+  type="submit"
+  class="py-2 w-full font-semibold text-white rounded-2 py-3   bg-gradient-to-r from-[#1351d8] to-[#9c00ff] hover:from-[#9c00ff] hover:to-[#1351d8]"
+>
+  Register
+</button>
+
+
         </form>
       </div>
   </div>

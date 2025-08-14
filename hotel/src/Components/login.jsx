@@ -69,29 +69,26 @@ return (
     <div className="row w-100 shadow rounded overflow-hidden" style={{ maxWidth: "900px" }}>
       
       {/* Left Side */}
-      <div className="col-md-6 d-flex flex-column align-items-center justify-content-center text-white"
-        style={{
-          background: "linear-gradient(135deg, #9d97ff, #9d97ff)",
-          padding: "2rem",
-        }}
+      <div className="col-md-6 d-flex flex-column  bg-gradient-to-r from-[#1351d8] to-[#9c00ff] align-items-center justify-content-center text-white"
+       
       >
         <div className="text-center">
         
-          <h3 className="fw-bold">YOUR COMPANY</h3>
-          <p>Login system slogan goes here</p>
+          <h3 className="fw-bold">HotelLOgo</h3>
+          <p>hotel name</p>
         </div>
       </div>
 
       {/* Right Side */}
       <div className="col-md-6 bg-white p-5">
-        <h2 className="text-center text-black  mb-4">Members Log in</h2>
+        <h2 className="text-center text-black py-3 ">Members Log in</h2>
         <form onSubmit={login}>
           <div className="mb-3">
-            <label className="form-label">Email address</label>
             <input
               type="email"
               name="email"
-              className="form-control"
+              placeholder="Enter Your Name"
+              className="form-control py-3 rounded-2"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -99,11 +96,11 @@ return (
           </div>
 
           <div className="mb-3">
-            <label className="form-label">Password</label>
             <input
               type="password"
+              placeholder="Enter Your Psssword"
               name="password"
-              className="form-control"
+              className="form-control mt-4 py-3 rounded-2"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -118,8 +115,8 @@ return (
           </div>
           <button
   type="submit"
-  className="btn w-100 text-white fw-bold"
-  style={{ background: "#9d97ff" }}
+  className="btn w-100 text-white fw-bold py-3 rounded-2  bg-gradient-to-r from-[#1351d8] to-[#9c00ff]"
+  
 >
   Log In
 </button>
@@ -127,7 +124,7 @@ return (
           <div className="mt-3 text-center">
             <small>
               Don’t have an account?{" "}
-              <Link className="text-decoration-none" to="/">Register Here</Link>
+              <Link className="text-decoration-none " to="/">Register Here</Link>
             </small>
           </div>
         </form>

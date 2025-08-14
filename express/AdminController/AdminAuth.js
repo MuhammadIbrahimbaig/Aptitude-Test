@@ -1,5 +1,11 @@
 
-let { User, Role , Staff, Department ,   } = require("../Collection/User");
+let { User   } = require("../Collection/User");
+let { Role   } = require("../Collection/Role");
+let { Department   } = require("../Collection/Department");
+let { Staff   } = require("../Collection/Staff");
+
+
+
 let bcrypt = require('bcrypt');
 let jwt = require('jsonwebtoken');
 
