@@ -74,28 +74,76 @@ export default function Booking() {
         }
     };
     //   Fetch Room Data
+    //  useEffect(() => {
+    //     const token = localStorage.getItem('token');
+
+    //     axios.get('http://localhost:4001/Mywork/read', {
+    //         headers: {
+    //             Authorization: `Bearer ${token}`,
+    //             'Content-Type': 'application/json',
+    //         },
+    //     })
+    //     .then(res => {
+    //         if (room_id) {
+    //             // ✅ Agar URL me room_id hai → sirf wahi room show karo
+    //             const selectedRoom = res.data.find(room => room._id === room_id);
+    //             if (selectedRoom) {
+    //                 setRooms([selectedRoom]); // array me sirf ek hi room
+    //                 setRoomId(selectedRoom._id);
+    //             } else {
+    //                 setRooms([]); // agar match na mile to empty dropdown
+    //             }
+    //         } else {
+    //             // ✅ Agar URL me room_id nahi hai → sab available rooms dikhao
+    //             const availableRooms = res.data.filter(room => room.status === "available");
+    //             setRooms(availableRooms);
+    //         }
+    //     })
+    //     .catch(err => {
+    //         console.error('Error fetching room data:', err);
+    //     });
+
+    // }, [room_id]);
     useEffect(() => {
-        const token = localStorage.getItem('token');
-        axios.get('http://localhost:4001/Mywork/read', {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            },
-        })
-            .then(res => {
-                let availableRooms = res.data.filter(room => room.status === "available");
-
-                if (room_id) {
-                    availableRooms = availableRooms.filter(room => room._id === room_id);
-                    setRoomId(room_id); // preselect
+    const fetchRooms = async () => {
+        try {
+            const token = localStorage.getItem("token"); // token from localStorage
+            const res = await axios.get("http://localhost:4001/Mywork/read", {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json"
                 }
-
-                setRooms(availableRooms);
-            })
-            .catch(err => {
-                console.error('Error fetching room data:', err);
             });
-    }, [room_id]);
+
+            console.log("URL room_id:", room_id);
+            console.log("Fetched rooms:", res.data);
+
+            if (room_id) {
+                const selectedRoom = res.data.find(
+                    (room) => String(room._id) === String(room_id)
+                );
+                if (selectedRoom) {
+                    setRooms([selectedRoom]);
+                    setRoomId(selectedRoom._id);
+                } else {
+                    setRooms([]);
+                }
+            } else {
+                const availableRooms = res.data.filter(
+                    (room) => room.status === "available"
+                );
+                setRooms(availableRooms);
+            }
+        } catch (err) {
+            console.error("Error fetching rooms:", err);
+        }
+    };
+
+    fetchRooms();
+}, [room_id]);
+
+
+
 
     return (
         <div>
@@ -183,15 +231,12 @@ export default function Booking() {
                                             </div>
                                         </div>
 
-                                        <div className={`col-12 ${room_id ? "d-none" : ""}`}>
+                                        <div className="col-12">
                                             <select
-                                                className="form-select"
-                                                id="room"
                                                 value={roomId}
                                                 onChange={(e) => setRoomId(e.target.value)}
-                                                required
+                                                className="form-select"
                                             >
-                                                <option value="">Select a Room</option>
                                                 {rooms.map((room) => (
                                                     <option key={room._id} value={room._id}>
                                                         {room.room_name}
