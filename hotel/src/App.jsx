@@ -38,6 +38,8 @@ function App() {
               <Route path='/testimonal' element={<Testimonial />} />
               <Route path='/room' element={<Room />} />
               <Route path='/booking/:id' element={<Booking />} />
+              <Route path='/booking' element={<Booking />} />
+
               <Route path='/contact' element={<Contact />} />
 
             </Route>

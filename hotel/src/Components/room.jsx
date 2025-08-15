@@ -116,7 +116,6 @@ export default function Room() {
                                                     >
                                                         Book Now
                                                     </button>
-                                                    {/* <button className="btn btn-primary btn-sm  px-3 book-btn scale-hover">Book Now</button> */}
 
                                                 </div>
                                             </div>

@@ -6,10 +6,13 @@ import about4 from '../assets/images/about-4.jpg';
 import axios from "axios";
 import { toast } from "react-toastify";
 import { jwtDecode } from "jwt-decode";
+import { useParams } from "react-router-dom";
 
 
 
 export default function Booking() {
+    // use Params
+    const { room_id } = useParams(); // ✅ get room_id from URL
 
     const [roomId, setRoomId] = useState("");
     const [checkIn, setCheckIn] = useState("");
@@ -71,22 +74,77 @@ export default function Booking() {
         }
     };
     //   Fetch Room Data
-    useEffect(() => {
-        const token = localStorage.getItem('token');
-        axios.get('http://localhost:4001/Mywork/read', {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            },
+    //  useEffect(() => {
+    //     const token = localStorage.getItem('token');
 
-        })
-            .then(res => {
-                setRooms(res.data);
-            })
-            .catch(err => {
-                console.error('Error fetching room data:', err);
+    //     axios.get('http://localhost:4001/Mywork/read', {
+    //         headers: {
+    //             Authorization: `Bearer ${token}`,
+    //             'Content-Type': 'application/json',
+    //         },
+    //     })
+    //     .then(res => {
+    //         if (room_id) {
+    //             // ✅ Agar URL me room_id hai → sirf wahi room show karo
+    //             const selectedRoom = res.data.find(room => room._id === room_id);
+    //             if (selectedRoom) {
+    //                 setRooms([selectedRoom]); // array me sirf ek hi room
+    //                 setRoomId(selectedRoom._id);
+    //             } else {
+    //                 setRooms([]); // agar match na mile to empty dropdown
+    //             }
+    //         } else {
+    //             // ✅ Agar URL me room_id nahi hai → sab available rooms dikhao
+    //             const availableRooms = res.data.filter(room => room.status === "available");
+    //             setRooms(availableRooms);
+    //         }
+    //     })
+    //     .catch(err => {
+    //         console.error('Error fetching room data:', err);
+    //     });
+
+    // }, [room_id]);
+    useEffect(() => {
+    const fetchRooms = async () => {
+        try {
+            const token = localStorage.getItem("token"); // token from localStorage
+            const res = await axios.get("http://localhost:4001/Mywork/read", {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                }
             });
-    }, []);
+
+            console.log("URL room_id:", room_id);
+            console.log("Fetched rooms:", res.data);
+
+            if (room_id) {
+                const selectedRoom = res.data.find(
+                    (room) => String(room._id) === String(room_id)
+                );
+                if (selectedRoom) {
+                    setRooms([selectedRoom]);
+                    setRoomId(selectedRoom._id);
+                } else {
+                    setRooms([]);
+                }
+            } else {
+                const availableRooms = res.data.filter(
+                    (room) => room.status === "available"
+                );
+                setRooms(availableRooms);
+            }
+        } catch (err) {
+            console.error("Error fetching rooms:", err);
+        }
+    };
+
+    fetchRooms();
+}, [room_id]);
+
+
+
+
     return (
         <div>
             {/* Header */}
@@ -172,33 +230,21 @@ export default function Booking() {
                                                 <label htmlFor="child">Select Child</label>
                                             </div>
                                         </div>
-                                        {/* <div className="form-floating">
-                                                <select className="form-select" id="room" value={roomId} onChange={(e) => setRoomId(e.target.value)} required>
-                                                <option value="">Select a Room</option>
-                                                <option value="room1">Room </option>
-                                                <option value="room2">Room 2</option>
-                                                <option value="room3">Room 3</option>
-                                                </select>
-                                                <label htmlFor="room">Select A Room</label>
-                                                </div> */}
+
                                         <div className="col-12">
                                             <select
-                                                className="form-select"
-                                                id="room"
                                                 value={roomId}
                                                 onChange={(e) => setRoomId(e.target.value)}
-                                                required
+                                                className="form-select"
                                             >
-                                                <option value="">Select a Room</option>
-                                                {
-                                                rooms.filter(room => room.status === "available")
-                                                .map((room) => (
+                                                {rooms.map((room) => (
                                                     <option key={room._id} value={room._id}>
                                                         {room.room_name}
                                                     </option>
                                                 ))}
                                             </select>
                                         </div>
+
                                         <div className="col-12">
                                             <div className="form-floating">
                                                 <textarea className="form-control" placeholder="Special Request" id="message" style={{ height: '100px' }}

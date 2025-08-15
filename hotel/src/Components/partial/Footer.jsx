@@ -29,11 +29,11 @@ export default function Footer() {
             </div>
             <div className="">
 
-                <div className=" bg-dark text-light footer wow fadeIn" data-wow-delay="0.1s">
+                <div className=" bg-footer text-light footer wow fadeIn" data-wow-delay="0.1s">
                     <div className="container pb-5">
                         <div className="row g-5">
                             <div className="col-md-6 col-lg-4">
-                                <div className="btn btn-primary rounded p-4">
+                                <div className="rounded p-4" style={{ background:"white"}}>
                                     <a className="text-decoration-none" href="index.html">
                                         <h1 className="text-white text-uppercase mb-3">LuxuryStay</h1>
                                     </a>
