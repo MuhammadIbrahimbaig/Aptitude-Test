@@ -5,6 +5,7 @@ import about3 from '../assets/images/about-3.jpg';
 import about4 from '../assets/images/about-4.jpg';
 import axios from "axios";
 import { toast } from "react-toastify";
+
 import { jwtDecode } from "jwt-decode";
 import { useParams } from "react-router-dom";
 
@@ -74,73 +75,42 @@ export default function Booking() {
         }
     };
     //   Fetch Room Data
-    //  useEffect(() => {
-    //     const token = localStorage.getItem('token');
 
-    //     axios.get('http://localhost:4001/Mywork/read', {
-    //         headers: {
-    //             Authorization: `Bearer ${token}`,
-    //             'Content-Type': 'application/json',
-    //         },
-    //     })
-    //     .then(res => {
-    //         if (room_id) {
-    //             // ✅ Agar URL me room_id hai → sirf wahi room show karo
-    //             const selectedRoom = res.data.find(room => room._id === room_id);
-    //             if (selectedRoom) {
-    //                 setRooms([selectedRoom]); // array me sirf ek hi room
-    //                 setRoomId(selectedRoom._id);
-    //             } else {
-    //                 setRooms([]); // agar match na mile to empty dropdown
-    //             }
-    //         } else {
-    //             // ✅ Agar URL me room_id nahi hai → sab available rooms dikhao
-    //             const availableRooms = res.data.filter(room => room.status === "available");
-    //             setRooms(availableRooms);
-    //         }
-    //     })
-    //     .catch(err => {
-    //         console.error('Error fetching room data:', err);
-    //     });
-
-    // }, [room_id]);
     useEffect(() => {
-    const fetchRooms = async () => {
-        try {
-            const token = localStorage.getItem("token"); // token from localStorage
-            const res = await axios.get("http://localhost:4001/Mywork/read", {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": "application/json"
-                }
-            });
+        const fetchRooms = async () => {
+            console.log("room_id from URL:", room_id);
 
-            console.log("URL room_id:", room_id);
-            console.log("Fetched rooms:", res.data);
-
-            if (room_id) {
-                const selectedRoom = res.data.find(
-                    (room) => String(room._id) === String(room_id)
-                );
-                if (selectedRoom) {
-                    setRooms([selectedRoom]);
-                    setRoomId(selectedRoom._id);
+            try {
+                const token = localStorage.getItem("token"); // token from localStorage
+                const res = await axios.get("http://localhost:4001/Mywork/read", {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json"
+                    }
+                });
+                if (room_id) {
+                    const selectedRoom = res.data.find(
+                        (room) => String(room._id) === String(room_id)
+                    );
+                    if (selectedRoom) {
+                        setRooms([selectedRoom]);
+                        setRoomId(selectedRoom._id);
+                    } else {
+                        setRooms([]);
+                    }
                 } else {
-                    setRooms([]);
+                    const availableRooms = res.data.filter(
+                        (room) => room.status === "available"
+                    );
+                    setRooms(availableRooms);
                 }
-            } else {
-                const availableRooms = res.data.filter(
-                    (room) => room.status === "available"
-                );
-                setRooms(availableRooms);
+            } catch (err) {
+                console.error("Error fetching rooms:", err);
             }
-        } catch (err) {
-            console.error("Error fetching rooms:", err);
-        }
-    };
+        };
 
-    fetchRooms();
-}, [room_id]);
+        fetchRooms();
+    }, [room_id]);
 
 
 
@@ -230,13 +200,16 @@ export default function Booking() {
                                                 <label htmlFor="child">Select Child</label>
                                             </div>
                                         </div>
-
                                         <div className="col-12">
                                             <select
-                                                value={roomId}
+                                                value={roomId || ""}
                                                 onChange={(e) => setRoomId(e.target.value)}
                                                 className="form-select"
+                                                disabled={room_id !== undefined && room_id !== null}
+
                                             >
+
+                                                {!room_id && <option value="">Select a Room</option>}
                                                 {rooms.map((room) => (
                                                     <option key={room._id} value={room._id}>
                                                         {room.room_name}
