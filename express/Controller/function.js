@@ -1,4 +1,5 @@
-let { User, Role } = require("../Collection/User");
+let { User } = require("../Collection/User");
+let { Role } = require("../Collection/Role");
 let bcrypt = require("bcrypt");
 let jwt = require("jsonwebtoken");
 const Otp = require("../Collection/OtpSchema");
@@ -237,6 +238,8 @@ let all_pages = {
       res.status(500).json({ success: false, error: "Internal server error" });
     }
   },
+
+  
   ResendOtp: async function (req, res) {
     const { email } = req.body; // changed from req.query to req.body
 

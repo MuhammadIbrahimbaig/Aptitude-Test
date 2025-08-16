@@ -1,39 +1,173 @@
-let { User, Role } = require("../Collection/User");
+
+let { User   } = require("../Collection/User");
+let { Role   } = require("../Collection/Role");
+let { Department   } = require("../Collection/Department");
+let { Staff   } = require("../Collection/Staff");
+
+
+
 let bcrypt = require('bcrypt');
 let jwt = require('jsonwebtoken');
 
 let all_pages = {
 
   // Register
-  StaffRegister: async function (req, res) {
-    let { n, e, p } = req.body;
+StaffRegister: async function (req, res) {
+  try {
+    const { name, email, phone, password, joiningDate, salary, designation } = req.body;
 
-    // Check if email exists
-    let email_check = await User.findOne({ email: e });
-    if (email_check) {
-      return res.status(409).json({ msg: 'Email Already Exist' });
+    // Email check
+    const emailExists = await Staff.findOne({ email });
+    if (emailExists) {
+      return res.status(409).json({ msg: "Email already exists" });
     }
 
-    // Find role by code (3 = user)
-    let roleData = await Role.findOne({ code: 3 });
-    if (!roleData) {
-      return res.status(500).json({ msg: "User role not found" });
+    // Staff role check
+    const staffRole = await Role.findOne({ code: 2 });
+    if (!staffRole) {
+      return res.status(400).json({ msg: "Staff role not defined in database" });
     }
 
-    // Hash password
-    let secure_password = bcrypt.hashSync(p, 15);
+    // Department check (designation = department _id)
+    const dept = await Department.findById(designation);
+    if (!dept) {
+      return res.status(400).json({ msg: "Invalid department selected" });
+    }
 
-    // Create user
-    let user = new User({
-      name: n,
-      email: e,
-      password: secure_password,
-      roleId: roleData._id
+    // Password hash
+    const hashedPassword = bcrypt.hashSync(password, 15);
+
+    // Staff create
+    const staff = new Staff({
+      name,
+      email,
+      phone,
+      password: hashedPassword,
+      roleId: staffRole._id,
+      joiningDate,
+      salary,
+      designation: dept._id
     });
 
-    await user.save();
-    res.status(200).json({ msg: "Registration Successful" });
+    await staff.save();
+    return res.status(200).json({ msg: "Staff registered successfully" });
+
+  } catch (error) {
+    console.error("StaffRegister error:", error);
+    return res.status(500).json({ msg: "Internal Server Error" });
+  }
+},
+
+  StaffFetch:async function (req, res) {
+     try {
+    const staffList = await Staff.find()
+      .populate("designation", "name") // sirf name field lao
+      .populate("roleId", "name"); // optional
+    res.json(staffList);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ msg: "Server error" });
+  }
   },
+
+StaffEdit: async function (req, res) {
+  try {
+    const { name, email, phone, designation } = req.body; // designation will be department _id
+
+    // Validate department _id
+    const deptExists = await Department.findById(designation);
+    if (!deptExists) {
+      return res.status(400).json({ message: "Department does not exist" });
+    }
+
+    // Update staff
+    const updatedStaff = await Staff.findByIdAndUpdate(
+      req.params.id,
+      {
+        name,
+        email,
+        phone,
+        designation: deptExists._id // store as ObjectId
+      },
+      { new: true }
+    );
+
+    if (!updatedStaff) {
+      return res.status(404).json({ message: "Staff not found" });
+    }
+
+    res.json(updatedStaff);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+},
+
+StaffDelete: async function (req, res) {
+  try {
+    const deletedStaff = await Staff.findByIdAndDelete(req.params.id);
+    if (!deletedStaff) {
+      return res.status(404).json({ message: "Staff not found" });
+    }
+    res.json({ message: "Staff deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+},
+
+DepartFetch:async function (req, res) {
+  try {
+    const departments = await Department.find();
+    res.json(departments);
+  } catch (err) {
+    console.error("Error fetching departments:", err);
+    res.status(500).json({ message: "Error fetching departments", error: err });
+  }
+},
+
+DepartEdit: async function (req, res) {
+  try {
+    const { id } = req.params;
+    const { name } = req.body;
+
+    await Department.findByIdAndUpdate(id, { name: name }, { new: true });
+    res.status(200).json({ message: "Department updated successfully" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Error updating department" });
+  }
+},
+
+DepartDelete: async function (req, res) {
+  try {
+    const { id } = req.params;
+    await Department.findByIdAndDelete(id);
+    res.status(200).json({ message: "Department deleted successfully" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Error deleting department" });
+  }
+},
+
+
+AddDepart: async function (req, res) {
+ try {
+    const { name } = req.body;
+    if (!name) {
+      return res.status(400).json({ msg: "Department name is required." });
+    }
+    const existing = await Department.findOne({ name });
+    if (existing) {
+      return res.status(400).json({ msg: "Department already exists." });
+    }
+    const department = new Department({ name });
+    await department.save();
+    res.status(201).json({ msg: "Department added successfully.", department });
+  } catch (err) {
+    console.error("AddDepart error:", err);
+    res.status(500).json({ msg: "Server error." });
+  }
+},
+
 
   // Login
   // AdminLogin: async function (req, res) {
@@ -95,14 +229,66 @@ let all_pages = {
       });
     },
  // READ DATA
-  // UserData: async function (req, res) {
-  //   try {
-  //     const Datafetch = await user.find()
-  //     res.json(rooms)
-  //   } catch (error) {
-  //     res.status(500).json({ e: error.message })
-  //   }
-  // },
+ UserData: async function (req, res) {
+  try {
+   
+    const users = await User.find().populate('roleId');
+
+   
+    const filteredUsers = users.filter(user => user.roleId?.code === 3);
+
+
+    const safeUsers = filteredUsers.map(user => ({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      password: user.password, 
+      role: user.roleId.name,
+      roleCode: user.roleId.code
+    }));
+
+    res.json(safeUsers);
+  } catch (error) {
+    console.error('Error fetching users ', error);
+    res.status(500).json({ error: error.message });
+  }
+},
+
+UserDelete:async function (req, res) {
+ try {
+    const deletedUser = await User.findByIdAndDelete(req.params.id);
+    if (!deletedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.json({ message: "User deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+},
+
+UserUpdate:async function (req, res) {
+  try {
+    const { name, email, password } = req.body;
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const updatedUser = await User.findByIdAndUpdate(
+      req.params.id,
+      {
+        name,
+        email,
+        password: hashedPassword
+      },
+      { new: true }
+    );
+
+    res.status(200).json(updatedUser);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+}
+
+
 
 };
 

@@ -34,7 +34,7 @@ export default function Header() {
                     Menu
                 </div>
 
-               
+
                 <li className="nav-item">
                     <a
                         className="nav-link collapsed"
@@ -55,23 +55,94 @@ export default function Header() {
                         </div>
                     </div>
                 </li>
-
-
-                {/* <!-- Nav Item - Utilities Collapse Menu --> */}
                 <li className="nav-item">
-                    <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                        aria-expanded="true" aria-controls="collapseUtilities">
-                        <i className="fas fa-fw fa-wrench"></i>
-                        <span>Utilities</span>
+                    <a
+                        className="nav-link collapsed"
+                        href="#"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapseBookings"
+                        aria-expanded="false"
+                        aria-controls="collapseBookings"
+                    >
+                        <i className="fa-solid fa-calendar-check"></i>&nbsp;
+                        <span>Bookings</span>
                     </a>
-                    <div id="collapseUtilities" className="collapse" aria-labelledby="headingUtilities"
-                        data-parent="#accordionSidebar">
-                        <div className="bg-white py-2 collapse-inner rounded">
-                            <h6 className="collapse-header">Custom Utilities:</h6>
-                            <a className="collapse-item" href="utilities-color.html">Colors</a>
-                            <a className="collapse-item" href="utilities-border.html">Borders</a>
-                            <a className="collapse-item" href="utilities-animation.html">Animations</a>
-                            <a className="collapse-item" href="utilities-other.html">Other</a>
+
+                    <div id="collapseBookings" className="collapse" aria-labelledby="headingBookings">
+                        <div className="bg-primary text-white collapse-inner rounded">
+                            <Link to="/Bookings" className="collapse-item custom-hover-set">
+                                All
+                            </Link>
+                        </div>
+                    </div>
+                </li>
+
+                <li className="nav-item">
+                    <a
+                        className="nav-link collapsed"
+                        href="#"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapseThree"
+                        aria-expanded="false"
+                        aria-controls="collapseTwo"
+                    >
+                        <i class="fa-solid fa-user"></i>&nbsp;
+                        <span>User</span>
+                    </a>
+
+                    <div id="collapseThree" className="collapse" aria-labelledby="headingTwo">
+                        <div className="bg-primary text-white  collapse-inner rounded">
+
+                            <Link to="/UserFetch" className="collapse-item custom-hover-set" >All</Link>
+                        </div>
+                    </div>
+                </li>
+          
+
+
+                <li className="nav-item">
+                    <a
+                        className="nav-link collapsed"
+                        href="#"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapsefour"
+                        aria-expanded="false"
+                        aria-controls="collapseTwo"
+                    >
+                        <i class="fa-solid fa-user"></i>&nbsp;
+                        <span>Staff</span>
+                    </a>
+
+                    <div id="collapsefour" className="collapse" aria-labelledby="headingTwo">
+                        <div className="bg-primary text-white  collapse-inner rounded">
+
+                            <Link to="/StaffCreate" className="collapse-item custom-hover-set" >Create</Link>
+                            <Link to="/StaffFetch" className="collapse-item custom-hover-set" >All</Link>
+                        </div>
+                    </div>
+                </li>
+
+
+
+
+                <li className="nav-item">
+                    <a
+                        className="nav-link collapsed"
+                        href="#"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapsefive"
+                        aria-expanded="false"
+                        aria-controls="collapseTwo"
+                    >
+                        <i class="fa-solid fa-user"></i>&nbsp;
+                        <span>Department</span>
+                    </a>
+
+                    <div id="collapsefive" className="collapse" aria-labelledby="headingTwo">
+                        <div className="bg-primary text-white  collapse-inner rounded">
+
+
+                            <Link to="/departFetch" className="collapse-item custom-hover-set" >All</Link>
                         </div>
                     </div>
                 </li>
