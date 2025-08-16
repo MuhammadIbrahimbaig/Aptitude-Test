@@ -43,7 +43,7 @@ export default function Footer() {
                                 </div>
                             </div>
                             <div className="col-md-6 col-lg-3">
-                                <h6 className="section-title text-start text-primary text-uppercase mb-4">Contact</h6>
+                                <h6 className="section-title text-start font-medium text-white text-[19px] text-uppercase mb-4">Contact</h6>
                                 <p className="mb-2">
                                     <i className="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA
                                 </p>
@@ -63,20 +63,20 @@ export default function Footer() {
                             <div className="col-lg-5 col-md-12">
                                 <div className="row gy-5 g-4">
                                     <div className="col-md-6">
-                                        <h6 className="section-title text-start text-primary text-uppercase mb-4">Company</h6>
-                                        <a className="btn btn-link" href="#">About Us</a>
-                                        <a className="btn btn-link" href="#">Contact Us</a>
-                                        <a className="btn btn-link" href="#">Privacy Policy</a>
-                                        <a className="btn btn-link" href="#">Terms & Condition</a>
-                                        <a className="btn btn-link" href="#">Support</a>
+                                        <h6 className="section-title text-start font-medium text-white text-[19px] text-uppercase mb-4">Company</h6>
+                                        <a className="btn btn-link text-decoration-none text-white" href="#">About Us</a>
+                                        <a className="btn btn-link text-decoration-none text-white" href="#">Contact Us</a>
+                                        <a className="btn btn-link text-decoration-none text-white" href="#">Privacy Policy</a>
+                                        <a className="btn btn-link text-decoration-none text-white" href="#">Terms & Condition</a>
+                                        <a className="btn btn-link text-decoration-none text-white" href="#">Support</a>
                                     </div>
                                     <div className="col-md-6">
-                                        <h6 className="section-title text-start text-primary text-uppercase mb-4">Services</h6>
-                                        <a className="btn btn-link" href="#">Food & Restaurant</a>
-                                        <a className="btn btn-link" href="#">Spa & Fitness</a>
-                                        <a className="btn btn-link" href="#">Sports & Gaming</a>
-                                        <a className="btn btn-link" href="#">Event & Party</a>
-                                        <a className="btn btn-link" href="#">GYM & Yoga</a>
+                                        <h6 className="section-title text-start font-medium text-white text-[19px] text-uppercase mb-4">Services</h6>
+                                        <a className="btn btn-link text-decoration-none text-white" href="#">Food & Restaurant</a>
+                                        <a className="btn btn-link text-decoration-none text-white" href="#">Spa & Fitness</a>
+                                        <a className="btn btn-link text-decoration-none text-white" href="#">Sports & Gaming</a>
+                                        <a className="btn btn-link text-decoration-none text-white" href="#">Event & Party</a>
+                                        <a className="btn btn-link text-decoration-none text-white" href="#">GYM & Yoga</a>
                                     </div>
                                 </div>
                             </div>
@@ -86,14 +86,14 @@ export default function Footer() {
                         <div className="copyright">
                             <div className="row">
                                 <div className="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                                    &copy; <a className="text-decoration border-bottom" href="#">Your Site Name</a>, All Right Reserved.
+                                    &copy; <a className=" border-bottom text-decoration-none"  href="#">LuxaryStay</a>, All Right Reserved.
                                 </div>
                                 <div className="col-md-6 text-center text-md-end">
                                     <div className="footer-menu">
-                                        <a href="#">Home</a>
-                                        <a href="#">Cookies</a>
-                                        <a href="#">Help</a>
-                                        <a href="#">FQAs</a>
+                                        <a href="#" className="text-decoration-none text-white">Home</a>
+                                        <a href="#" className="text-decoration-none text-white">Cookies</a>
+                                        <a href="#" className="text-decoration-none text-white">Help</a>
+                                        <a href="#" className="text-decoration-none text-white">FQAs</a>
                                     </div>
                                 </div>
                             </div>

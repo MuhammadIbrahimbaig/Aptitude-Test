@@ -90,7 +90,7 @@ const Home = () => {
                     </div>
                     <div class="row text-center">
                         <div class="col-md-4">
-                            <div class="card border-0 shadow-sm">
+                            <div class="card border-0 shadow-lg">
                                 <div class="card-body">
                                     <i class="fa fa-bed fa-2x text-primary mb-3"></i>
                                     <h5 class="card-title">Luxury Rooms</h5>
@@ -99,7 +99,7 @@ const Home = () => {
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card border-0 shadow-sm">
+                            <div class="card border-0 shadow-lg">
                                 <div class="card-body">
                                     <i class="fa fa-user-shield fa-2x text-primary mb-3"></i>
                                     <h5 class="card-title">24/7 Service</h5>
@@ -108,7 +108,7 @@ const Home = () => {
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card border-0 shadow-sm">
+                            <div class="card border-0 shadow-lg">
                                 <div class="card-body">
                                     <i class="fa fa-wifi fa-2x text-primary mb-3"></i>
                                     <h5 class="card-title">Free Wi-Fi</h5>
@@ -127,7 +127,7 @@ const Home = () => {
                             <h6 className="section-title text-center text-primary text-uppercase">Our Rooms</h6>
                             <h1 className="mb-5">Explore Our <span className="text-primary text-uppercase">Rooms</span></h1>
                         </div>
-                        <div className="row g-4">
+                        <div className="row g-4 ">
                             {rooms.length === 0 ? (
                                 <div className="text-center w-100">
                                     <h5 className="text-muted">No record found</h5>
@@ -137,8 +137,8 @@ const Home = () => {
                                 rooms
                                     .filter(room => room.status === "available")
                                     .slice(0, 6).map((room, index) => (
-                                        <div className="col-lg-4 col-md-6" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
-                                            <div className="room-item shadow rounded overflow-hidden">
+                                        <div className="col-lg-4 col-md-6  " key={index} data-aos="fade-up" data-aos-delay={index * 100}>
+                                            <div className="room-item shadow-lg rounded overflow-hidden">
                                                 <div className="position-relative">
                                                     <img
                                                         className="img-fluid fixed-wh object-fit-cover"
@@ -148,7 +148,7 @@ const Home = () => {
 
 
 
-                                                    <small className="position-absolute start-0 top-100 translate-middle-y btn border-0 btn-primary text-white rounded py-1 px-3 ms-4 book-btn scale-hover">
+                                                    <small className="position-absolute start-0 top-100 translate-middle-y btn border-0 text-white bg-label rounded py-1 px-3 ms-4 ">
                                                         ${room.price}/Night
                                                     </small>
                                                 </div>
