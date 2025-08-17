@@ -130,7 +130,7 @@ export default function Registration() {
 
             <button
               type="submit"
-              className="py-3 w-100 font-semibold text-white rounded-2 bg-gradient-to-r from-[#1351d8] to-[#9c00ff] hover:from-[#9c00ff] hover:to-[#1351d8]"
+              className="relative z-[2] text-white  py-3 w-full  overflow-hidden text-base leading-[1.1] font-bold  tracking-wide uppercase [transition:all_0.3s_linear] inline-flex items-center justify-center gap-3 px-6 md:px-7 py-2 md:py-3 transition-colors ease-in-out  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2  bg-gradient-to-r from-[#1351d8] to-[#9c00ff] after:absolute after:h-full after:w-0 after:bottom-0 after:right-0 after:bg-[#000080] after:-z-1 after:[transition:all_.3s_ease-in-out] hover:text-white hover:after:w-full hover:after:left-0 rounded-full"
             >
               Register
             </button>

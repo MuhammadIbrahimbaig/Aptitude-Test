@@ -24,6 +24,7 @@ import UserFetch from './Components/UserFetch.jsx';
 import StaffCreate from './Components/StaffCreate.jsx';
 import StaffFetch from './Components/StaffFetch.jsx';
 import DepartFetch from './Components/DepartFetch.jsx';
+import UserFeedback from './Components/UserFeedback.jsx';
 
 
 
@@ -40,6 +41,8 @@ createRoot(document.getElementById('root')).render(
           <Route path='/StaffCreate' element={<StaffCreate/>} />
           <Route path='/StaffFetch' element={<StaffFetch/>} />
           <Route path='/DepartFetch' element={<DepartFetch/>} />
+          <Route path='/UserFeedback' element={<UserFeedback/>} />
+
 
 
          

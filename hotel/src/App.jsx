@@ -20,6 +20,7 @@ import Contact from './Components/contact.jsx';
 import Registration from './Components/registration.jsx';
 import Loginform from './Components/login.jsx';
 import VerifyOtp from './Components/Verifyotp.jsx';
+import Feedback from './Components/Feedback.jsx';
 
 
 
@@ -41,6 +42,8 @@ function App() {
               <Route path="/booking/:room_id" element={<Booking />} />
               <Route path='/contact' element={<Contact />} />
               <Route path='/verify-otp' element={<VerifyOtp />} />
+              <Route path='/Feedback' element={<Feedback/>} />
+
 
             </Route>
           </Routes>

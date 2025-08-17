@@ -1,5 +1,6 @@
 let { User } = require("../Collection/User");
 let { Role } = require("../Collection/Role");
+let { Feedback } = require("../Collection/Feedback");
 let bcrypt = require("bcrypt");
 let jwt = require("jsonwebtoken");
 const Otp = require("../Collection/OtpSchema");
@@ -9,6 +10,35 @@ function generateOTP() {
   return otp.toString();
 }
 let all_pages = {
+
+// ====================Feedback===================
+
+ FeedbackSubmit : async function (req, res) {
+  try {
+    const { n, e, r, c } = req.body;
+
+    // 1) Pehle check karo ke email exist karti hai ya nahi
+    const userExist = await User.findOne({ email: e });
+    if (!userExist) {
+      return res.status(400).json({ msg: " Email not registered, feedback denied" });
+    }
+
+    // 2) Agar email mil gayi to feedback create karo
+    const feedback = new Feedback({
+      name: n,
+      email: e,
+      rating: Number(r), // dropdown se string aati hai → number me convert
+      comment: c,
+    });
+
+    await feedback.save();
+
+    res.status(201).json({ msg: " Feedback Created", feedback });
+  } catch (err) {
+    console.error("❌ Backend Error:", err);
+    res.status(500).json({ msg: " Server Error", error: err.message });
+  }
+},
   // ======================== Register ========================
   Register: async function (req, res) {
     let { n, e, p } = req.body;

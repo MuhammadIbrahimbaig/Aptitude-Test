@@ -3,6 +3,8 @@ let { User   } = require("../Collection/User");
 let { Role   } = require("../Collection/Role");
 let { Department   } = require("../Collection/Department");
 let { Staff   } = require("../Collection/Staff");
+let { Feedback   } = require("../Collection/Feedback");
+
 
 
 
@@ -11,7 +13,27 @@ let jwt = require('jsonwebtoken');
 
 let all_pages = {
 
-  // Register
+  UserFeedback:async function (req,res) {
+      try {
+    const feedbacks = await Feedback.find().sort({ createdAt: -1 });
+    res.json(feedbacks);
+  } catch (err) {
+    res.status(500).json({ msg: "❌ Server Error" });
+  }
+  },
+
+UserFeedDelete: async function (req, res) {
+  try {
+    const deletedFeed = await Feedback.findByIdAndDelete(req.params.id);
+    if (!deletedFeed) {
+      return res.status(404).json({ message: "Feedback not found" });
+    }
+    res.json({ message: "Feedback deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+},
+ 
 StaffRegister: async function (req, res) {
   try {
     const { name, email, phone, password, joiningDate, salary, designation } = req.body;
