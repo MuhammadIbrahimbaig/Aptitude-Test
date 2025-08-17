@@ -39,7 +39,8 @@ router.delete("/staffDelete/:id", AdminLogin.StaffDelete);
 // Zeeshan
 router.post("/create-booking", protect, BookingController.CreateBooking);
 router.get("/get-booking", protect, BookingController.getBooking);
-router.put("/edit-booking/:id", protect, BookingController.EditRecord);
+router.put("/update-booking-status/:id", BookingController.UpdateBookingStatus);
+// router.put("/edit-booking/:id", protect, BookingController.EditRecord);
 router.delete("/remove-booking/:id", protect, BookingController.DeleteRecord);
 
 module.exports = router;

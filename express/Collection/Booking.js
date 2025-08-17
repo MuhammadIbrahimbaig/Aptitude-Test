@@ -33,13 +33,14 @@ let booking_structure = mongo.Schema({
     },
     status: {
         type: String,
-        enum: ["booked", "checked-in", "checked-out", "cancelled"],
-        default: "booked"
+        enum: ["pending", "booked", "checked-in", "checked-out", "cancelled", "rejected"],
+        default: "pending" //By default
     },
     created_at: {
         type: Date,
-        default: Date.now()
+        default: Date.now
     }
 });
+
 
 module.exports = mongo.model("bookings", booking_structure);

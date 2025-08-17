@@ -4,24 +4,24 @@ import { toast } from "react-toastify";
 // set
 export default function RoomRead() {
     const [rooms, setRooms] = useState([]);
-    const [token , setToken] = useState("");
+    const [token, setToken] = useState("");
 
-        async function ShowData(){
-            const token = localStorage.getItem("token");
-            setToken(token)
+    async function ShowData() {
+        const token = localStorage.getItem("token");
+        setToken(token)
 
-            axios.get("http://localhost:4001/Mywork/read", {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": "application/json",
-                }
-            })
-                .then(result => setRooms(result.data))
-                .catch(err => console.log(err));
-        }
+        axios.get("http://localhost:4001/Mywork/read", {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            }
+        })
+            .then(result => setRooms(result.data))
+            .catch(err => console.log(err));
+    }
 
     useEffect(() => {
-      ShowData()
+        ShowData()
     }, []);
 
     const [roomNumber, setRoomNumber] = useState("");
@@ -45,7 +45,7 @@ export default function RoomRead() {
                     Authorization: `Bearer ${token}`,
                     "Content-Type": "application/json",
                 }
-            }).then((a) =>{
+            }).then((a) => {
                 console.log(token)
                 toast.success(a.data.msg);
             }
@@ -137,7 +137,8 @@ export default function RoomRead() {
                                  ${room.status === "available" ? "bg-success" :
                                             room.status === "booked" ? "bg-danger" :
                                                 room.status === "cleaning" ? "bg-warning text-dark" :
-                                                    room.status === "maintenance" ? "bg-secondary" : ""}`}>
+                                                    room.status === "occupied" ? "bg-primary text-white" :
+                                                        room.status === "maintenance" ? "bg-secondary" : ""}`}>
                                         {room.status}
                                     </span>
                                 </td>
@@ -186,9 +187,10 @@ export default function RoomRead() {
                         </div>
                         <div className="modal-footer">
                             <button className="btn btn-secondary closee" data-bs-dismiss="modal">Close</button>
-                            <button className="btn btn-primary" onClick={() => {EditRoom(id);
-                                                                                document.querySelector(".closee").click();
-                             }} data-bs-dismiss="modal">Save changes</button>
+                            <button className="btn btn-primary" onClick={() => {
+                                EditRoom(id);
+                                document.querySelector(".closee").click();
+                            }} data-bs-dismiss="modal">Save changes</button>
 
                         </div>
                     </div>
