@@ -3,7 +3,7 @@ let mongo = require("mongoose");
 let booking_structure = mongo.Schema({
     user_id: {
         type: mongo.Schema.Types.ObjectId,
-        ref: "User",
+        ref: "users",
         required: false
     },
     room_id: {
