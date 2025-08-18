@@ -25,6 +25,7 @@ import StaffCreate from './Components/StaffCreate.jsx';
 import StaffFetch from './Components/StaffFetch.jsx';
 import DepartFetch from './Components/DepartFetch.jsx';
 import UserFeedback from './Components/UserFeedback.jsx';
+import ShowBooking from './Components/showbooking.jsx';
 
 
 
@@ -44,6 +45,8 @@ createRoot(document.getElementById('root')).render(
           <Route path='/UserFeedback' element={<UserFeedback/>} />
 
 
+          <Route path='/Bookings' element={<ShowBooking/>} />
+          
 
          
 

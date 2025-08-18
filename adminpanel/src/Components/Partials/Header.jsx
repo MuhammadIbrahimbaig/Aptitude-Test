@@ -34,7 +34,7 @@ export default function Header() {
                     Menu
                 </div>
 
-               
+
                 <li className="nav-item">
                     <a
                         className="nav-link collapsed"
@@ -55,8 +55,29 @@ export default function Header() {
                         </div>
                     </div>
                 </li>
+                <li className="nav-item">
+                    <a
+                        className="nav-link collapsed"
+                        href="#"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapseBookings"
+                        aria-expanded="false"
+                        aria-controls="collapseBookings"
+                    >
+                        <i className="fa-solid fa-calendar-check"></i>&nbsp;
+                        <span>Bookings</span>
+                    </a>
 
-  <li className="nav-item">
+                    <div id="collapseBookings" className="collapse" aria-labelledby="headingBookings">
+                        <div className="bg-primary text-white collapse-inner rounded">
+                            <Link to="/Bookings" className="collapse-item custom-hover-set">
+                                All
+                            </Link>
+                        </div>
+                    </div>
+                </li>
+
+                <li className="nav-item">
                     <a
                         className="nav-link collapsed"
                         href="#"
@@ -71,15 +92,15 @@ export default function Header() {
 
                     <div id="collapseThree" className="collapse" aria-labelledby="headingTwo">
                         <div className="bg-primary text-white  collapse-inner rounded">
-                         
+
                             <Link to="/UserFetch" className="collapse-item custom-hover-set" >All</Link>
                         </div>
                     </div>
                 </li>
+          
 
-             
 
-             <li className="nav-item">
+                <li className="nav-item">
                     <a
                         className="nav-link collapsed"
                         href="#"
@@ -94,17 +115,17 @@ export default function Header() {
 
                     <div id="collapsefour" className="collapse" aria-labelledby="headingTwo">
                         <div className="bg-primary text-white  collapse-inner rounded">
-                         
+
                             <Link to="/StaffCreate" className="collapse-item custom-hover-set" >Create</Link>
-                             <Link to="/StaffFetch" className="collapse-item custom-hover-set" >All</Link>
+                            <Link to="/StaffFetch" className="collapse-item custom-hover-set" >All</Link>
                         </div>
                     </div>
                 </li>
 
 
-  
 
-             <li className="nav-item">
+
+                <li className="nav-item">
                     <a
                         className="nav-link collapsed"
                         href="#"
@@ -119,9 +140,9 @@ export default function Header() {
 
                     <div id="collapsefive" className="collapse" aria-labelledby="headingTwo">
                         <div className="bg-primary text-white  collapse-inner rounded">
-                         
-                         
-                             <Link to="/departFetch" className="collapse-item custom-hover-set" >All</Link>
+
+
+                            <Link to="/departFetch" className="collapse-item custom-hover-set" >All</Link>
                         </div>
                     </div>
                 </li>

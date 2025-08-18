@@ -4,7 +4,7 @@ import about2 from '../assets/images/about-2.jpg';
 import about3 from '../assets/images/about-3.jpg';
 import about4 from '../assets/images/about-4.jpg';
 import axios from "axios";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 
 import { jwtDecode } from "jwt-decode";
 import { useParams } from "react-router-dom";
@@ -13,7 +13,7 @@ import { useParams } from "react-router-dom";
 
 export default function Booking() {
     // use Params
-    const { room_id } = useParams(); // ✅ get room_id from URL
+    const { room_id } = useParams(); //  get room_id from URL
 
     const [roomId, setRoomId] = useState("");
     const [checkIn, setCheckIn] = useState("");
@@ -68,7 +68,7 @@ export default function Booking() {
             setStatus("booked");
             setSpecialRequest("");
 
-            toast.success("Booking Created Successfully");
+            toast.success("Booking Successfully");
         } catch (err) {
             console.error(err);
             toast.error(err?.response?.data?.msg || "Something went wrong!");
@@ -119,6 +119,7 @@ export default function Booking() {
         <div>
             {/* Header */}
             <div className="container page-header mb-5 p-0 testimonial">
+                <ToastContainer/>
                 <div className="container-fluid py-5">
                     <div className="container text-center pb-5">
                         <h1 className="display-3 text-white mb-3 fw-bold">Booking</h1>

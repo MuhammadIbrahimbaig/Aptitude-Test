@@ -7,16 +7,13 @@ const BookingController = require("../Controller/BookingController");
 const uploadMiddleware = require("../Midleware/uploadMiddleware"); // ✅ Correct path
 const protect = require("../Midleware/ProtectedRoutes");
 
-// router.post("/save", UserController.Register);
-// router.get("/read", UserController.read)
-// router.delete("/remove/:id", UserController.DeleteRecord);
-// router.put("/edit/:a", UserController.EditRecord);
 
 // Ibrahim Routing Section
 router.post("/saveroom", protect, uploadMiddleware, Room.CreateRoom);
 router.get("/read", protect, uploadMiddleware, Room.Read);
 router.put("/edit/:a", protect, Room.EditRecord);
 router.delete("/remove/:id", protect, Room.DeleteRecord);
+
 
 
 // Asfhan Routing Section
@@ -46,23 +43,11 @@ router.delete("/UserFeedDelete/:id", AdminLogin.UserFeedDelete);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Zeeshan
 router.post("/create-booking", protect, BookingController.CreateBooking);
 router.get("/get-booking", protect, BookingController.getBooking);
-router.put("/edit-booking/:id", protect, BookingController.EditRecord);
+router.put("/update-booking-status/:id", BookingController.UpdateBookingStatus);
+// router.put("/edit-booking/:id", protect, BookingController.EditRecord);
 router.delete("/remove-booking/:id", protect, BookingController.DeleteRecord);
 
 module.exports = router;

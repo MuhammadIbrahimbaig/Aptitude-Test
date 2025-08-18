@@ -1,35 +1,57 @@
+const cron = require("node-cron");
 const Booking = require("../Collection/Booking");
 const Room = require("../Collection/Room");
+
+
 let BookingController = {
   CreateBooking: async (req, res) => {
     try {
-      const book = new Booking(req.body);
-      const booking = await Booking.create(req.body);
+      // force booking to be pending by default
+      const bookingData = {
+        ...req.body,
+        status: "pending",
+        user_id: req.user._id
+      };
 
-      // If booking is created and status is "booked", update room status
-      if (booking.status === "booked") {
-        await Room.findByIdAndUpdate(booking.room_id, { status: "booked" });
-      }
-      await book.save();
-      res
-        .status(200)
-        .json({ message: "Successfully Create Booking", data: book });
+      const booking = await Booking.create(bookingData);
+
+      res.status(200).json({
+        message: "Successfully Created Booking (Pending Approval)",
+        data: booking,
+      });
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
   },
+
+
   // Show Data
+  // getBooking: async function (req, res) {
+  //   try {
+  //     const book = await Booking.find();
+  //     res.status(200).json({ message: "Successfully Get Booking", data: book });
+  //   } catch (error) {
+  //     res.status(500).json({ m: error.message });
+  //   }
+  // },
   getBooking: async function (req, res) {
     try {
-      const book = await Booking.find();
-      res
-        .status(200)
-        .json({ message: "Successfully Get Booking", data: book });
+      const book = await Booking.find()
+        .populate("room_id", "room_name room_number type price") // room ka data fetch karega
+        .populate("user_id", "name email") // optional: user ka data bhi fetch ho jaye
+        .exec();
+
+      res.status(200).json({
+        message: "Successfully Get Booking",
+        data: book
+      });
     } catch (error) {
-      res.status(500).json({ m: error.message });
+      res.status(500).json({ message: error.message });
     }
   },
-  // DLt
+
+
+  // Delete
   DeleteRecord: async function (req, res) {
     try {
       let { id } = req.params;
@@ -44,29 +66,71 @@ let BookingController = {
       res.status(404).json({ msg: error.message });
     }
   },
-  EditRecord: async function (req, res) {
+
+  // Update Booking Status
+  UpdateBookingStatus: async (req, res) => {
     try {
-      let { id } = req.params;
+      const { id } = req.params;
       const { status } = req.body;
 
-      // Find room by ID
-      const existingRoom = await Booking.findById(a);
-      if (!existingRoom) {
+      // Find booking
+      const booking = await Booking.findById(id);
+      if (!booking) {
         return res.status(404).json({ msg: "Booking not found" });
       }
 
-      // Update room
-      await Booking.findByIdAndUpdate(id, {
-        status
-      }, { new: true, runValidators: true });
+      // Update booking status
+      booking.status = status;
+      await booking.save();
 
-      return res.status(200).json({ msg: "Booking updated successfully" });
+      // Update room status accordingly
+      if (status === "booked") {
+        await Room.findByIdAndUpdate(booking.room_id, { status: "booked" });
+      } else if (status === "checked-in") {
+        await Room.findByIdAndUpdate(booking.room_id, { status: "occupied" });
+      } else if (status === "checked-out") {
+        await Room.findByIdAndUpdate(booking.room_id, { status: "cleaning" });
+      } else if (status === "rejected" || status === "cancelled") {
+        await Room.findByIdAndUpdate(booking.room_id, { status: "available" });
+      }
 
-    } catch (error) {
-      console.error("Booking edit error:", error.message);
-      return res.status(500).json({ msg: error.message });
+      res.json({
+        msg: `Booking ${status} successfully`,
+        booking: booking,
+      });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ msg: "Server error" });
     }
-  }
+  },
 };
+
+// ---------------- CRON JOBS ---------------- //
+cron.schedule("*/1 * * * *", async () => {
+  try {
+    const now = new Date();
+
+    // Saari bookings jinka check_out ab tak cross ho chuka hai
+    const bookings = await Booking.find({
+      check_out: { $lt: now },
+      status: "checked-in"
+    });
+
+    if (bookings.length > 0) {
+      for (let b of bookings) {
+        b.status = "checked-out";
+        await b.save();
+
+        // Room ko cleaning pe daldo
+        await Room.findByIdAndUpdate(b.room_id, { status: "cleaning" });
+      }
+      console.log(`✅ Auto-checked out ${bookings.length} bookings`);
+    } else {
+      console.log("ℹ️ No bookings found for auto-checkout.");
+    }
+  } catch (err) {
+    console.error("❌Cron error:", err);
+  }
+});
 
 module.exports = BookingController;
