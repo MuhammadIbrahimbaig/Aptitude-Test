@@ -35,6 +35,13 @@ router.put("/DepartEdit/:id", AdminLogin.DepartEdit);
 router.delete("/DepartDelete/:id", AdminLogin.DepartDelete);
 router.put("/staffEdit/:id", AdminLogin.StaffEdit);
 router.delete("/staffDelete/:id", AdminLogin.StaffDelete);
+router.post("/Feedback", UserController.FeedbackSubmit);
+router.get("/UserFeedback", AdminLogin.UserFeedback);
+router.delete("/UserFeedDelete/:id", AdminLogin.UserFeedDelete);
+
+
+
+
 
 // Zeeshan
 router.post("/create-booking", protect, BookingController.CreateBooking);

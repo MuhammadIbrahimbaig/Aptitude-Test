@@ -26,19 +26,11 @@ let BookingController = {
 
 
   // Show Data
-  // getBooking: async function (req, res) {
-  //   try {
-  //     const book = await Booking.find();
-  //     res.status(200).json({ message: "Successfully Get Booking", data: book });
-  //   } catch (error) {
-  //     res.status(500).json({ m: error.message });
-  //   }
-  // },
   getBooking: async function (req, res) {
     try {
       const book = await Booking.find()
         .populate("room_id", "room_name room_number type price") // room ka data fetch karega
-        .populate("user_id", "name email") // optional: user ka data bhi fetch ho jaye
+        .populate("user_id", "name email") // ✅ Now this will work
         .exec();
 
       res.status(200).json({
