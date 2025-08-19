@@ -23,7 +23,6 @@ export default function Booking() {
     const [status, setStatus] = useState("booked");
     const [specialRequest, setSpecialRequest] = useState("");
     const [rooms, setRooms] = useState([]);
-    const [createdBooking, setCreatedBooking] = useState(null); // ✅ new state
 
     const SubmitBooking = async (e) => {
         e.preventDefault();
@@ -69,7 +68,6 @@ export default function Booking() {
             setSpecialRequest("");
 
             toast.success("Booking Created Successfully");
-            setCreatedBooking(res.data.booking); // ✅ save created booking
         } catch (err) {
             console.error(err);
             toast.error(err?.response?.data?.msg || "Something went wrong!");
@@ -136,32 +134,22 @@ export default function Booking() {
     }, [checkIn, checkOut, roomId, rooms]);
     //==============Invoice Download Function==================================//
     const downloadInvoice = async (bookingId) => {
-        try {
-            const token = localStorage.getItem("token");
+        const token = localStorage.getItem("token");
+        const res = await fetch(`http://localhost:4001/invoice/${bookingId}`, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
 
-            const response = await axios.get(
-                `http://localhost:4001/Mywork/invoice/${bookingId}`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                    responseType: "blob", // important for file
-                }
-            );
-
-            // Create download link
-            const url = window.URL.createObjectURL(new Blob([response.data]));
-            const link = document.createElement("a");
-            link.href = url;
-            link.setAttribute("download", "invoice.pdf");
-            document.body.appendChild(link);
-            link.click();
-            link.remove();
-        } catch (error) {
-            console.error("Invoice download error:", error);
-            toast.error("Failed to download invoice!");
-        }
+        const blob = await res.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `invoice_${bookingId}.pdf`;
+        a.click();
     };
+
 
 
     return (
@@ -279,25 +267,14 @@ export default function Booking() {
                                                 {totalPrice > 0 ? `Total Price: Rs. ${totalPrice}` : "Select dates to see total price"}
                                             </div>
                                         </div>
-                                        {/* <div className="d-flex justify-content-center">
+                                        <div className="d-flex justify-content-center">
                                             <button className="btn bg-black text-white py-3 border-0" onClick={() => downloadInvoice(booking._id)}>Download Invoice</button>
-                                        </div> */}
+                                        </div>
                                         <div className="col-12">
                                             <button className="btn btn-primary w-100 py-3 border-0" type="submit">Book Now</button>
                                         </div>
                                     </div>
                                 </form>
-                                {/* ✅ Show button only after booking created */}
-                                {createdBooking && (
-                                    <div className="d-flex justify-content-center mt-4">
-                                        <button
-                                            className="btn bg-black text-white py-3 border-0"
-                                            onClick={() => downloadInvoice(createdBooking._id)}
-                                        >
-                                            Download Invoice
-                                        </button>
-                                    </div>
-                                )}
                             </div>
                         </div>
 

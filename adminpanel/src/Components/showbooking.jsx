@@ -129,13 +129,13 @@ export default function ShowBooking() {
                                             {booking.status === "pending" && (
                                                 <>
                                                     <button
-                                                        className="btn btn-sm btn-success me-2"
+                                                        className="btn btn-sm btn-success me-2 mb-2"
                                                         onClick={() => UpdateStatus(booking._id, "checked-in")}
                                                     >
                                                         Accept
                                                     </button>
                                                     <button
-                                                        className="btn btn-sm btn-danger me-2"
+                                                        className="btn btn-sm btn-danger me-2 mb-2"
                                                         onClick={() => UpdateStatus(booking._id, "cancelled")}
                                                     >
                                                         Cancel

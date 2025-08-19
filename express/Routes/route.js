@@ -4,7 +4,8 @@ const UserController = require("../Controller/function");
 const AdminLogin = require("../AdminController/AdminAuth");
 const Room = require("../Controller/Room");
 const BookingController = require("../Controller/BookingController");
-const uploadMiddleware = require("../Midleware/uploadMiddleware"); // ✅ Correct path
+const InvoiceController = require("../Controller/InvoiceController");
+const uploadMiddleware = require("../Midleware/uploadMiddleware");
 const protect = require("../Midleware/ProtectedRoutes");
 
 
@@ -13,6 +14,7 @@ router.post("/saveroom", protect, uploadMiddleware, Room.CreateRoom);
 router.get("/read", protect, uploadMiddleware, Room.Read);
 router.put("/edit/:a", protect, Room.EditRecord);
 router.delete("/remove/:id", protect, Room.DeleteRecord);
+
 
 
 
@@ -49,5 +51,6 @@ router.get("/get-booking", protect, BookingController.getBooking);
 router.put("/update-booking-status/:id", BookingController.UpdateBookingStatus);
 // router.put("/edit-booking/:id", protect, BookingController.EditRecord);
 router.delete("/remove-booking/:id", protect, BookingController.DeleteRecord);
-
+// Invoice Route
+// router.get("/invoice/:bookingId", protect, InvoiceController.GenerateInvoice);
 module.exports = router;

@@ -1,28 +1,143 @@
 const cron = require("node-cron");
+const PDFDocument = require("pdfkit");
+const fs = require("fs");
+const path = require("path");
 const Booking = require("../Collection/Booking");
 const Room = require("../Collection/Room");
 
 
 let BookingController = {
+  // CreateBooking: async (req, res) => {
+  //   try {
+  //     const { room_id, checkin, checkout, adults, children } = req.body;
+
+  //     // 1. Dates parse karo
+  //     const checkinDate = new Date(checkin);
+  //     const checkoutDate = new Date(checkout);
+
+  //     if (isNaN(checkinDate.getTime()) || isNaN(checkoutDate.getTime())) {
+  //       return res.status(400).json({ message: "Invalid check-in or check-out date format" });
+  //     }
+
+  //     if (checkoutDate <= checkinDate) {
+  //       return res.status(400).json({ message: "Checkout must be after checkin" });
+  //     }
+
+  //     // 2. Room fetch
+  //     const room = await Room.findById(room_id);
+  //     if (!room) {
+  //       return res.status(404).json({ message: "Room not found" });
+  //     }
+
+  //     // 3. Nights calculate
+  //     const diffTime = Math.abs(checkoutDate - checkinDate);
+  //     const nights = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+  //     // 4. Total price
+  //     const totalPrice = nights * Number(room.price);
+
+  //     if (isNaN(totalPrice)) {
+  //       return res.status(400).json({ message: "Invalid room price" });
+  //     }
+
+  //     // 5. Booking data schema ke names se match karo
+  //     const bookingData = {
+  //       room_id,
+  //       check_in: checkinDate,
+  //       check_out: checkoutDate,
+  //       adult: adults || 0,
+  //       child: children || 0,
+  //       total_price: totalPrice,
+  //       status: "pending",
+  //       user_id: req.user.id
+  //     };
+
+  //     const booking = await Booking.create(bookingData);
+
+  //     res.status(200).json({
+  //       message: "Successfully Created Booking (Pending Approval)",
+  //       data: booking,
+  //     });
+  //   } catch (error) {
+  //     res.status(500).json({ message: error.message });
+  //   }
+  // },
   CreateBooking: async (req, res) => {
-    try {
-      // force booking to be pending by default
-      const bookingData = {
-        ...req.body,
-        status: "pending",
-        user_id: req.user._id
-      };
+  try {
+    const { room_id, checkin, checkout, adults, children } = req.body;
 
-      const booking = await Booking.create(bookingData);
+    // 1. Dates parse karo
+    const checkinDate = new Date(checkin);
+    const checkoutDate = new Date(checkout);
 
-      res.status(200).json({
-        message: "Successfully Created Booking (Pending Approval)",
-        data: booking,
-      });
-    } catch (error) {
-      res.status(500).json({ message: error.message });
+    if (isNaN(checkinDate.getTime()) || isNaN(checkoutDate.getTime())) {
+      return res.status(400).json({ message: "Invalid check-in or check-out date format" });
     }
-  },
+
+    if (checkoutDate <= checkinDate) {
+      return res.status(400).json({ message: "Checkout must be after checkin" });
+    }
+
+    // 2. Room fetch
+    const room = await Room.findById(room_id);
+    if (!room) {
+      return res.status(404).json({ message: "Room not found" });
+    }
+
+    // 3. Nights calculate
+    const diffTime = Math.abs(checkoutDate - checkinDate);
+    const nights = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+    // 4. Total price
+    const totalPrice = nights * Number(room.price);
+
+    if (isNaN(totalPrice)) {
+      return res.status(400).json({ message: "Invalid room price" });
+    }
+
+    // 5. Booking data schema ke names se match karo
+    const bookingData = {
+      room_id,
+      check_in: checkinDate,
+      check_out: checkoutDate,
+      adult: adults || 0,
+      child: children || 0,
+      total_price: totalPrice,
+      status: "pending",
+      user_id: req.user.id
+    };
+
+    const booking = await Booking.create(bookingData);
+
+    // ✅ 6. Invoice PDF Generate
+    const invoicePath = path.join(__dirname, `../invoices/invoice_${booking._id}.pdf`);
+    const doc = new PDFDocument();
+    doc.pipe(fs.createWriteStream(invoicePath));
+
+    doc.fontSize(20).text("Hotel Booking Invoice", { align: "center" });
+    doc.moveDown();
+    doc.fontSize(14).text(`Booking ID: ${booking._id}`);
+    doc.text(`User ID: ${booking.user_id}`);
+    doc.text(`Room: ${room.name}`);
+    doc.text(`Check-in: ${checkinDate.toDateString()}`);
+    doc.text(`Check-out: ${checkoutDate.toDateString()}`);
+    doc.text(`Adults: ${booking.adult}`);
+    doc.text(`Children: ${booking.child}`);
+    doc.text(`Nights: ${nights}`);
+    doc.text(`Total Price: $${totalPrice}`);
+    doc.end();
+
+    res.status(200).json({
+      message: "Successfully Created Booking (Pending Approval)",
+      data: booking,
+      invoice: `/invoices/invoice_${booking._id}.pdf` // frontend yahan se fetch kar sakta hai
+    });
+
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+},
+
 
 
   // Show Data
