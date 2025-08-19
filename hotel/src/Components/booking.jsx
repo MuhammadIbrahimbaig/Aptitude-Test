@@ -5,7 +5,7 @@ import about3 from '../assets/images/about-3.jpg';
 import about4 from '../assets/images/about-4.jpg';
 import axios from "axios";
 import { toast } from "react-toastify";
-
+import Swal from "sweetalert2";
 import { jwtDecode } from "jwt-decode";
 import { useParams } from "react-router-dom";
 
@@ -68,7 +68,18 @@ export default function Booking() {
             setStatus("booked");
             setSpecialRequest("");
 
-            toast.success("Booking Created Successfully");
+           
+Swal.fire({
+  icon: "success",
+  title: "Booking Created Successfully",
+  text: "Your room has been booked successfully!",
+  position: "center",
+  showConfirmButton: false,
+  timer: 2000,
+  width: 400,    
+  padding: "2rem" 
+});
+
         } catch (err) {
             console.error(err);
             toast.error(err?.response?.data?.msg || "Something went wrong!");
@@ -226,7 +237,8 @@ export default function Booking() {
                                             </div>
                                         </div>
                                         <div className="col-12">
-                                            <button className="btn btn-primary w-100 py-3 border-0" type="submit">Book Now</button>
+                                                        
+                                            <button className="btn btn-primary w-100 py-3 border-0px-3 relative z-[2]  overflow-hidden font-bold tracking-wide uppercase transition-all inline-flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-gradient-to-r from-[#1351d8] to-[#9c00ff] after:absolute after:h-full after:w-0 after:bottom-0 after:duration-350 after:delay-150 after:right-0 after:bg-purple-800 after:-z-1 after:transition-all hover:text-white hover:after:w-full hover:after:left-0 px-3 text-light py-2 after:duration-350 after:delay-150 " type="submit">Book Now</button>
                                         </div>
                                     </div>
                                 </form>
