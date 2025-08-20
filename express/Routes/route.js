@@ -53,4 +53,19 @@ router.put("/update-booking-status/:id", BookingController.UpdateBookingStatus);
 router.delete("/remove-booking/:id", protect, BookingController.DeleteRecord);
 // Invoice Route
 // router.get("/invoice/:bookingId", protect, InvoiceController.GenerateInvoice);
+router.get("/Mywork/invoices/:invoiceName", (req, res) => {
+    const { invoiceName } = req.params;
+    const filePath = path.join(__dirname, "../invoices", invoiceName);
+
+    res.download(filePath, (err) => {
+        if (err) {
+            console.error("Download error:", err);
+            res.status(404).json({ message: "File not found" });
+        }
+    });
+});
+
+
+
+
 module.exports = router;

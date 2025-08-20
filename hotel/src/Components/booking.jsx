@@ -35,23 +35,23 @@ export default function Booking() {
                 return;
             }
 
-
             const decoded = jwtDecode(token);
             const userId = decoded?.id;
 
             const payload = {
                 user_id: userId,
                 room_id: roomId,
-                checkin: checkIn,        // ✅ backend "checkin" expect karta hai
-                checkout: checkOut,      // ✅ backend "checkout" expect karta hai
-                adults: adult,           // ✅ backend "adults" expect karta hai
-                children: child,         // ✅ backend "children" expect karta hai
-                totalPrice: totalPrice,  // ✅ backend "totalPrice" expect karta hai
+                checkin: checkIn,
+                checkout: checkOut,
+                adults: adult,
+                children: child,
+                totalPrice: totalPrice,
                 status,
-                specialRequest           // ✅ backend me bhi same field rakho
+                specialRequest
             };
 
-            await axios.post("http://localhost:4001/Mywork/create-booking", payload, {
+            // ✅ response ko variable me store karo
+            const res = await axios.post("http://localhost:4001/Mywork/create-booking", payload, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`
@@ -69,12 +69,19 @@ export default function Booking() {
             setSpecialRequest("");
 
             toast.success("Booking Created Successfully");
-            setCreatedBooking(res.data.booking); // ✅ save created booking
+
+            // ✅ backend response check karo
+            console.log("Booking Response:", res.data);
+
+            // agar backend `booking` return karta hai to ye use karo
+            setCreatedBooking(res.data.booking || res.data);
+
         } catch (err) {
             console.error(err);
             toast.error(err?.response?.data?.msg || "Something went wrong!");
         }
     };
+
     //   Fetch Room Data
 
     useEffect(() => {
@@ -279,25 +286,40 @@ export default function Booking() {
                                                 {totalPrice > 0 ? `Total Price: Rs. ${totalPrice}` : "Select dates to see total price"}
                                             </div>
                                         </div>
-                                        {/* <div className="d-flex justify-content-center">
-                                            <button className="btn bg-black text-white py-3 border-0" onClick={() => downloadInvoice(booking._id)}>Download Invoice</button>
-                                        </div> */}
+
                                         <div className="col-12">
                                             <button className="btn btn-primary w-100 py-3 border-0" type="submit">Book Now</button>
                                         </div>
                                     </div>
                                 </form>
                                 {/* ✅ Show button only after booking created */}
-                                {createdBooking && (
+                                {/* {createdBooking?.invoice && (
                                     <div className="d-flex justify-content-center mt-4">
-                                        <button
+                                        <a
+                                            href={`http://localhost:4001/Mywork/${createdBooking.invoice}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
                                             className="btn bg-black text-white py-3 border-0"
-                                            onClick={() => downloadInvoice(createdBooking._id)}
                                         >
                                             Download Invoice
-                                        </button>
+                                        </a>
+                                    </div>
+                                )} */}
+                                {createdBooking?.invoice && (
+                                    <div className="d-flex justify-content-center mt-4">
+                                        <a
+                                            href={`http://localhost:4001/Mywork/invoices/${createdBooking.invoice.split('/').pop()}`}
+                                            className="btn bg-black text-white py-3 border-0"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            Download Invoice
+                                        </a>
                                     </div>
                                 )}
+
+
+
                             </div>
                         </div>
 
