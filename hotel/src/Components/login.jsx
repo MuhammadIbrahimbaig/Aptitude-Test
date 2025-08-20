@@ -24,38 +24,44 @@ export default function Loginform() {
   const role = res.data.role;
 
   if (role === 3) {
-    Swal.fire({
-      icon: "success",
-      title: "User Login Successful!",
-      position: "center",
-      showConfirmButton: false,
-      timer: 800, 
-      timerProgressBar: true,
-    }).then(() => {
+     Swal.fire({
+            icon: "success",
+            title: "User Login Successfull",
+            text: "User Account has been login Successfully  ",
+            position: "center",
+            showConfirmButton: false,
+            timer: 2000,
+            width: 400,    
+            padding: "2rem" 
+          })
+    .then(() => {
       navigate("/home");
     });
   } else if (role === 2) {
-    Swal.fire({
-      icon: "success",
-      title: "Staff Login Successful!",
-      position: "top",
-      showConfirmButton: false,
-      timer: 800,
-      timerProgressBar: true,
-    }).then(() => {
+      Swal.fire({
+            icon: "success",
+            title: "Staff Login Successfull",
+            text: "Staff Account has been login Successfully  ",
+            position: "center",
+            showConfirmButton: false,
+            timer: 2000,
+            width: 400,    
+            padding: "2rem" 
+          })
+    .then(() => {
       navigate("/home");
     });
   } else if (role === 1) {
     Swal.fire({
-      icon: "success",
-      title: "Admin Login Successful!",
-      position: "top",
-      showConfirmButton: false,
-      timer: 800,
-      timerProgressBar: true,
-    }).then(() => {
-      navigate("/home");
-    });
+            icon: "success",
+            title: "Admin Login Successfull",
+            text: "Admin Account has been login Successfully  ",
+            position: "center",
+            showConfirmButton: false,
+            timer: 2000,
+            width: 400,    
+            padding: "2rem" 
+          });
   }
 
   localStorage.setItem("token", res.data.token);

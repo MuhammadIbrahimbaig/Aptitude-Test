@@ -36,6 +36,42 @@ Userguest: async function (req, res) {
   }
 },
 
+Useread : async (req, res) => {
+  try {
+    const email = req.query.email; // query se email
+    let user;
+
+    if (email) {
+      user = await User.findOne({ email }).populate('roleId');
+    } else {
+      const users = await User.find().populate('roleId');
+      user = users.filter(u => u.roleId?.code === 3); // guest filter
+    }
+
+    if (!user) return res.status(404).json({ error: "User not found" });
+
+    const safeUser = Array.isArray(user)
+      ? user.map(u => ({
+          _id: u._id,
+          name: u.name,
+          email: u.email,
+          role: u.roleId?.name,
+          roleCode: u.roleId?.code,
+        }))
+      : {
+          _id: user._id,
+          name: user.name,
+          email: user.email,
+          role: user.roleId?.name,
+          roleCode: user.roleId?.code,
+        };
+
+    res.json(safeUser);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: error.message });
+  }
+},
 
  FeedbackSubmit : async function (req, res) {
   try {

@@ -3,6 +3,8 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Swal from "sweetalert2";
+
 
 export default function Registration() {
   const [username, setUsername] = useState("");
@@ -20,12 +22,18 @@ export default function Registration() {
         p: password,
       });
 
-      toast.success("Registration Successful!", {
-        position: "top-center",
-        autoClose: 2500,
-        theme: "colored",
-      });
-
+      Swal.fire({
+                  icon: "success",
+                  title: "Registration Successfull",
+                  text:  "Your Account has been Reister",
+                  position: "center",
+                  showConfirmButton: false,
+                  timer: 2000,
+                  width: 400,    
+                  padding: "2rem" 
+                }).then(() => {
+      navigate("/verify-otp");
+    });
       setUsername("");
       setEmail("");
       setPassword("");
@@ -34,14 +42,16 @@ export default function Registration() {
       navigate("/verify-otp", { state: { email } });
 
     } catch (error) {
-      toast.error(
-        `Something went wrong: ${error.response?.data?.msg || error.message}`,
-        {
-          position: "top-center",
-          autoClose: 3000,
-          theme: "colored",
-        }
-      );
+       Swal.fire({
+                  icon: "error",
+                  title: "Registration Failed",
+                  text:  `Something went wrong: ${error.response?.data?.msg || error.message}`,
+                  position: "center",
+                  showConfirmButton: false,
+                  timer: 2000,
+                  width: 400,    
+                  padding: "2rem" 
+                });
     }
   }
 
