@@ -170,7 +170,6 @@ export default function Booking() {
         }
     };
 
-
     return (
         <div>
             {/* Header */}
@@ -292,31 +291,24 @@ export default function Booking() {
                                         </div>
                                     </div>
                                 </form>
-                                {/* ✅ Show button only after booking created */}
-                                {/* {createdBooking?.invoice && (
-                                    <div className="d-flex justify-content-center mt-4">
+                                {/* Show button only after booking created */}
+
+                                <div className="d-flex justify-content-center py-3">
+
+                                    {createdBooking?.invoice && (
                                         <a
-                                            href={`http://localhost:4001/Mywork/${createdBooking.invoice}`}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="btn bg-black text-white py-3 border-0"
-                                        >
-                                            Download Invoice
-                                        </a>
-                                    </div>
-                                )} */}
-                                {createdBooking?.invoice && (
-                                    <div className="d-flex justify-content-center mt-4">
-                                        <a
-                                            href={`http://localhost:4001/Mywork/invoices/${createdBooking.invoice.split('/').pop()}`}
+                                            href={`http://localhost:4001${createdBooking.invoice}`}
                                             className="btn bg-black text-white py-3 border-0"
                                             target="_blank"
                                             rel="noopener noreferrer"
                                         >
                                             Download Invoice
                                         </a>
-                                    </div>
-                                )}
+                                    )}
+                                </div>
+
+
+
 
 
 
