@@ -56,7 +56,6 @@ router.get("/Userread", UserController.Useread);
 router.post("/create-booking", protect, BookingController.CreateBooking);
 router.get("/get-booking", protect, BookingController.getBooking);
 router.put("/update-booking-status/:id", BookingController.UpdateBookingStatus);
-// router.put("/edit-booking/:id", protect, BookingController.EditRecord);
 router.delete("/remove-booking/:id", protect, BookingController.DeleteRecord);
 // Invoice Route
 router.get("/Mywork/invoices/:invoiceName", (req, res) => {

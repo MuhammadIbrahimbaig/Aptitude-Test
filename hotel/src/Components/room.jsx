@@ -131,7 +131,7 @@ export default function Room() {
             <div className="modal fade" id="roomDetailModal" tabIndex="-1" aria-labelledby="roomDetailModalLabel" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered  modal-lg">
                     <div className="modal-content">
-                        <div className="modal-header bg-theme text-white ">
+                        <div className="modal-header btn btn-primary text-white ">
                             <h5 className="modal-title fw-bold" id="roomDetailModalLabel">Room Details</h5>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
