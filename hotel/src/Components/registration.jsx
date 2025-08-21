@@ -8,11 +8,27 @@ export default function Registration() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(""); // 🔹 new state for password error
 
   const navigate = useNavigate();
 
+  // 🔹 Strong password regex (8+ chars, upper, lower, number, special char)
+  const strongPasswordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
   async function submit(e) {
     e.preventDefault();
+
+    // 🔹 validate password before API call
+    if (!strongPasswordRegex.test(password)) {
+      setError(
+        "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character."
+      );
+      return;
+    } else {
+      setError(""); // clear error if valid
+    }
+
     try {
       await axios.post("http://localhost:4001/Mywork/register", {
         n: username,
@@ -32,7 +48,6 @@ export default function Registration() {
 
       // Redirect to OTP verification page with email
       navigate("/verify-otp", { state: { email } });
-
     } catch (error) {
       toast.error(
         `Something went wrong: ${error.response?.data?.msg || error.message}`,
@@ -44,6 +59,15 @@ export default function Registration() {
       );
     }
   }
+  // password validation checks
+const passwordChecks = {
+  length: password.length >= 8,
+  lowercase: /[a-z]/.test(password),
+  uppercase: /[A-Z]/.test(password),
+  number: /\d/.test(password),
+  special: /[@$!%*?&]/.test(password),
+};
+
 
   return (
     <div className="row g-0" style={{ width: "100vw", height: "100vh" }}>
@@ -87,40 +111,45 @@ export default function Registration() {
 
           <form onSubmit={submit}>
             <div className="mb-3">
-              <input
-                type="text"
-                name="fullName"
-                className="form-control py-3 rounded-2 shadow-sm"
-                value={username}
+              <input type="text" name="fullName" className="form-control py-3 rounded-2 shadow-sm" value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                placeholder="Enter your username"
-                required
+                placeholder="Enter your username" required
               />
             </div>
 
             <div className="mb-3">
-              <input
-                type="email"
-                name="email"
-                className="form-control py-3 mt-4 rounded-2 shadow-sm"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
-                required
+              <input type="email"  name="email" className="form-control py-3 mt-4 rounded-2 shadow-sm" value={email}
+                onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email" required
               />
             </div>
 
             <div className="mb-3">
-              <input
-                type="password"
-                name="password"
-                className="form-control py-3 mt-4 rounded-2 shadow-sm"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter your password"
-                required
-              />
-            </div>
+  <input type="password" name="password" className="form-control py-3 mt-4 rounded-2 shadow-sm"
+    value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter your password" required
+  />
+
+  <ul className="list-unstyled mt-2 small">
+    <li className={passwordChecks.length ? "text-success" : "text-danger"}>
+      {passwordChecks.length ? "✔" : "✘"} At least 8 characters
+    </li>
+    <li className={passwordChecks.lowercase ? "text-success" : "text-danger"}>
+      {passwordChecks.lowercase ? "✔" : "✘"} One lowercase letter
+    </li>
+    <li className={passwordChecks.uppercase ? "text-success" : "text-danger"}>
+      {passwordChecks.uppercase ? "✔" : "✘"} One uppercase letter
+    </li>
+    <li className={passwordChecks.number ? "text-success" : "text-danger"}>
+      {passwordChecks.number ? "✔" : "✘"} One number
+    </li>
+    <li className={passwordChecks.special ? "text-success" : "text-danger"}>
+      {passwordChecks.special ? "✔" : "✘"} One special character (@$!%*?&)
+    </li>
+  </ul>
+
+  {/* Red error only on submit if still invalid */}
+  {error && <p className="text-danger mt-2">{error}</p>}
+</div>
+
 
             <div className="text-end mb-4">
               <Link className="text-decoration-none small" to="/Forgot">
@@ -130,7 +159,7 @@ export default function Registration() {
 
             <button
               type="submit"
-              className="relative z-[2] text-white  py-3 w-full  overflow-hidden text-base leading-[1.1] font-bold  tracking-wide uppercase [transition:all_0.3s_linear] inline-flex items-center justify-center gap-3 px-6 md:px-7 py-2 md:py-3 transition-colors ease-in-out  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2  bg-gradient-to-r from-[#1351d8] to-[#9c00ff] after:absolute after:h-full after:w-0 after:bottom-0 after:right-0 after:bg-[#000080] after:-z-1 after:[transition:all_.3s_ease-in-out] hover:text-white hover:after:w-full hover:after:left-0 rounded-full"
+              className="relative z-[2] text-white py-3 w-full rounded-full bg-gradient-to-r from-[#1351d8] to-[#9c00ff]"
             >
               Register
             </button>
