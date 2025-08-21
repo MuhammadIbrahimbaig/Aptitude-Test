@@ -5,7 +5,7 @@ import about3 from '../assets/images/about-3.jpg';
 import about4 from '../assets/images/about-4.jpg';
 import axios from "axios";
 import { toast } from "react-toastify";
-
+import Swal from "sweetalert2";
 import { jwtDecode } from "jwt-decode";
 import { useParams } from "react-router-dom";
 
@@ -67,14 +67,19 @@ export default function Booking() {
             setTotalPrice(0);
             setStatus("booked");
             setSpecialRequest("");
-
-            toast.success("Booking Created Successfully");
-
-            // ✅ backend response check karo
-            console.log("Booking Response:", res.data);
-
             // agar backend `booking` return karta hai to ye use karo
             setCreatedBooking(res.data.booking || res.data);
+
+            Swal.fire({
+                icon: "success",
+                title: "Booking Created Successfully",
+                text: "Your room has been booked successfully!",
+                position: "center",
+                showConfirmButton: false,
+                timer: 2000,
+                width: 400,
+                padding: "2rem"
+            });
 
         } catch (err) {
             console.error(err);
@@ -284,16 +289,18 @@ export default function Booking() {
                                             <div className="alert alert-info text-center fw-bold">
                                                 {totalPrice > 0 ? `Total Price: Rs. ${totalPrice}` : "Select dates to see total price"}
                                             </div>
-                                        </div>
+                                        </div >
 
                                         <div className="col-12">
                                             <button className="btn btn-primary w-100 py-3 border-0" type="submit">Book Now</button>
+
+                                            <button className="btn btn-primary w-100 py-3 border-0px-3 relative z-[2]  overflow-hidden font-bold tracking-wide uppercase transition-all inline-flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-gradient-to-r from-[#1351d8] to-[#9c00ff] after:absolute after:h-full after:w-0 after:bottom-0 after:duration-350 after:delay-150 after:right-0 after:bg-purple-800 after:-z-1 after:transition-all hover:text-white hover:after:w-full hover:after:left-0 px-3 text-light py-2 after:duration-350 after:delay-50 " type="submit">Book Now</button>
                                         </div>
-                                    </div>
-                                </form>
+                                    </div >
+                                </form >
                                 {/* Show button only after booking created */}
 
-                                <div className="d-flex justify-content-center py-3">
+                                < div className="d-flex justify-content-center py-3" >
 
                                     {createdBooking?.invoice && (
                                         <a
@@ -304,20 +311,21 @@ export default function Booking() {
                                         >
                                             Download Invoice
                                         </a>
-                                    )}
-                                </div>
+                                    )
+                                    }
+                                </div >
 
 
 
 
 
 
-                            </div>
-                        </div>
+                            </div >
+                        </div >
 
-                    </div>
-                </div>
-            </div>
-        </div>
+                    </div >
+                </div >
+            </div >
+        </div >
     );
 }

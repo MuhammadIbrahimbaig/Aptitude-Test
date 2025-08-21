@@ -40,6 +40,13 @@ router.delete("/staffDelete/:id", AdminLogin.StaffDelete);
 router.post("/Feedback", UserController.FeedbackSubmit);
 router.get("/UserFeedback", AdminLogin.UserFeedback);
 router.delete("/UserFeedDelete/:id", AdminLogin.UserFeedDelete);
+router.put("/Userguest/:id", UserController.Userguest);
+router.get("/Userread", UserController.Useread);
+
+
+
+
+
 
 
 

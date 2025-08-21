@@ -103,7 +103,7 @@ export default function Room() {
                                                 <p className="text-body mb-3">{room.features.join(', ')}</p>
                                                 <div className="d-flex justify-content-between">
                                                     <button
-                                                        className="book-btn btn btn-sm btn-primary rounded py-2 px-4 border-0"
+                                                        className="px-3 relative z-[2]  overflow-hidden font-bold tracking-wide uppercase transition-all inline-flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-gradient-to-r from-[#1351d8] to-[#9c00ff] after:absolute after:h-full after:w-0 after:bottom-0 after:right-0 after:bg-purple-800 after:-z-1 after:transition-all hover:text-white hover:after:w-full hover:after:left-0 px-3 text-light py-2 after:duration-350 after:delay-50"
                                                         data-bs-toggle="modal"
                                                         data-bs-target="#roomDetailModal"
                                                         onClick={() => setSelectedRoom(room)}
@@ -111,7 +111,7 @@ export default function Room() {
                                                         View Detail
                                                     </button>
                                                     <button
-                                                        className="btn btn-primary btn-sm px-3 book-btn scale-hover"
+                                                        className=" px-3 relative z-[2]  overflow-hidden font-bold tracking-wide uppercase transition-all inline-flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-gradient-to-r from-[#1351d8] to-[#9c00ff] after:absolute after:h-full after:w-0 after:bottom-0 after:right-0 after:bg-purple-800 after:-z-1 after:transition-all hover:text-white hover:after:w-full hover:after:left-0 px-3 text-light after:duration-350 after:delay-50"
                                                         onClick={() => navigate(`/booking/${room._id || room.id}`)}
                                                     >
                                                         Book Now

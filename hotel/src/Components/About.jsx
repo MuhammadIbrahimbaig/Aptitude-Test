@@ -43,7 +43,7 @@ export default function About(){
                                 </div>
                             </div>
                         </div>
-                        <a class="btn border-0 btn-primary py-3 px-5 mt-2" href="">Explore More</a>
+                        <a class="btn border-0 btn-primary py-3 px-5 mt-2 btn border-0 btn-primary py-md-3 px-md-5 me-3 animated slideInLeft relative z-[2] text-white overflow-hidden font-bold tracking-wide uppercase transition-all inline-flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-gradient-to-r from-[#1351d8] to-[#9c00ff] after:absolute after:h-full after:w-0 after:bottom-0 after:right-0 after:bg-purple-800 after:-z-1 after:transition-all hover:text-white hover:after:w-full hover:after:left-0 px-3 after:duration-350 after:delay-150" href="">Explore More</a>
                     </div>
                     <div class="col-lg-6">
                         <div class="row g-3">

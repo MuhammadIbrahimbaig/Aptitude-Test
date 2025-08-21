@@ -12,6 +12,66 @@ function generateOTP() {
 let all_pages = {
 
 // ====================Feedback===================
+// Update user info
+Userguest: async function (req, res) {
+  try {
+    const { name, email } = req.body;
+
+    const updatedUser = await User.findByIdAndUpdate(
+      req.params.id, // id param
+      { name, email },
+      { new: true }
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    res.status(200).json({
+      message: "User updated successfully",
+      user: updatedUser,
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+},
+
+Useread : async (req, res) => {
+  try {
+    const email = req.query.email; // query se email
+    let user;
+
+    if (email) {
+      user = await User.findOne({ email }).populate('roleId');
+    } else {
+      const users = await User.find().populate('roleId');
+      user = users.filter(u => u.roleId?.code === 3); // guest filter
+    }
+
+    if (!user) return res.status(404).json({ error: "User not found" });
+
+    const safeUser = Array.isArray(user)
+      ? user.map(u => ({
+          _id: u._id,
+          name: u.name,
+          email: u.email,
+          role: u.roleId?.name,
+          roleCode: u.roleId?.code,
+        }))
+      : {
+          _id: user._id,
+          name: user.name,
+          email: user.email,
+          role: user.roleId?.name,
+          roleCode: user.roleId?.code,
+        };
+
+    res.json(safeUser);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: error.message });
+  }
+},
 
  FeedbackSubmit : async function (req, res) {
   try {
@@ -268,6 +328,7 @@ let all_pages = {
       res.status(500).json({ success: false, error: "Internal server error" });
     }
   },
+
 
   
   ResendOtp: async function (req, res) {
