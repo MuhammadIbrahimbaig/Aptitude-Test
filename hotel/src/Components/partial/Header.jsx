@@ -98,11 +98,18 @@ export default function Header() {
       <div className="row gx-0">
         {/* Logo */}
         <div className="col-lg-3 bg-footer d-none d-lg-block">
-          <a href="index.html" className="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
-            {/* <h1 className="m-0 text-light text-uppercase">LuxuryStay</h1> */}
-            <img src={logo} alt="" className="object-fit-cover" style={{ height: "100px",width: "350px" }}
+          <Link
+           to="/home"
+            className="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center"
+          >
+            <img
+              src={logo}
+              alt="Hotel Logo"
+              className="object-fit-cover"
+              style={{ height: "120px", width: "280px" }}
             />
-          </a>
+          </Link>
+
         </div>
 
         {/* Top Bar */}

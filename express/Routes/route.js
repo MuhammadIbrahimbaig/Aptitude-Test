@@ -14,7 +14,7 @@ router.post("/saveroom", protect, uploadMiddleware, Room.CreateRoom);
 router.get("/read", protect, uploadMiddleware, Room.Read);
 router.put("/edit/:a", protect, Room.EditRecord);
 router.delete("/remove/:id", protect, Room.DeleteRecord);
-
+router.post("/contact", protect, sendMessage);
 
 
 
