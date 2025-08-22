@@ -59,7 +59,7 @@ StaffRegister: async function (req, res) {
     // Password hash
     const hashedPassword = bcrypt.hashSync(password, 15);
 
-    // Staff create
+    // Staff creation
     const staff = new Staff({
       name,
       email,
@@ -72,6 +72,18 @@ StaffRegister: async function (req, res) {
     });
 
     await staff.save();
+
+    // User creation
+    const user = new User({
+      name,
+      email,
+      password: hashedPassword,
+      roleId: staffRole._id,  // Linking role from the Role collection
+      isVerified: true  // Defaulting to false, can be updated later
+    });
+
+    await user.save();
+
     return res.status(200).json({ msg: "Staff registered successfully" });
 
   } catch (error) {
@@ -79,6 +91,7 @@ StaffRegister: async function (req, res) {
     return res.status(500).json({ msg: "Internal Server Error" });
   }
 },
+
 
   StaffFetch:async function (req, res) {
      try {
@@ -191,65 +204,67 @@ AddDepart: async function (req, res) {
 },
 
 
-  // Login
-  // AdminLogin: async function (req, res) {
-  //   let { e, p } = req.body;
 
-  //   // Find user and populate role
-  //   let user = await User.findOne({ email: e }).populate("roleId");
-  //   if (!user) {
-  //     return res.status(401).json({ msg: "Invalid Email" });
-  //   }
+AdminLogin: async function (req, res) {
+  const { e, p } = req.body;
 
-  //   // Password check
-  //   let isMatch = bcrypt.compareSync(p, user.password);
-  //   if (!isMatch) {
-  //     return res.status(401).json({ msg: "Incorrect Password" });
-  //   }
+  try {
+    // Find user in User collection and populate role
+    const user = await User.findOne({ email: e }).populate("roleId");
 
-  //   // JWT token
-  //   let token = jwt.sign({
-  //     id: user._id,
-  //     role: user.roleId.code  
-  //   }, "secret_key", { expiresIn: "1h" });
+    if (!user) {
+      return res.status(401).json({ msg: "Invalid Email" });
+    }
 
-  //   res.status(200).json({
-  //     msg: "Login Success",
-  //     token: token,
-  //     role: user.roleId.code,   // or name
-  //     name: user.name,
-  //     email: user.email
-  //   });
-  // },
-    AdminLogin: async function (req, res) {
-      let { e, p } = req.body;
-  
-      let user = await User.findOne({ email: e }).populate("roleId");
-      if (!user) return res.status(401).json({ msg: "Invalid Email" });
-  
-      if (!user?.isVerified) {
-        return res.status(400).json({
-          success: false,
-          error: "Please verify your email before logging in",
-        });
-      }
-  
-      let isMatch = bcrypt.compareSync(p, user.password);
-      if (!isMatch) return res.status(401).json({ msg: "Incorrect Password" });
-  
-      const token = jwt.sign(
-        { userId: user._id, email: user.email },
-        process.env.JWT_SECRET_KEY
-      );
-  
-      res.status(200).json({
-        msg: "Login Success",
-        token: token,
-        role: user.roleId.code,
-        name: user.name,
-        email: user.email,
+    // Check if email is verified
+    if (!user.isVerified) {
+      return res.status(400).json({
+        success: false,
+        error: "Please verify your email before logging in",
       });
-    },
+    }
+
+    // Check password
+    const isMatch = bcrypt.compareSync(p, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ msg: "Incorrect Password" });
+    }
+
+    // Determine user type based on role code
+    let userType = "user";
+    if (user.roleId?.code === 1) {
+      userType = "admin";
+    } else if (user.roleId?.code === 2) {
+      userType = "staff";
+    }
+
+    // Generate JWT
+    const token = jwt.sign(
+      {
+        userId: user._id,
+        email: user.email,
+        type: userType,
+      },
+      process.env.JWT_SECRET_KEY
+    );
+
+    // Return response
+    res.status(200).json({
+      msg: "Login Success",
+      token,
+      userId: user._id,  // ✅ This must be here
+      role: user.roleId?.code || null,
+      name: user.name,
+      email: user.email,
+      type: userType // "admin" or "staff"
+    });
+  } catch (error) {
+    console.error("Login error:", error);
+    res.status(500).json({ msg: "Internal Server Error" });
+  }
+},
+
+
  // READ DATA
  UserData: async function (req, res) {
   try {

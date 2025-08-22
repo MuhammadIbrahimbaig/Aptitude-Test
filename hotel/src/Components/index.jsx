@@ -41,8 +41,8 @@ const Home = () => {
                                 <div className="p-3" style={{ maxWidth: '700px' }}>
                                     <h6 className="section-title text-white text-uppercase mb-3 animated slideInDown">Luxury Living</h6>
                                     <h1 className="display-3 text-white mb-4 animated slideInDown">Discover A Brand Luxurious Hotel</h1>
-                                    <a href="#" className="btn border-0 btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Our Rooms</a>
-                                    <a href="#" className="btn border-0 btn-light py-md-3 px-md-5 animated slideInRight">Book A Room</a>
+                                    <a href="#" className="btn border-0 btn-primary py-md-3 px-md-5 me-3 animated slideInLeft relative z-[2] text-white overflow-hidden font-bold tracking-wide uppercase transition-all inline-flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-gradient-to-r from-[#1351d8] to-[#9c00ff] after:absolute after:h-full after:w-0 after:bottom-0 after:right-0 after:bg-purple-800 after:-z-1 after:transition-all hover:text-white hover:after:w-full hover:after:left-0 px-3 after:duration-350 after:delay-50">Our Rooms</a>
+                                    <a href="#" className="btn border-0 bg-white py-md-3 px-md-5 me-3 animated slideInLeft relative z-[2]  overflow-hidden font-bold tracking-wide uppercase transition-all inline-flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2  after:absolute after:h-full after:w-0 after:bottom-0 after:right-0 after:bg-purple-800 after:-z-1 after:transition-all hover:text-white  hover:after:w-full hover:after:left-0 px-3 after:duration-350 after:delay-50">Book A Room</a>
                                 </div>
                             </div>
                         </div>
@@ -52,8 +52,11 @@ const Home = () => {
                                 <div className="p-3" style={{ maxWidth: '700px' }}>
                                     <h6 className="section-title text-white text-uppercase mb-3 animated slideInDown">Luxury Living</h6>
                                     <h1 className="display-3 text-white mb-4 animated slideInDown">Discover A Brand Luxurious Hotel</h1>
+
+
+                                    
                                     <a href="#" className="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Our Rooms</a>
-                                    <a href="#" className="btn btn-light py-md-3 px-md-5 animated slideInRight">Book A Room</a>
+                                    <a href="#" >Book A Room</a>
                                 </div>
                             </div>
                         </div>
@@ -178,8 +181,10 @@ const Home = () => {
                                                     </div>
                                                     <p className="text-body mb-3">{room.features.join(', ')}</p>
                                                     <div className="d-flex justify-content-between">
-                                                        <a className="btn btn-sm btn-primary rounded py-2 px-4 border-0 book-btn scale-hover" href="#">View Detail</a>
-                                                        <button className="btn btn-primary btn-sm  px-3 book-btn scale-hover">
+                                                        <a className="relative z-[2] text-white overflow-hidden font-bold tracking-wide uppercase transition-all inline-flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-gradient-to-r from-[#1351d8] to-[#9c00ff] after:absolute after:h-full after:w-0 after:bottom-0 after:right-0 after:bg-purple-800 after:-z-1 after:transition-all hover:text-white hover:after:w-full hover:after:left-0 px-3 py-2 text-decoration-none after:duration-350 after:delay-50" href="#">View Detail</a>
+
+
+                                                        <button className="relative z-[2] text-white overflow-hidden font-bold tracking-wide uppercase transition-all inline-flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-gradient-to-r from-[#1351d8] to-[#9c00ff] after:absolute after:h-full after:w-0 after:bottom-0 after:right-0 after:bg-purple-800 after:-z-1 after:transition-all hover:text-white hover:after:w-full hover:after:left-0 px-3 after:duration-350 after:delay-50 ">
                                                             Book Now
                                                         </button>
 
@@ -190,6 +195,7 @@ const Home = () => {
                                     ))
                             )}
                         </div>
+                       
 
 
                     </div>

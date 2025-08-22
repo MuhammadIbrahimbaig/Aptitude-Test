@@ -5,7 +5,7 @@ import about3 from '../assets/images/about-3.jpg';
 import about4 from '../assets/images/about-4.jpg';
 import axios from "axios";
 import { toast } from "react-toastify";
-import Swal from "sweetalert2";
+
 import { jwtDecode } from "jwt-decode";
 import { useParams } from "react-router-dom";
 
@@ -13,8 +13,7 @@ import { useParams } from "react-router-dom";
 
 export default function Booking() {
     // use Params
-    const { room_id } = useParams(); //  get room_id from URL
-
+    const { room_id } = useParams(); // ✅ get room_id from URL
     const [roomId, setRoomId] = useState("");
     const [checkIn, setCheckIn] = useState("");
     const [checkOut, setCheckOut] = useState("");
@@ -24,7 +23,6 @@ export default function Booking() {
     const [status, setStatus] = useState("booked");
     const [specialRequest, setSpecialRequest] = useState("");
     const [rooms, setRooms] = useState([]);
-    const [createdBooking, setCreatedBooking] = useState(null); // ✅ new state
 
     const SubmitBooking = async (e) => {
         e.preventDefault();
@@ -36,23 +34,23 @@ export default function Booking() {
                 return;
             }
 
+
             const decoded = jwtDecode(token);
             const userId = decoded?.id;
 
             const payload = {
                 user_id: userId,
                 room_id: roomId,
-                checkin: checkIn,
-                checkout: checkOut,
-                adults: adult,
-                children: child,
-                totalPrice: totalPrice,
+                checkin: checkIn,        // ✅ backend "checkin" expect karta hai
+                checkout: checkOut,      // ✅ backend "checkout" expect karta hai
+                adults: adult,           // ✅ backend "adults" expect karta hai
+                children: child,         // ✅ backend "children" expect karta hai
+                totalPrice: totalPrice,  // ✅ backend "totalPrice" expect karta hai
                 status,
-                specialRequest
+                specialRequest           // ✅ backend me bhi same field rakho
             };
 
-            // ✅ response ko variable me store karo
-            const res = await axios.post("http://localhost:4001/Mywork/create-booking", payload, {
+            await axios.post("http://localhost:4001/Mywork/create-booking", payload, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`
@@ -68,26 +66,13 @@ export default function Booking() {
             setTotalPrice(0);
             setStatus("booked");
             setSpecialRequest("");
-            // agar backend `booking` return karta hai to ye use karo
-            setCreatedBooking(res.data.booking || res.data);
 
-            Swal.fire({
-                icon: "success",
-                title: "Booking Created Successfully",
-                text: "Your room has been booked successfully!",
-                position: "center",
-                showConfirmButton: false,
-                timer: 2000,
-                width: 400,
-                padding: "2rem"
-            });
-
+            toast.success("Booking Created Successfully");
         } catch (err) {
             console.error(err);
             toast.error(err?.response?.data?.msg || "Something went wrong!");
         }
     };
-
     //   Fetch Room Data
 
     useEffect(() => {
@@ -149,38 +134,28 @@ export default function Booking() {
     }, [checkIn, checkOut, roomId, rooms]);
     //==============Invoice Download Function==================================//
     const downloadInvoice = async (bookingId) => {
-        try {
-            const token = localStorage.getItem("token");
+        const token = localStorage.getItem("token");
+        const res = await fetch(`http://localhost:4001/invoice/${bookingId}`, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
 
-            const response = await axios.get(
-                `http://localhost:4001/Mywork/invoice/${bookingId}`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                    responseType: "blob", // important for file
-                }
-            );
-
-            // Create download link
-            const url = window.URL.createObjectURL(new Blob([response.data]));
-            const link = document.createElement("a");
-            link.href = url;
-            link.setAttribute("download", "invoice.pdf");
-            document.body.appendChild(link);
-            link.click();
-            link.remove();
-        } catch (error) {
-            console.error("Invoice download error:", error);
-            toast.error("Failed to download invoice!");
-        }
+        const blob = await res.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `invoice_${bookingId}.pdf`;
+        a.click();
     };
+
+
 
     return (
         <div>
             {/* Header */}
             <div className="container page-header mb-5 p-0 testimonial">
-                <ToastContainer/>
                 <div className="container-fluid py-5">
                     <div className="container text-center pb-5">
                         <h1 className="display-3 text-white mb-3 fw-bold">Booking</h1>
@@ -291,41 +266,21 @@ export default function Booking() {
                                             <div className="alert alert-info text-center fw-bold">
                                                 {totalPrice > 0 ? `Total Price: Rs. ${totalPrice}` : "Select dates to see total price"}
                                             </div>
-                                        </div >
-
-                                        <div className="col-12">
-                                            <button className="btn btn-primary w-100 py-3 border-0px-3 relative z-[2]  overflow-hidden font-bold tracking-wide uppercase transition-all inline-flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-gradient-to-r from-[#1351d8] to-[#9c00ff] after:absolute after:h-full after:w-0 after:bottom-0 after:duration-350 after:delay-150 after:right-0 after:bg-purple-800 after:-z-1 after:transition-all hover:text-white hover:after:w-full hover:after:left-0 px-3 text-light py-2 after:duration-350 after:delay-50 " type="submit">Book Now</button>
                                         </div>
-                                    </div >
-                                </form >
-                                {/* Show button only after booking created */}
+                                        <div className="d-flex justify-content-center">
+                                            <button className="btn bg-black text-white py-3 border-0" onClick={() => downloadInvoice(booking._id)}>Download Invoice</button>
+                                        </div>
+                                        <div className="col-12">
+                                            <button className="btn btn-primary w-100 py-3 border-0" type="submit">Book Now</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
 
-                                < div className="d-flex justify-content-center py-3" >
-
-                                    {createdBooking?.invoice && (
-                                        <a
-                                            href={`http://localhost:4001${createdBooking.invoice}`}
-                                            className="btn bg-black text-white py-3 border-0"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                        >
-                                            Download Invoice
-                                        </a>
-                                    )
-                                    }
-                                </div >
-
-
-
-
-
-
-                            </div >
-                        </div >
-
-                    </div >
-                </div >
-            </div >
-        </div >
+                    </div>
+                </div>
+            </div>
+        </div>
     );
 }

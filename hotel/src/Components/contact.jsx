@@ -89,7 +89,7 @@ export default function Contact(){
                                         </div>
                                     </div>
                                     <div className="col-12">
-                                        <button className="btn btn-primary w-100 py-3" type="submit">
+                                        <button className="btn btn-primary w-100 py-3 px-3 relative z-[2]  overflow-hidden font-bold tracking-wide uppercase transition-all inline-flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-gradient-to-r from-[#1351d8] to-[#9c00ff] after:absolute after:h-full after:w-0 after:bottom-0 after:right-0 after:bg-purple-800 after:-z-1 after:transition-all hover:text-white hover:after:w-full hover:after:left-0 px-3 text-light py-2relative z-[2] overflow-hidden font-bold tracking-wide uppercase inline-flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-gradient-to-r from-[#1351d8] to-[#9c00ff] after:absolute after:h-full after:w-0 after:bottom-0 after:right-0 after:bg-purple-800 after:-z-1 after:transition-all after:duration-350 after:delay-150 hover:text-white hover:after:w-full hover:after:left-0 px-6 py-2 rounded-full text-white transition-all duration-300 ease-in-out" type="submit">
                                             Send Message
                                         </button>
                                     </div>

@@ -2,45 +2,59 @@ import React, { useState } from "react";
 import axios from 'axios';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-
   async function login(e) {
     e.preventDefault();
-
+  
     try {
       const res = await axios.post("http://localhost:4001/Mywork/Adminlogin", {
         e: email,
         p: password
       });
-
-      const role = res.data.role;
-
-      if (role === 1) {
-        localStorage.setItem("token", res.data.token);
-
+  
+      const { token, role, type, userId, name, email: userEmail } = res.data;
+  
+      // Save everything as one object in localStorage
+      const userData = {
+        token,
+        userId,
+        role,
+        type,
+        name,
+        email: userEmail
+      };
+  
+      localStorage.setItem("user", JSON.stringify(userData));
+  
+      // Redirect based on type
+      if (type === "admin") {
         toast.success("Admin Login Successful!", {
           position: "top-center",
           autoClose: 500,
           theme: "colored",
-          onClose: () => {
-            navigate("/home");
-          }
+          onClose: () => navigate("/home")
         });
-
+      } else if (type === "staff") {
+        toast.success("Staff Login Successful!", {
+          position: "top-center",
+          autoClose: 500,
+          theme: "colored",
+          onClose: () => navigate("/home")
+        });
       } else {
-        toast.error("Access Denied: Only admins are allowed to login.", {
+        toast.error("Access Denied: Unknown user role", {
           position: "top-center",
           autoClose: 2500,
           theme: "colored"
         });
       }
-
+  
     } catch (err) {
       toast.error("Invalid Credentials", {
         position: "top-center",
@@ -49,8 +63,7 @@ export default function LoginForm() {
       });
     }
   }
-
-
+  
   return (
     <div className="container d-flex align-items-center justify-content-center vh-100 bg-light">
       <ToastContainer />
@@ -80,9 +93,8 @@ export default function LoginForm() {
               required
             />
           </div>
+
           <button type="submit" className="btn btn-primary w-100">Login</button>
-
-
         </form>
       </div>
     </div>

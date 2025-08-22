@@ -4,7 +4,8 @@ const UserController = require("../Controller/function");
 const AdminLogin = require("../AdminController/AdminAuth");
 const Room = require("../Controller/Room");
 const BookingController = require("../Controller/BookingController");
-const uploadMiddleware = require("../Midleware/uploadMiddleware"); // ✅ Correct path
+const InvoiceController = require("../Controller/InvoiceController");
+const uploadMiddleware = require("../Midleware/uploadMiddleware");
 const protect = require("../Midleware/ProtectedRoutes");
 
 
@@ -13,6 +14,7 @@ router.post("/saveroom", protect, uploadMiddleware, Room.CreateRoom);
 router.get("/read", protect, uploadMiddleware, Room.Read);
 router.put("/edit/:a", protect, Room.EditRecord);
 router.delete("/remove/:id", protect, Room.DeleteRecord);
+
 
 
 
@@ -38,6 +40,13 @@ router.delete("/staffDelete/:id", AdminLogin.StaffDelete);
 router.post("/Feedback", UserController.FeedbackSubmit);
 router.get("/UserFeedback", AdminLogin.UserFeedback);
 router.delete("/UserFeedDelete/:id", AdminLogin.UserFeedDelete);
+router.put("/Userguest/:id", UserController.Userguest);
+router.get("/Userread", UserController.Useread);
+
+
+
+
+
 
 
 
@@ -47,7 +56,23 @@ router.delete("/UserFeedDelete/:id", AdminLogin.UserFeedDelete);
 router.post("/create-booking", protect, BookingController.CreateBooking);
 router.get("/get-booking", protect, BookingController.getBooking);
 router.put("/update-booking-status/:id", BookingController.UpdateBookingStatus);
-// router.put("/edit-booking/:id", protect, BookingController.EditRecord);
 router.delete("/remove-booking/:id", protect, BookingController.DeleteRecord);
+// Invoice Route
+router.get("/Mywork/invoices/:invoiceName", (req, res) => {
+    const { invoiceName } = req.params;
+    const filePath = path.join(__dirname, "../invoices", invoiceName);
+
+    res.download(filePath, (err) => {
+        if (err) {
+            console.error("Download error:", err);
+            res.status(404).json({ message: "File not found" });
+        }
+    });
+
+});
+
+
+
+
 
 module.exports = router;
