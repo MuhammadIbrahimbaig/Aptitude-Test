@@ -108,19 +108,19 @@ export default function Header() {
         )}
 
         {/* Staff-only Sidebar Items */}
-        {userRole === 2 && (
-          <li className="nav-item">
-            <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseStaff" aria-expanded="false" aria-controls="collapseStaff">
-              <i className="fa-solid fa-user"></i>&nbsp;
-              <span>Staff</span>
-            </a>
-            <div id="collapseStaff" className="collapse" aria-labelledby="headingStaff">
-              <div className="bg-primary text-white collapse-inner rounded">
-                <Link to="/StaffCreate" className="collapse-item custom-hover-set">Create</Link>
-              </div>
-            </div>
-          </li>
-        )}
+       {userRole === 2 && (
+  <li className="nav-item">
+    <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+      <i className="fa-solid fa-bed"></i>&nbsp;
+      <span>Rooms</span>
+    </a>
+    <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo">
+      <div className="bg-custom text-white collapse-inner rounded">
+        <Link to="/allrooms" className="collapse-item custom-hover-set">All</Link>
+      </div>
+    </div>
+  </li>
+)}
 
       </ul>
     </div>
