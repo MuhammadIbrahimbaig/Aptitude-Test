@@ -75,121 +75,126 @@ export const CreateRoom = () => {
         <div>
             <ToastContainer />
             <div className="container d-flex justify-content-center align-items-center min-vh-100">
-                <div className="card p-4 shadow-lg" style={{ maxWidth: "550px", width: "100%" }}>
-                    <h3 className="text-center mb-4 text-primary">
+                <div className="card p-4 shadow-lg" style={{ maxWidth: "", width: "100%" }}>
+                    <h3 className="text-center mb-4 text-primary fs-2 fw-bold">
                         <i className="bi bi-door-open-fill me-2"></i>Create Room
                     </h3>
                     <form>
-                        <div className="mb-3">
-                            <label htmlFor="roomNumber" className="form-label">Room Number</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="roomNumber"
-                                placeholder="Enter room number"
-                                value={roomNumber}
-                                onChange={(e) => setRoomNumber(e.target.value)}
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="roomName" className="form-label">Room Name</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="roomName"
-                                placeholder="Enter room name"
-                                value={room_name}
-                                onChange={(e) => setRoomName(e.target.value)}
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="type" className="form-label">Room Type</label>
-                            <select
-                                className="form-select"
-                                id="type"
-                                value={type}
-                                onChange={(e) => setType(e.target.value)}
-                            >
-                                <option value="">Select type</option>
-                                <option value="Single">Single</option>
-                                <option value="Double">Double</option>
-                                <option value="Deluxe">Deluxe</option>
-                                <option value="Suit">Suit</option>
-                            </select>
-                        </div>
+                        <div className="row">
 
-                        <div className="mb-3">
-                            <label htmlFor="price" className="form-label">Price</label>
-                            <input
-                                type="number"
-                                className="form-control"
-                                id="price"
-                                placeholder="Enter room price"
-                                value={price}
-                                onChange={(e) => setPrice(e.target.value)}
-                            />
-                        </div>
+                            <div className="mb-3 col-lg-6">
+                                <label htmlFor="roomNumber" className="form-label">Room Number</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="roomNumber"
+                                    placeholder="Enter room number"
+                                    value={roomNumber}
+                                    onChange={(e) => setRoomNumber(e.target.value)}
+                                />
+                            </div>
+                            <div className="mb-3 col-lg-6">
+                                <label htmlFor="roomName" className="form-label">Room Name</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="roomName"
+                                    placeholder="Enter room name"
+                                    value={room_name}
+                                    onChange={(e) => setRoomName(e.target.value)}
+                                />
+                            </div>
+                            <div className="mb-3 col-lg-6">
+                                <label htmlFor="type" className="form-label">Room Type</label>
+                                <select
+                                    className="form-select"
+                                    id="type"
+                                    value={type}
+                                    onChange={(e) => setType(e.target.value)}
+                                >
+                                    <option value="">Select type</option>
+                                    <option value="Single">Single</option>
+                                    <option value="Double">Double</option>
+                                    <option value="Deluxe">Deluxe</option>
+                                    <option value="Suit">Suit</option>
+                                </select>
+                            </div>
 
-                        <div className="mb-3">
-                            <label htmlFor="capacity" className="form-label">Capacity</label>
-                            <input
-                                type="number"
-                                className="form-control"
-                                id="capacity"
-                                value={capacity}
-                                readOnly
-                            />
-                        </div>
+                            <div className="mb-3 col-lg-6">
+                                <label htmlFor="price" className="form-label">Price</label>
+                                <input
+                                    type="number"
+                                    className="form-control"
+                                    id="price"
+                                    placeholder="Enter room price"
+                                    value={price}
+                                    onChange={(e) => setPrice(e.target.value)}
+                                />
+                            </div>
 
-                        <div className="mb-3">
-                            <label htmlFor="status" className="form-label">Room Status</label>
-                            <select
-                                className="form-select"
-                                id="status"
-                                value={status}
-                                onChange={(e) => setStatus(e.target.value)}
-                            >
-                                <option value="">Select Status</option>
-                                <option value="available">Available</option>
-                                <option value="booked">Booked</option>
-                                <option value="cleaning">Cleaning</option>
-                                <option value="maintenance">Maintenance</option>
-                            </select>
-                        </div>
 
-                        <div className="mb-3">
-                            <label htmlFor="image" className="form-label">Room Image</label>
-                            <input
-                                type="file"
-                                className="form-control"
-                                id="image"
-                                onChange={(e) => setImage(e.target.files[0])}
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="shortdescription" className="form-label">Short Description</label>
-                            <textarea
-                                className="form-control"
-                                id="shortdescription"
-                                value={shortdescription}
-                                onChange={(e) => setDescription(e.target.value)}
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="features" className="form-label">Features (comma-separated)</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="features"
-                                placeholder="e.g. AC, Wi-Fi, TV"
-                                value={features}
-                                onChange={(e) => setFeatures(e.target.value)}
-                            />
-                        </div>
 
+                            <div className="mb-3 col-lg-6">
+                                <label htmlFor="capacity" className="form-label">Capacity</label>
+                                <input
+                                    type="number"
+                                    className="form-control"
+                                    id="capacity"
+                                    value={capacity}
+                                    readOnly
+                                />
+                            </div>
+
+                            <div className="mb-3 col-lg-6">
+                                <label htmlFor="status" className="form-label">Room Status</label>
+                                <select
+                                    className="form-select"
+                                    id="status"
+                                    value={status}
+                                    onChange={(e) => setStatus(e.target.value)}
+                                >
+                                    <option value="">Select Status</option>
+                                    <option value="available">Available</option>
+                                    <option value="booked">Booked</option>
+                                    <option value="cleaning">Cleaning</option>
+                                    <option value="maintenance">Maintenance</option>
+                                </select>
+                            </div>
+
+                            <div className="mb-3 col-lg-6">
+                                <label htmlFor="image" className="form-label">Room Image</label>
+                                <input
+                                    type="file"
+                                    className="form-control"
+                                    id="image"
+                                    onChange={(e) => setImage(e.target.files[0])}
+                                />
+                            </div>
+
+                            <div className="mb-3 col-lg-6">
+                                <label htmlFor="features" className="form-label">Features (comma-separated)</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="features"
+                                    placeholder="e.g. AC, Wi-Fi, TV"
+                                    value={features}
+                                    onChange={(e) => setFeatures(e.target.value)}
+                                />
+                            </div>
+                            <div className="mb-3 col-lg-12">
+                                <label htmlFor="shortdescription" className="form-label">Short Description</label>
+                                <textarea
+                                    className="form-control"
+                                    id="shortdescription"
+                                    value={shortdescription}
+                                    onChange={(e) => setDescription(e.target.value)}
+                                />
+                            </div>
+                        </div>
                         <button
                             type="button"
-                            className="btn btn-primary w-100"
+                            className="btn bg-custom w-100  text-white fw-bold"
                             onClick={SubmitFunc}
                         >
                             <i className="bi bi-plus-circle me-1"></i>Create Room

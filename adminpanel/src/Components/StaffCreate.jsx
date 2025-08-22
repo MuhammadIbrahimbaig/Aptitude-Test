@@ -99,50 +99,54 @@ export default function StaffCreate() {
 
       {/* Staff Form */}
       <form onSubmit={handleSubmit}>
-        <div className="row">
-          <div className="col-md-6 mb-3">
-            <label className="form-label">Name</label>
-            <input id="name" value={form.name} onChange={handleChange} required className="form-control" />
+        <div className="card p-4 shadow-lg">
+          <div className="row">
+            <div className="col-md-6 mb-3">
+              <label className="form-label">Name</label>
+              <input id="name" value={form.name} onChange={handleChange} required className="form-control" />
+            </div>
+            <div className="col-md-6 mb-3">
+              <label className="form-label">Email</label>
+              <input id="email" type="email" value={form.email} onChange={handleChange} required className="form-control" />
+            </div>
+            <div className="col-md-6 mb-3">
+              <label className="form-label">Phone</label>
+              <input id="phone" value={form.phone} onChange={handleChange} className="form-control" />
+            </div>
+            <div className="col-md-6 mb-3">
+              <label className="form-label">Password</label>
+              <input id="password" type="password" value={form.password} onChange={handleChange} required className="form-control" />
+            </div>
+            <div className="col-md-6 mb-3">
+              <label className="form-label">Joining Date</label>
+              <input id="joiningDate" type="date" value={form.joiningDate} onChange={handleChange} className="form-control" />
+            </div>
+            <div className="col-md-6 mb-3">
+              <label className="form-label">Salary</label>
+              <input id="salary" type="number" value={form.salary} onChange={handleChange} className="form-control" />
+            </div>
+            <div className="col-md-12 mb-3">
+              <label className="form-label">Designation (Department)</label>
+              <select
+                id="designation"
+                value={form.designation}
+                onChange={handleChange}
+                required
+                className="form-control"
+              >
+                <option value="">-- Select Department --</option>
+                {departments.map(dep => (
+                  <option key={dep._id} value={dep._id}>
+                    {dep.name}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
-          <div className="col-md-6 mb-3">
-            <label className="form-label">Email</label>
-            <input id="email" type="email" value={form.email} onChange={handleChange} required className="form-control" />
-          </div>
-          <div className="col-md-6 mb-3">
-            <label className="form-label">Phone</label>
-            <input id="phone" value={form.phone} onChange={handleChange} className="form-control" />
-          </div>
-          <div className="col-md-6 mb-3">
-            <label className="form-label">Password</label>
-            <input id="password" type="password" value={form.password} onChange={handleChange} required className="form-control" />
-          </div>
-          <div className="col-md-6 mb-3">
-            <label className="form-label">Joining Date</label>
-            <input id="joiningDate" type="date" value={form.joiningDate} onChange={handleChange} className="form-control" />
-          </div>
-          <div className="col-md-6 mb-3">
-            <label className="form-label">Salary</label>
-            <input id="salary" type="number" value={form.salary} onChange={handleChange} className="form-control" />
-          </div>
-          <div className="col-md-12 mb-3">
-            <label className="form-label">Designation (Department)</label>
-            <select
-              id="designation"
-              value={form.designation}
-              onChange={handleChange}
-              required
-              className="form-control"
-            >
-              <option value="">-- Select Department --</option>
-              {departments.map(dep => (
-                <option key={dep._id} value={dep._id}>
-                  {dep.name}
-                </option>
-              ))}
-            </select>
+          <div className="">
+            <button type="submit" className="btn bg-custom text-white fw-bold border-0">Register</button>
           </div>
         </div>
-        <button type="submit" className="btn btn-success">Register</button>
       </form>
 
       {/* Department Modal */}

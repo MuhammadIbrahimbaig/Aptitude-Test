@@ -35,7 +35,7 @@ export default function Room() {
             <div className="container page-header mb-5 p-0 testimonial">
                 <div className="container py-5">
                     <div className="container text-center pb-5">
-                        <h1 className="display-3 text-white mb-3 animated slideInDown">Services</h1>
+                        <h1 className="display-3 text-white mb-3 animated slideInDown">Our Rooms</h1>
                         <nav aria-label="breadcrumb">
                             <ol className="breadcrumb justify-content-center text-uppercase">
                                 <li className="breadcrumb-item">
