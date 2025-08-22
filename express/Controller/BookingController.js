@@ -187,7 +187,7 @@ let BookingController = {
 };
 
 // ---------------- CRON JOBS ---------------- //
-cron.schedule("*/1 * * * *", async () => {
+cron.schedule("0 0 * * *", async () => {
   try {
     const now = new Date();
 

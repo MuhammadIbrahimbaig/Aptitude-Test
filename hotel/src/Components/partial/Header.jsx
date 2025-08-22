@@ -1,8 +1,11 @@
-{/* Edit Modal functionality added */}
+{/* Edit Modal functionality added */ }
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
+import logo from "../../assets/images/logo.png";
+
+
 import Swal from "sweetalert2";
 
 
@@ -70,10 +73,10 @@ export default function Header() {
         position: "center",
         showConfirmButton: false,
         timer: 2000,
-        width: 400,    
-        padding: "2rem" 
+        width: 400,
+        padding: "2rem"
       });
-      
+
     } catch (err) {
       // toast.error("Failed to update user", { position: "top-center", theme: "colored" });
       Swal.fire({
@@ -83,20 +86,22 @@ export default function Header() {
         position: "center",
         showConfirmButton: false,
         timer: 2000,
-        width: 400,    
-        padding: "2rem" 
+        width: 400,
+        padding: "2rem"
       });
     }
   };
 
   return (
     <div className="bg-dark px-0">
-      <ToastContainer/>
+      <ToastContainer />
       <div className="row gx-0">
         {/* Logo */}
         <div className="col-lg-3 bg-footer d-none d-lg-block">
           <a href="index.html" className="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
-            <h1 className="m-0 text-light text-uppercase">LuxuryStay</h1>
+            {/* <h1 className="m-0 text-light text-uppercase">LuxuryStay</h1> */}
+            <img src={logo} alt="" className="object-fit-cover" style={{ height: "100px",width: "350px" }}
+            />
           </a>
         </div>
 
@@ -125,58 +130,58 @@ export default function Header() {
             </div>
 
             {/* User Info Modal */}
-           <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div className="modal-dialog">
-    <div className="modal-content w-75">
-      <div className="modal-header border-0 text-center w-100 d-flex justify-content-center">
-        <h1 className="modal-title fs-2" id="exampleModalLabel">User Info</h1>
-        <button
-          type="button"
-          className="btn-close position-absolute end-0 me-3"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-        
-      </div>
-      
+            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div className="modal-dialog">
+                <div className="modal-content w-75">
+                  <div className="modal-header border-0 text-center w-100 d-flex justify-content-center">
+                    <h1 className="modal-title fs-2" id="exampleModalLabel">User Info</h1>
+                    <button
+                      type="button"
+                      className="btn-close position-absolute end-0 me-3"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
 
-      {/* Modal Body Center */}
-      <div className="modal-body text-center">
-      {isLoggedIn && userData && (
-                <div className="d-flex align-items-center cursor-pointer justify-content-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                  <div
-                    className="rounded-circle bg-red-600 text-white fs-2 fw-medium flex items-center justify-center me-2"
-                    style={{ width: "70px", height: "70px", fontWeight: "bold", display: "flex", alignItems: "center", justifyContent: "center" }}
-                  >
-                    {userData.name ? userData.name.charAt(0).toUpperCase() : ""}
+                  </div>
+
+
+                  {/* Modal Body Center */}
+                  <div className="modal-body text-center">
+                    {isLoggedIn && userData && (
+                      <div className="d-flex align-items-center cursor-pointer justify-content-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <div
+                          className="rounded-circle bg-red-600 text-white fs-2 fw-medium flex items-center justify-center me-2"
+                          style={{ width: "70px", height: "70px", fontWeight: "bold", display: "flex", alignItems: "center", justifyContent: "center" }}
+                        >
+                          {userData.name ? userData.name.charAt(0).toUpperCase() : ""}
+                        </div>
+                      </div>
+
+                    )}
+                    {loading ? (
+                      <p>Loading...</p>
+                    ) : userData ? (
+                      <>
+                        <ul className="list-group mb-3 d-inline-block ">
+                          <li className="mt-3"><strong>Name:</strong> {userData.name}</li>
+                          <li className="mt-4"><strong>Email:</strong> {userData.email}</li>
+                        </ul>
+                        <br />
+                        <button
+                          className="btn btn-primary rounded-1 w-75 mt-3"
+                          data-bs-toggle="modal"
+                          data-bs-target="#exampleModal2"
+                        >
+                          Edit
+                        </button>
+                      </>
+                    ) : (
+                      <p>No user info available</p>
+                    )}
                   </div>
                 </div>
-              
-              )}
-        {loading ? (
-          <p>Loading...</p>
-        ) : userData ? (
-          <>
-            <ul className="list-group mb-3 d-inline-block ">
-              <li className="mt-3"><strong>Name:</strong> {userData.name}</li>
-              <li className="mt-4"><strong>Email:</strong> {userData.email}</li>
-            </ul>
-            <br />
-            <button
-              className="btn btn-primary rounded-1 w-75 mt-3"
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal2"
-            >
-              Edit
-            </button>
-          </>
-        ) : (
-          <p>No user info available</p>
-        )}
-      </div>
-    </div>
-  </div>
-</div>
+              </div>
+            </div>
 
 
             {/* Edit Modal */}

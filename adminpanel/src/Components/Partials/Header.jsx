@@ -6,7 +6,7 @@ export default function Header() {
     return (
         <div>
             {/* <!-- Sidebar For Lg--> */}
-            <ul className="navbar-nav bg-custom sidebar sidebar-dark accordion d-none d-md-block" id="accordionSidebar">
+            <ul className="navbar-nav bg-custom sidebar sidebar-dark accordion d-none d-md-block h-100" id="accordionSidebar">
 
                 {/* <!-- Sidebar - Brand --> */}
                 <a className="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
