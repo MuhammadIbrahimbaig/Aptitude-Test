@@ -68,7 +68,7 @@ export default function Room() {
                                 .filter(room => room.status === "available")
                                 .map((room, index) => (
                                     <div className="col-lg-4 col-md-6" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
-                                        <div className="room-item shadow rounded overflow-hidden">
+                                        <div className="room-item shadow rounded overflow-hidden fix-h">
                                             <div className="position-relative">
                                                 <img
                                                     className="img-fluid fixed-wh object-fit-cover"

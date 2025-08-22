@@ -21,10 +21,10 @@ export default function Header() {
                 <hr className="sidebar-divider bg-white" />
                 {/* <!-- Nav Item - Dashboard --> */}
                 <li className="nav-item active">
-                    <a className="nav-link" >
+                    <div className="nav-link" >
                         <i className="fas fa-fw fa-tachometer-alt"></i>
-                        <Link to="/home" className="collapse-item  custom-hover-set"><span> Dashboard</span></Link>
-                    </a>
+                        <Link to="/home" className="collapse-item text-white text-decoration-none"><span> Dashboard</span></Link>
+                    </div>
                 </li>
                 {/* 
             <!-- Divider --> */}
