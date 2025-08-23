@@ -4,7 +4,7 @@ import about2 from '../assets/images/about-2.jpg';
 import about3 from '../assets/images/about-3.jpg';
 import about4 from '../assets/images/about-4.jpg';
 import axios from "axios";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import Swal from "sweetalert2";
 import { jwtDecode } from "jwt-decode";
 import { useParams } from "react-router-dom";

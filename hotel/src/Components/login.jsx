@@ -81,7 +81,7 @@ export default function Loginform() {
   }
 
 return (
-  <div className="container-fluid vh-100 d-flex align-items-center justify-content-center">
+  <div className="container_bg vh-100 d-flex align-items-center justify-content-center">
     <ToastContainer />
     <div className="row w-100 shadow rounded overflow-hidden" style={{ maxWidth: "900px" }}>
       
@@ -139,7 +139,7 @@ return (
           <div className="mt-3 text-center">
             <small>
               Don’t have an account?{" "}
-              <Link className="text-decoration-none " to="/">Register Here</Link>
+              <Link className="text-decoration-none " to="/forgot">Register Here</Link>
             </small>
           </div>
         </form>

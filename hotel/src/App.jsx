@@ -21,6 +21,7 @@ import Registration from './Components/registration.jsx';
 import Loginform from './Components/login.jsx';
 import VerifyOtp from './Components/Verifyotp.jsx';
 import Feedback from './Components/Feedback.jsx';
+import ForgotPassword from './Components/ForgetPassword.jsx';
 
 
 
@@ -34,6 +35,8 @@ function App() {
             <Route path='/' element={<Registration />} />
             <Route path='/login' element={<Loginform />} />
               <Route path='/verify-otp' element={<VerifyOtp />} />
+              <Route path='/forgot' element={<ForgotPassword />} />
+
 
             <Route path="/" element={<Layout />}>
               <Route path='/home' element={<Home />} />
