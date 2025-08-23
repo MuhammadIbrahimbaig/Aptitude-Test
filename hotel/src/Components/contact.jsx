@@ -1,38 +1,52 @@
 import { useState } from "react";
-
+import axios from "axios";
 export default function Contact() {
-    const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
-    const [errors, setErrors] = useState({});
-    const [loading, setLoading] = useState(false);
-    const [status, setStatus] = useState(null);
+        const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
+        const [errors, setErrors] = useState({});
+        const [loading, setLoading] = useState(false);
+        const [status, setStatus] = useState(null);
 
-    const onChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
-    const validate = () => {
-        const e = {};
-        if (!form.name.trim()) e.name = "Required";
-        if (!/^\S+@\S+\.\S+$/.test(form.email)) e.email = "Valid email required";
-        if (!form.subject.trim()) e.subject = "Required";
-        if (form.message.trim().length < 10) e.message = "Min 10 characters";
-        setErrors(e);
-        return Object.keys(e).length === 0;
-    };
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (!validate()) return;
-        setLoading(true); setStatus(null);
-        try {
-            const res = await fetch("/Mywork/contact", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(form),
-            });
-            if (!res.ok) throw new Error("Failed to send");
-            setStatus({ type: "success", msg: "Message sent!" });
-            setForm({ name: "", email: "", subject: "", message: "" });
-        } catch (err) {
-            setStatus({ type: "error", msg: err.message });
-        } finally { setLoading(false); }
-    };
+        const onChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+        const validate = () => {
+            const e = {};
+            if (!form.name.trim()) e.name = "Required";
+            if (!/^\S+@\S+\.\S+$/.test(form.email)) e.email = "Valid email required";
+            if (!form.subject.trim()) e.subject = "Required";
+            if (form.message.trim().length < 10) e.message = "Min 10 characters";
+            setErrors(e);
+            return Object.keys(e).length === 0;
+        };
+        //POST DATA
+        const handleSubmit = async (e) => {
+            e.preventDefault();
+            if (!validate()) return;
+            setLoading(true);
+            setStatus(null);
+
+            try {
+                console.log("Sending form data ===>", form);
+
+                const token = localStorage.getItem("token"); // ya jahan save kiya hai
+
+                const res = await axios.post(
+                    "http://localhost:4001/Mywork/create-contact",
+                    form,
+                    {
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${token}`, // agar protect middleware laga hai
+                        },
+                    }
+                );
+
+                setStatus({ type: "success", msg: "Message sent!" });
+                setForm({ name: "", email: "", subject: "", message: "" });
+            } catch (err) {
+                setStatus({ type: "error", msg: err.response?.data?.message || err.message });
+            } finally {
+                setLoading(false);
+            }
+        };
 
     return (
         <div>
