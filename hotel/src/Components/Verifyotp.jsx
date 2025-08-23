@@ -26,33 +26,89 @@ export default function VerifyOtp() {
   };
 
   return (
-    <div className="container py-5">
-      <h2 className="mb-4">Verify Your Email</h2>
-      <form onSubmit={handleVerify} className="w-50">
-        <div className="mb-3">
-          <label>Email Address</label>
-          <input
-            type="email"
-            className="form-control"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div className="mb-3">
-          <label>Enter OTP</label>
-          <input
-            type="text"
-            className="form-control"
-            value={otp}
-            onChange={(e) => setOtp(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">
-          Verify OTP
-        </button>
-      </form>
+    // <div className="container py-5 flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100">
+    //   <h2 className="mb-4">Verify Your Email</h2>
+    //   <form onSubmit={handleVerify} className="w-50">
+    //     <div className="mb-3">
+    //       <label>Email Address</label>
+    //       <input
+    //         type="email"
+    //         className="form-control"
+    //         value={email}
+    //         onChange={(e) => setEmail(e.target.value)}
+    //         required
+    //       />
+    //     </div>
+    //     <div className="mb-3">
+    //       <label>Enter OTP</label>
+    //       <input
+    //         type="text"
+    //         className="form-control"
+    //         value={otp}
+    //         onChange={(e) => setOtp(e.target.value)}
+    //         required
+    //       />
+    //     </div>
+    //     <button type="submit" className="btn btn-primary">
+    //       Verify OTP
+    //     </button>
+    //   </form>
+    // </div>
+
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100">
+      <div className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-md">
+        <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
+          Verify Your Email
+        </h2>
+        <form className="space-y-4" onSubmit={handleVerify}>
+          {/* Email */}
+          <div>
+            <label className="block text-sm font-medium text-gray-600 mb-1">
+              Email Address
+            </label>
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+
+          {/* OTP */}
+          <div>
+            <label className="block text-sm font-medium text-gray-600 mb-1">
+              Enter OTP
+            </label>
+            <input
+              type="text"
+              placeholder="6-digit OTP"
+              className="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-purple-500 focus:outline-none tracking-widest text-center font-semibold"
+              value={otp}
+              onChange={(e) => setOtp(e.target.value)}
+              required
+            />
+          </div>
+
+          {/* Button */}
+          <button
+            type="submit"
+            className="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white py-2 rounded-xl font-medium shadow-md hover:from-blue-600 hover:to-purple-600 transition-all duration-300"
+          >
+            Verify OTP
+          </button>
+
+          {/* Resend Link */}
+          <p className="text-center text-sm text-gray-500 mt-3">
+            Didn’t get the OTP?{" "}
+            <a href="#" className="text-blue-600 hover:underline">
+              Resend
+            </a>
+          </p>
+        </form>
+      </div>
     </div>
+
   );
 }
