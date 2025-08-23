@@ -1,0 +1,66 @@
+const Contact = require("../Collection/Contact");
+
+// ✅ Contact Controller
+let ContactController = {
+    // Create Contact
+    CreateContact: async (req, res) => {
+        try {
+            console.log("REQ BODY ===>", req.body);
+            const contact = await Contact.create(req.body);
+
+            res.status(200).json({
+                message: "Successfully Created Contact",
+                data: contact,
+            });
+        } catch (error) {
+            res.status(500).json({ message: error.message });
+        }
+    },
+
+    // ✅ Get All Contacts
+    GetContacts: async (req, res) => {
+        try {
+            const contacts = await Contact.find().sort({ createdAt: -1 }); // latest first
+            res.status(200).json({
+                message: "Successfully Fetched Contacts",
+                data: contacts,
+            });
+        } catch (error) {
+            res.status(500).json({ message: error.message });
+        }
+    },
+
+    // ✅ Get Single Contact by ID
+    GetContactById: async (req, res) => {
+        try {
+            let { id } = req.params;
+            const contact = await Contact.findById(id);
+            if (!contact) {
+                return res.status(404).json({ message: "Contact Not Found" });
+            }
+            res.status(200).json({
+                message: "Successfully Fetched Contact",
+                data: contact,
+            });
+        } catch (error) {
+            res.status(500).json({ message: error.message });
+        }
+    },
+
+    // ✅ Delete Contact
+    DeleteContact: async (req, res) => {
+        try {
+            let { id } = req.params;
+            const contact = await Contact.findById(id);
+            if (!contact) {
+                return res.status(404).json({ message: "Contact Not Found" });
+            }
+            await Contact.findByIdAndDelete(id);
+            res.status(200).json({ message: "Contact Deleted Successfully" });
+        } catch (error) {
+            res.status(500).json({ message: error.message });
+        }
+    },
+};
+
+module.exports = ContactController;

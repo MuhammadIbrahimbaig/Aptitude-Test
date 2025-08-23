@@ -68,7 +68,7 @@ export default function LoginForm() {
     <div className="container d-flex align-items-center justify-content-center vh-100 bg-light">
       <ToastContainer />
       <div className="card shadow p-4" style={{ width: '100%', maxWidth: '400px' }}>
-        <h2 className="text-center text-primary mb-4">Login</h2>
+        <h2 className="text-center text-primary mb-4 fw-bold ">Login</h2>
         <form onSubmit={login}>
           <div className="mb-3">
             <label className="form-label">Email address</label>
@@ -93,8 +93,9 @@ export default function LoginForm() {
               required
             />
           </div>
+          <button type="submit" className="btn bg-custom w-100 text-white border py-2 fw-bold">Login</button>
 
-          <button type="submit" className="btn btn-primary w-100">Login</button>
+
         </form>
       </div>
     </div>

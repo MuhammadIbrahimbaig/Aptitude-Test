@@ -34,9 +34,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Registration />} />
             <Route path='/login' element={<Loginform />} />
-              <Route path='/verify-otp' element={<VerifyOtp />} />
-              <Route path='/forgot' element={<ForgotPassword />} />
-
+            <Route path='/verify-otp' element={<VerifyOtp />} />
 
             <Route path="/" element={<Layout />}>
               <Route path='/home' element={<Home />} />
@@ -46,7 +44,7 @@ function App() {
               <Route path='/room' element={<Room />} />
               <Route path="/booking/:room_id" element={<Booking />} />
               <Route path='/contact' element={<Contact />} />
-              <Route path='/Feedback' element={<Feedback/>} />
+              <Route path='/Feedback' element={<Feedback />} />
 
 
             </Route>

@@ -97,8 +97,8 @@ export default function ShowBooking() {
                             <tbody>
                                 {bookings.map((booking) => (
                                     <tr key={booking._id}>
-                                        <td>{booking.user_id?.name }</td>
-                                        <td>{booking.user_id?.email }</td>
+                                        <td>{booking.user_id?.name}</td>
+                                        <td>{booking.user_id?.email}</td>
                                         <td className="fw-semibold">
                                             {booking.room_id?.room_name || "N/A"}
                                         </td>

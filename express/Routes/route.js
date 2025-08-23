@@ -7,6 +7,9 @@ const BookingController = require("../Controller/BookingController");
 const InvoiceController = require("../Controller/InvoiceController");
 const uploadMiddleware = require("../Midleware/uploadMiddleware");
 const protect = require("../Midleware/ProtectedRoutes");
+const ContactController = require("../Controller/ContactController");
+
+
 
 
 // Ibrahim Routing Section
@@ -14,6 +17,8 @@ router.post("/saveroom", protect, uploadMiddleware, Room.CreateRoom);
 router.get("/read", protect, uploadMiddleware, Room.Read);
 router.put("/edit/:a", protect, Room.EditRecord);
 router.delete("/remove/:id", protect, Room.DeleteRecord);
+router.post("/create-contact", protect, ContactController.CreateContact);
+
 
 
 

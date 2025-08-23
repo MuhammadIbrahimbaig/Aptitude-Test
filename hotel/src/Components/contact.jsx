@@ -1,7 +1,56 @@
-export default function Contact(){
-    return(
-    <div>
-         <div class="container page-header mb-5 p-0 testimonial">
+import { useState } from "react";
+import axios from "axios";
+export default function Contact() {
+        const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
+        const [errors, setErrors] = useState({});
+        const [loading, setLoading] = useState(false);
+        const [status, setStatus] = useState(null);
+
+        const onChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+        const validate = () => {
+            const e = {};
+            if (!form.name.trim()) e.name = "Required";
+            if (!/^\S+@\S+\.\S+$/.test(form.email)) e.email = "Valid email required";
+            if (!form.subject.trim()) e.subject = "Required";
+            if (form.message.trim().length < 10) e.message = "Min 10 characters";
+            setErrors(e);
+            return Object.keys(e).length === 0;
+        };
+        //POST DATA
+        const handleSubmit = async (e) => {
+            e.preventDefault();
+            if (!validate()) return;
+            setLoading(true);
+            setStatus(null);
+
+            try {
+                console.log("Sending form data ===>", form);
+
+                const token = localStorage.getItem("token"); // ya jahan save kiya hai
+
+                const res = await axios.post(
+                    "http://localhost:4001/Mywork/create-contact",
+                    form,
+                    {
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${token}`, // agar protect middleware laga hai
+                        },
+                    }
+                );
+
+                setStatus({ type: "success", msg: "Message sent!" });
+                setForm({ name: "", email: "", subject: "", message: "" });
+            } catch (err) {
+                setStatus({ type: "error", msg: err.response?.data?.message || err.message });
+            } finally {
+                setLoading(false);
+            }
+        };
+
+    return (
+        <div>
+            <div class="container page-header mb-5 p-0 testimonial">
                 <div class="container-fluid  py-5">
                     <div class="container text-center pb-5">
                         <h1 class="display-3 text-white mb-3 fw-bold">Contact</h1>
@@ -15,91 +64,142 @@ export default function Contact(){
                     </div>
                 </div>
             </div>
-            
+
             {/* <!-- Booking End --> */}
-               <div className="container-xxl py-5">
-            <div className="container">
-                <div className="text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <h6 className="section-title text-center text-primary text-uppercase">Contact Us</h6>
-                    <h1 className="mb-5">
-                        <span className="text-primary text-uppercase">Contact</span> For Any Query
-                    </h1>
-                </div>
-                <div className="row g-4">
-                    <div className="col-12">
-                        <div className="row gy-4">
-                            <div className="col-md-4">
-                                <h6 className="section-title text-start text-primary text-uppercase">Booking</h6>
-                                <p><i className="fa fa-envelope-open text-primary me-2"></i>book@example.com</p>
-                            </div>
-                            <div className="col-md-4">
-                                <h6 className="section-title text-start text-primary text-uppercase">General</h6>
-                                <p><i className="fa fa-envelope-open text-primary me-2"></i>info@example.com</p>
-                            </div>
-                            <div className="col-md-4">
-                                <h6 className="section-title text-start text-primary text-uppercase">Technical</h6>
-                                <p><i className="fa fa-envelope-open text-primary me-2"></i>tech@example.com</p>
-                            </div>
-                        </div>
+            <div className="container-xxl py-5">
+                <div className="container">
+                    <div className="text-center wow fadeInUp" data-wow-delay="0.1s">
+                        <h6 className="section-title text-center text-primary text-uppercase">Contact Us</h6>
+                        <h1 className="mb-5">
+                            <span className="text-primary text-uppercase">Contact</span> For Any Query
+                        </h1>
                     </div>
-
-                    <div className="col-md-6 wow fadeIn" data-wow-delay="0.1s">
-                        <iframe
-                            className="position-relative rounded w-100 h-100"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001156.4288297426!2d-78.01371936852176!3d42.72876761954724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ccc4bf0f123a5a9%3A0xddcfc6c1de189567!2sNew%20York%2C%20USA!5e0!3m2!1sen!2sbd!4v1603794290143!5m2!1sen!2sbd"
-                            style={{ minHeight: '350px', border: 0 }}
-                            allowFullScreen=""
-                            aria-hidden="false"
-                            tabIndex="0"
-                            title="Google Map"
-                        ></iframe>
-                    </div>
-
-                    <div className="col-md-6">
-                        <div className="wow fadeInUp" data-wow-delay="0.2s">
-                            <form>
-                                <div className="row g-3">
-                                    <div className="col-md-6">
-                                        <div className="form-floating">
-                                            <input type="text" className="form-control" id="name" placeholder="Your Name" />
-                                            <label htmlFor="name">Your Name</label>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <div className="form-floating">
-                                            <input type="email" className="form-control" id="email" placeholder="Your Email" />
-                                            <label htmlFor="email">Your Email</label>
-                                        </div>
-                                    </div>
-                                    <div className="col-12">
-                                        <div className="form-floating">
-                                            <input type="text" className="form-control" id="subject" placeholder="Subject" />
-                                            <label htmlFor="subject">Subject</label>
-                                        </div>
-                                    </div>
-                                    <div className="col-12">
-                                        <div className="form-floating">
-                                            <textarea
-                                                className="form-control"
-                                                placeholder="Leave a message here"
-                                                id="message"
-                                                style={{ height: '150px' }}
-                                            ></textarea>
-                                            <label htmlFor="message">Message</label>
-                                        </div>
-                                    </div>
-                                    <div className="col-12">
-                                        <button className="btn btn-primary w-100 py-3 px-3 relative z-[2]  overflow-hidden font-bold tracking-wide uppercase transition-all inline-flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-gradient-to-r from-[#1351d8] to-[#9c00ff] after:absolute after:h-full after:w-0 after:bottom-0 after:right-0 after:bg-purple-800 after:-z-1 after:transition-all hover:text-white hover:after:w-full hover:after:left-0 px-3 text-light py-2relative z-[2] overflow-hidden font-bold tracking-wide uppercase inline-flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-gradient-to-r from-[#1351d8] to-[#9c00ff] after:absolute after:h-full after:w-0 after:bottom-0 after:right-0 after:bg-purple-800 after:-z-1 after:transition-all after:duration-350 after:delay-150 hover:text-white hover:after:w-full hover:after:left-0 px-6 py-2 rounded-full text-white transition-all duration-300 ease-in-out" type="submit">
-                                            Send Message
-                                        </button>
-                                    </div>
+                    <div className="row g-4">
+                        <div className="col-12">
+                            <div className="row gy-4">
+                                <div className="col-md-4">
+                                    <h6 className="section-title text-start text-primary text-uppercase">Booking</h6>
+                                    <p><i className="fa fa-envelope-open text-primary me-2"></i>book@example.com</p>
                                 </div>
-                            </form>
+                                <div className="col-md-4">
+                                    <h6 className="section-title text-start text-primary text-uppercase">General</h6>
+                                    <p><i className="fa fa-envelope-open text-primary me-2"></i>info@example.com</p>
+                                </div>
+                                <div className="col-md-4">
+                                    <h6 className="section-title text-start text-primary text-uppercase">Technical</h6>
+                                    <p><i className="fa fa-envelope-open text-primary me-2"></i>tech@example.com</p>
+                                </div>
+                            </div>
                         </div>
+
+                        <div className="col-md-6 wow fadeIn" data-wow-delay="0.1s">
+                            <iframe
+                                className="position-relative rounded w-100 h-100"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001156.4288297426!2d-78.01371936852176!3d42.72876761954724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ccc4bf0f123a5a9%3A0xddcfc6c1de189567!2sNew%20York%2C%20USA!5e0!3m2!1sen!2sbd!4v1603794290143!5m2!1sen!2sbd"
+                                style={{ minHeight: '350px', border: 0 }}
+                                allowFullScreen=""
+                                aria-hidden="false"
+                                tabIndex="0"
+                                title="Google Map"
+                            ></iframe>
+                        </div>
+
+                        <div className="col-md-6">
+                            <div className="wow fadeInUp" data-wow-delay="0.2s">
+                                <form onSubmit={handleSubmit} noValidate>
+                                    <div className="row g-3">
+                                        <div className="col-md-6">
+                                            <div className="form-floating">
+                                                <input
+                                                    type="text"
+                                                    className={`form-control ${errors.name ? "is-invalid" : ""}`}
+                                                    id="name"
+                                                    name="name"
+                                                    placeholder="Your Name"
+                                                    value={form.name}
+                                                    onChange={onChange}
+                                                />
+                                                <label htmlFor="name">Your Name</label>
+                                                {errors.name && <div className="invalid-feedback">{errors.name}</div>}
+                                            </div>
+                                        </div>
+
+                                        <div className="col-md-6">
+                                            <div className="form-floating">
+                                                <input
+                                                    type="email"
+                                                    className={`form-control ${errors.email ? "is-invalid" : ""}`}
+                                                    id="email"
+                                                    name="email"
+                                                    placeholder="Your Email"
+                                                    value={form.email}
+                                                    onChange={onChange}
+                                                />
+                                                <label htmlFor="email">Your Email</label>
+                                                {errors.email && <div className="invalid-feedback">{errors.email}</div>}
+                                            </div>
+                                        </div>
+
+                                        <div className="col-12">
+                                            <div className="form-floating">
+                                                <input
+                                                    type="text"
+                                                    className={`form-control ${errors.subject ? "is-invalid" : ""}`}
+                                                    id="subject"
+                                                    name="subject"
+                                                    placeholder="Subject"
+                                                    value={form.subject}
+                                                    onChange={onChange}
+                                                />
+                                                <label htmlFor="subject">Subject</label>
+                                                {errors.subject && <div className="invalid-feedback">{errors.subject}</div>}
+                                            </div>
+                                        </div>
+
+                                        <div className="col-12">
+                                            <div className="form-floating">
+                                                <textarea
+                                                    className={`form-control ${errors.message ? "is-invalid" : ""}`}
+                                                    placeholder="Leave a message here"
+                                                    id="message"
+                                                    name="message"
+                                                    style={{ height: "150px" }}
+                                                    value={form.message}
+                                                    onChange={onChange}
+                                                />
+                                                <label htmlFor="message">Message</label>
+                                                {errors.message && <div className="invalid-feedback">{errors.message}</div>}
+                                            </div>
+                                        </div>
+
+                                        <div className="col-12">
+                                            <button
+                                                className="btn btn-primary w-100 py-3 px-3"
+                                                type="submit"
+                                                disabled={loading}
+                                            >
+                                                {loading && (
+                                                    <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                                )}
+                                                {loading ? "Sending..." : "Send Message"}
+                                            </button>
+                                        </div>
+
+                                        {status && (
+                                            <div className="col-12">
+                                                <div className={`alert ${status.type === "success" ? "alert-success" : "alert-danger"} mb-0`}>
+                                                    {status.msg}
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     )
 }

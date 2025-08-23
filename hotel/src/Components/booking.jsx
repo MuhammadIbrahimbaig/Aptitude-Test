@@ -13,8 +13,7 @@ import { useParams } from "react-router-dom";
 
 export default function Booking() {
     // use Params
-    const { room_id } = useParams(); //  get room_id from URL
-
+    const { room_id } = useParams(); // ✅ get room_id from URL
     const [roomId, setRoomId] = useState("");
     const [checkIn, setCheckIn] = useState("");
     const [checkOut, setCheckOut] = useState("");
