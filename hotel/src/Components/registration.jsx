@@ -5,7 +5,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Swal from "sweetalert2";
 
-
 export default function Registration() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -13,8 +12,43 @@ export default function Registration() {
 
   const navigate = useNavigate();
 
+  // Regex Patterns
+  const usernameRegex = /^[A-Za-z\s]{3,20}$/;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const passwordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
   async function submit(e) {
     e.preventDefault();
+
+    // ✅ Validations
+    if (!usernameRegex.test(username)) {
+      toast.error("Username must be 3–20 characters (letters & spaces only).", {
+        position: "top-center",
+        autoClose: 2500,
+      });
+      return;
+    }
+
+    if (!emailRegex.test(email)) {
+      toast.error("Please enter a valid email address.", {
+        position: "top-center",
+        autoClose: 2500,
+      });
+      return;
+    }
+
+    if (!passwordRegex.test(password)) {
+      toast.error(
+        "Password must be at least 8 characters with uppercase, lowercase, number, and special character.",
+        {
+          position: "top-center",
+          autoClose: 3000,
+        }
+      );
+      return;
+    }
+
     try {
       await axios.post("http://localhost:4001/Mywork/register", {
         n: username,
@@ -23,35 +57,34 @@ export default function Registration() {
       });
 
       Swal.fire({
-                  icon: "success",
-                  title: "Registration Successfull",
-                  text:  "Your Account has been Reister",
-                  position: "center",
-                  showConfirmButton: false,
-                  timer: 2000,
-                  width: 400,    
-                  padding: "2rem" 
-                }).then(() => {
-      navigate("/verify-otp");
-    });
+        icon: "success",
+        title: "Registration Successful",
+        text: "Your account has been registered.",
+        position: "center",
+        showConfirmButton: false,
+        timer: 2000,
+        width: 400,
+        padding: "2rem",
+      }).then(() => {
+        navigate("/verify-otp", { state: { email } });
+      });
+
       setUsername("");
       setEmail("");
       setPassword("");
-
-      // Redirect to OTP verification page with email
-      navigate("/verify-otp", { state: { email } });
-
     } catch (error) {
-       Swal.fire({
-                  icon: "error",
-                  title: "Registration Failed",
-                  text:  `Something went wrong: ${error.response?.data?.msg || error.message}`,
-                  position: "center",
-                  showConfirmButton: false,
-                  timer: 2000,
-                  width: 400,    
-                  padding: "2rem" 
-                });
+      Swal.fire({
+        icon: "error",
+        title: "Registration Failed",
+        text: `Something went wrong: ${
+          error.response?.data?.msg || error.message
+        }`,
+        position: "center",
+        showConfirmButton: false,
+        timer: 2000,
+        width: 400,
+        padding: "2rem",
+      });
     }
   }
 
@@ -99,7 +132,6 @@ export default function Registration() {
             <div className="mb-3">
               <input
                 type="text"
-                name="fullName"
                 className="form-control py-3 rounded-2 shadow-sm"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
@@ -111,7 +143,6 @@ export default function Registration() {
             <div className="mb-3">
               <input
                 type="email"
-                name="email"
                 className="form-control py-3 mt-4 rounded-2 shadow-sm"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -123,7 +154,6 @@ export default function Registration() {
             <div className="mb-3">
               <input
                 type="password"
-                name="password"
                 className="form-control py-3 mt-4 rounded-2 shadow-sm"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -140,7 +170,7 @@ export default function Registration() {
 
             <button
               type="submit"
-              className="relative z-[2] text-white  py-3 w-full  overflow-hidden text-base leading-[1.1] font-bold  tracking-wide uppercase [transition:all_0.3s_linear] inline-flex items-center justify-center gap-3 px-6 md:px-7 py-2 md:py-3 transition-colors ease-in-out  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2  bg-gradient-to-r from-[#1351d8] to-[#9c00ff] after:absolute after:h-full after:w-0 after:bottom-0 after:right-0 after:bg-purple-800 after:-z-1 after:[transition:all_.3s_ease-in-out] hover:text-white hover:after:w-full hover:after:left-0 rounded-full after:duration-350 after:delay-150"
+              className="relative z-[2] text-white py-3 w-full overflow-hidden text-base leading-[1.1] font-bold tracking-wide uppercase inline-flex items-center justify-center gap-3 px-6 md:px-7 md:py-3 transition-colors ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-gradient-to-r from-[#1351d8] to-[#9c00ff] hover:text-white rounded-full"
             >
               Register
             </button>

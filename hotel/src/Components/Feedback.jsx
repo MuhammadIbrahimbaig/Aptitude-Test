@@ -9,8 +9,47 @@ export default function Feedback() {
   const [rating, setRating] = useState("");
   const [comment, setComment] = useState("");
 
+  // Regex Patterns
+  const nameRegex = /^[A-Za-z\s]{3,30}$/;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const commentRegex = /^.{10,300}$/;
+
   async function submit(e) {
     e.preventDefault();
+
+    // ✅ Validations
+    if (!nameRegex.test(username)) {
+      toast.error("Name must be 3-30 characters and contain only letters/spaces.", {
+        position: "top-center",
+        autoClose: 2500,
+      });
+      return;
+    }
+
+    if (!emailRegex.test(email)) {
+      toast.error("Please enter a valid email address.", {
+        position: "top-center",
+        autoClose: 2500,
+      });
+      return;
+    }
+
+    if (!rating) {
+      toast.error("Please select a rating.", {
+        position: "top-center",
+        autoClose: 2500,
+      });
+      return;
+    }
+
+    if (!commentRegex.test(comment)) {
+      toast.error("Comment must be between 10 and 300 characters.", {
+        position: "top-center",
+        autoClose: 2500,
+      });
+      return;
+    }
+
     try {
       await axios.post("http://localhost:4001/Mywork/Feedback", {
         n: username,
@@ -19,7 +58,7 @@ export default function Feedback() {
         c: comment,
       });
 
-      toast.success(" Feedback Created Successfully!", {
+      toast.success("Feedback Created Successfully!", {
         position: "top-center",
         autoClose: 2500,
         theme: "colored",
@@ -30,105 +69,95 @@ export default function Feedback() {
       setRating("");
       setComment("");
     } catch (error) {
-      toast.error(
-        ` Error: ${error.response?.data?.msg || error.message}`,
-        {
-          position: "top-center",
-          autoClose: 3000,
-          theme: "colored",
-        }
-      );
+      toast.error(`Error: ${error.response?.data?.msg || error.message}`, {
+        position: "top-center",
+        autoClose: 3000,
+        theme: "colored",
+      });
     }
   }
 
-return (
-  <div className="flex justify-center items-center min-h-screen bg-gray-50 px-4">
-    <ToastContainer />
-    <div className="grid grid-cols-1 md:grid-cols-2 bg-white shadow-xl rounded-2xl overflow-hidden w-full max-w-5xl">
-      
-      {/* Left Side Form */}
-      <form
-        onSubmit={submit}
-        className="p-8 flex flex-col justify-center"
-      >
-        <h2 className="text-3xl font-bold text-center mb-6 text-blue-700">
-          Guest Feedback
-        </h2>
+  return (
+    <div className="flex justify-center items-center min-h-screen bg-gray-50 px-4">
+      <ToastContainer />
+      <div className="grid grid-cols-1 md:grid-cols-2 bg-white shadow-xl rounded-2xl overflow-hidden w-full max-w-5xl">
 
-        {/* Name & Rating */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-          {/* Name */}
-          <div>
+        {/* Left Side Form */}
+        <form onSubmit={submit} className="p-8 flex flex-col justify-center">
+          <h2 className="text-3xl font-bold text-center mb-6 text-blue-700">
+            Guest Feedback
+          </h2>
+
+          {/* Name & Rating */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+            <div>
+              <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Enter your name"
+                className="w-full px-2 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                required
+              />
+            </div>
+            <div>
+              <select
+                value={rating}
+                onChange={(e) => setRating(e.target.value)}
+                className="w-full px-2 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                required
+              >
+                <option value="">Select Rating</option>
+                <option value="5">⭐⭐⭐⭐⭐ - Excellent</option>
+                <option value="4">⭐⭐⭐⭐ - Good</option>
+                <option value="3">⭐⭐⭐ - Average</option>
+                <option value="2">⭐⭐ - Poor</option>
+                <option value="1">⭐ - Very Bad</option>
+              </select>
+            </div>
+          </div>
+
+          {/* Email */}
+          <div className="mb-4">
             <input
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="Enter your name"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Only registered emails are allowed"
               className="w-full px-2 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
               required
             />
           </div>
-          {/* Rating */}
-          <div>
-            <select
-              value={rating}
-              onChange={(e) => setRating(e.target.value)}
-              className="w-full px-2 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-              required
-            >
-              <option value="">Select Rating</option>
-              <option value="5">⭐⭐⭐⭐⭐ - Excellent</option>
-              <option value="4">⭐⭐⭐⭐ - Good</option>
-              <option value="3">⭐⭐⭐ - Average</option>
-              <option value="2">⭐⭐ - Poor</option>
-              <option value="1">⭐ - Very Bad</option>
-            </select>
-          </div>
-        </div>
 
-        {/* Email */}
-        <div className="mb-4">
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Only registered emails are allowed"
-            className="w-full px-2 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-            required
+          {/* Comment */}
+          <div className="mb-6">
+            <textarea
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+              placeholder="Write your Comment"
+              className="w-full px-2 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none h-28 resize-none"
+              required
+            ></textarea>
+          </div>
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white py-3 px-4 rounded-2 bg-gradient-to-r from-[#1351d8] to-[#9c00ff] transition duration-200 font-semibold shadow-md"
+          >
+            Submit Feedback
+          </button>
+        </form>
+
+        {/* Right Side Image */}
+        <div className="hidden md:block">
+          <img
+            src="https://www.theluxeinsider.com/wp-content/uploads/2022/10/Businessman-pressing-bell-at-hotel-reception.jpeg"
+            alt="Feedback Illustration"
+            className="w-full h-full p-3 rounded-5 object-cover"
           />
         </div>
-
-        {/* Comment */}
-        <div className="mb-6">
-          <textarea
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-            placeholder="Write your Comment"
-            className="w-full px-2   py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none h-28 resize-none"
-            required
-          ></textarea>
-        </div>
-
-        {/* Submit Button */}
-        <button
-          type="submit"
-          className="w-full bg-blue-600 text-white py-3 px-4 rounded-2 bg-gradient-to-r from-[#1351d8] to-[#9c00ff] transition duration-200 font-semibold shadow-md"
-        >
-          Submit Feedback
-        </button>
-      </form>
-
-      {/* Right Side Image */}
-      <div className="hidden md:block  ">
-        <img
-          src="https://www.theluxeinsider.com/wp-content/uploads/2022/10/Businessman-pressing-bell-at-hotel-reception.jpeg"
-          alt="Feedback Illustration"
-          className="w-full h-full p-3 rounded-5 object-cover "
-        />
       </div>
     </div>
-  </div>
-);
-
-
+  );
 }

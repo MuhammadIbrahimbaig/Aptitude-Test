@@ -8,12 +8,15 @@ const InvoiceController = require("../Controller/InvoiceController");
 const uploadMiddleware = require("../Midleware/uploadMiddleware");
 const protect = require("../Midleware/ProtectedRoutes");
 const ContactController = require("../Controller/ContactController");
+const { getRoomCount } = require("../Controller/RoomCount");
+
 
 
 
 
 
 // Ibrahim Routing Section
+// router.get("/count", protect, getRoomCount);
 router.post("/saveroom", protect, uploadMiddleware, Room.CreateRoom);
 router.get("/read", protect, uploadMiddleware, Room.Read);
 router.put("/edit/:a", protect, Room.EditRecord);
