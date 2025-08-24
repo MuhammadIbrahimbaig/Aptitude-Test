@@ -82,7 +82,7 @@ export default function Header() {
 
             <li className="nav-item">
               <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsefour" aria-expanded="false" aria-controls="collapsefour">
-                <i className="fa-solid fa-user"></i>&nbsp;
+              <i class="fas fa-users"></i>&nbsp;
                 <span>Staff</span>
               </a>
               <div id="collapsefour" className="collapse" aria-labelledby="headingfour">
@@ -95,12 +95,24 @@ export default function Header() {
 
             <li className="nav-item">
               <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsefive" aria-expanded="false" aria-controls="collapsefive">
-                <i className="fa-solid fa-user"></i>&nbsp;
+              <i class="fa-regular fa-building"></i>&nbsp;
                 <span>Department</span>
               </a>
               <div id="collapsefive" className="collapse" aria-labelledby="headingfive">
                 <div className="bg-primary text-white collapse-inner rounded">
                   <Link to="/departFetch" className="collapse-item custom-hover-set">All</Link>
+                </div>
+              </div>
+            </li>
+
+                 <li className="nav-item">
+              <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsesix" aria-expanded="false" aria-controls="collapsesix">
+          <i class="fa-solid fa-comments"></i>&nbsp;
+                <span>Feedback</span>
+              </a>
+              <div id="collapsesix" className="collapse" aria-labelledby="headingfive">
+                <div className="bg-primary text-white collapse-inner rounded">
+                  <Link to="/UserFeedback" className="collapse-item custom-hover-set">All</Link>
                 </div>
               </div>
             </li>
