@@ -20,19 +20,15 @@ export default function LoginForm() {
   
       const { token, role, type, userId, name, email: userEmail } = res.data;
   
-      // Save everything as one object in localStorage
-      const userData = {
-        token,
-        userId,
-        role,
-        type,
-        name,
-        email: userEmail
-      };
-  
+      // Save token + user in localStorage
+      const userData = { token, userId, role, type, name, email: userEmail };
       localStorage.setItem("user", JSON.stringify(userData));
+      localStorage.setItem("token", token);
+
+      // Set default axios Authorization header
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   
-      // Redirect based on type
+      // Redirect based on role
       if (type === "admin") {
         toast.success("Admin Login Successful!", {
           position: "top-center",
@@ -94,8 +90,6 @@ export default function LoginForm() {
             />
           </div>
           <button type="submit" className="btn bg-custom w-100 text-white border py-2 fw-bold">Login</button>
-
-
         </form>
       </div>
     </div>
