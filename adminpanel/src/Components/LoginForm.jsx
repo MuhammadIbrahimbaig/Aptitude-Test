@@ -3,15 +3,31 @@ import axios from 'axios';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-
   async function login(e) {
     e.preventDefault();
-  
+
+    // ✅ Validation with SweetAlert
+    if (!email.trim()) {
+      Swal.fire("Error", "Email is required", "error");
+      return;
+    }
+
+    if (!password.trim()) {
+      Swal.fire("Error", "Password is required", "error");
+      return;
+    }
+
+    if (password.length < 5) {
+      Swal.fire("Error", "Password must be at least 5 characters long", "error");
+      return;
+    }
+
     try {
       const res = await axios.post("http://localhost:4001/Mywork/Adminlogin", {
         e: email,
@@ -30,35 +46,22 @@ export default function LoginForm() {
   
       // Redirect based on role
       if (type === "admin") {
-        toast.success("Admin Login Successful!", {
-          position: "top-center",
-          autoClose: 500,
-          theme: "colored",
-          onClose: () => navigate("/home")
+        Swal.fire("Success", "Admin Login Successful!", "success").then(() => {
+          navigate("/home");
         });
       } else if (type === "staff") {
-        toast.success("Staff Login Successful!", {
-          position: "top-center",
-          autoClose: 500,
-          theme: "colored",
-          onClose: () => navigate("/home")
+        Swal.fire("Success", "Staff Login Successful!", "success").then(() => {
+          navigate("/home");
         });
       } else {
-        toast.error("Access Denied: Unknown user role", {
-          position: "top-center",
-          autoClose: 2500,
-          theme: "colored"
-        });
+        Swal.fire("Error", "Access Denied: Unknown user role", "error");
       }
   
     } catch (err) {
-      toast.error("Invalid Credentials", {
-        position: "top-center",
-        autoClose: 2500,
-        theme: "colored"
-      });
+      Swal.fire("Error", "Invalid Credentials", "error");
     }
   }
+
   
   return (
     <div className="bg-custom-o d-flex align-items-center justify-content-center vh-100 bg-light">
@@ -80,7 +83,7 @@ export default function LoginForm() {
 
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              required
+              
             />
           </div>
 
@@ -93,7 +96,7 @@ export default function LoginForm() {
               className="form-control py-4"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              required
+              
             />
           </div>
           <button type="submit" className="btn bg-custom w-100 text-white border py-3 mt-3 fw-bold ">Login</button>

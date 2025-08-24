@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
+
 
 export default function ShowContact() {
     const [contacts, setContacts] = useState([]);
@@ -47,7 +49,7 @@ export default function ShowContact() {
                     "Content-Type": "application/json",
                 }
             });
-            toast.success("Contact deleted successfully");
+            Swal.fire("success","Contact deleted successfully","success");
             fetchContacts();
         } catch (e) {
             toast.error(e.response?.data?.msg || e.message);
@@ -57,7 +59,7 @@ export default function ShowContact() {
     return (
         <div className="container my-5">
             <div className="text-center mb-4">
-                <h2 className="fw-bold text-primary">📞 Contact Management</h2>
+                <h2 className="fw-bold text-primary">Contact Management</h2>
                 <p className="text-muted">Manage all contacts from one place</p>
             </div>
 

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import Swal from 'sweetalert2';
+
 
 export default function StaffCreate() {
   const [departments, setDepartments] = useState([]);
@@ -28,8 +30,7 @@ export default function StaffCreate() {
       const res = await axios.get("http://localhost:4001/Mywork/DepartFetch");
       setDepartments(res.data);
 
-      // Fix: Agar form.designation empty ho aur departments array empty nahi,
-      // to form.designation me pehla department _id set kar do.
+      
       if (!form.designation && res.data.length > 0) {
         setForm(prev => ({ ...prev, designation: res.data[0]._id }));
       }
@@ -59,7 +60,7 @@ export default function StaffCreate() {
         fetchDepartments();
       }
 
-      toast.success("Department added!");
+      Swal.fire("Sucess","Department added!","success");
       setDeptForm({ name: "" });
       setShowModal(false);
     } catch (err) {
@@ -68,11 +69,48 @@ export default function StaffCreate() {
   };
 
   // Staff Add
+  // Staff Add
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // ✅ Validation checks
+    if (!form.name.trim()) {
+      Swal.fire("error","Name is required","error");
+      return;
+    }
+    if (form.name.trim().length < 3) {
+       Swal.fire("error","Name must be at least 3 characters long","error");
+      return;
+    }
+    if (!form.email.trim()) {
+       Swal.fire("error","Email is required","error");
+      return;
+    }
+    if (!/^\d+$/.test(form.phone)) {
+  Swal.fire("Error", "Phone number must contain only digits", "error");
+  return;
+}
+if (form.phone.trim().length < 11) {
+  Swal.fire("Error", "Phone number must be at least 11 digits", "error");
+  return;
+}
+
+    if (!form.password.trim()) {
+       Swal.fire("error","Password is required","error");
+      return;
+    }
+    if (form.password.length < 8) {
+        Swal.fire("error","Password must be at least 8 characters long","error");
+      return;
+    }
+    if (!form.designation) {
+       Swal.fire("error","Please select a department","error");
+      return;
+    }
+
     try {
       await axios.post("http://localhost:4001/Mywork/addstaff", form);
-      toast.success("Staff Registered Successfully!");
+       Swal.fire("success","Staff Registered Successfully!","success");
       setForm({
         name: "",
         email: "",
@@ -103,27 +141,27 @@ export default function StaffCreate() {
           <div className="row">
             <div className="col-md-6 mb-3">
               <label className="form-label">Name</label>
-              <input id="name" value={form.name} onChange={handleChange} required className="form-control" />
+              <input id="name" value={form.name} onChange={handleChange} required className="form-control py-4" placeholder="Enter Name" />
             </div>
             <div className="col-md-6 mb-3">
               <label className="form-label">Email</label>
-              <input id="email" type="email" value={form.email} onChange={handleChange} required className="form-control" />
+              <input id="email" type="email" value={form.email} onChange={handleChange} required className="form-control py-4" placeholder="Enter Email" />
             </div>
             <div className="col-md-6 mb-3">
               <label className="form-label">Phone</label>
-              <input id="phone" value={form.phone} onChange={handleChange} className="form-control" />
+              <input id="phone" value={form.phone} onChange={handleChange} className=" py-4 form-control" placeholder="Enter Phone Numer" />
             </div>
             <div className="col-md-6 mb-3">
               <label className="form-label">Password</label>
-              <input id="password" type="password" value={form.password} onChange={handleChange} required className="form-control" />
+              <input id="password" type="password" value={form.password} onChange={handleChange} required className="form-control py-4" placeholder="Enter Password 8 Digit" />
             </div>
             <div className="col-md-6 mb-3">
               <label className="form-label">Joining Date</label>
-              <input id="joiningDate" type="date" value={form.joiningDate} onChange={handleChange} className="form-control" />
+              <input id="joiningDate" type="date" value={form.joiningDate} onChange={handleChange} className="form-control py-4"  />
             </div>
             <div className="col-md-6 mb-3">
               <label className="form-label">Salary</label>
-              <input id="salary" type="number" value={form.salary} onChange={handleChange} className="form-control" />
+              <input id="salary" type="number" value={form.salary} onChange={handleChange} className="form-control py-4" placeholder="Enter Staff Salary" />
             </div>
             <div className="col-md-12 mb-3">
               <label className="form-label">Designation (Department)</label>
@@ -132,7 +170,7 @@ export default function StaffCreate() {
                 value={form.designation}
                 onChange={handleChange}
                 required
-                className="form-control"
+                className="form-control py-4"
               >
                 <option value="">-- Select Department --</option>
                 {departments.map(dep => (
@@ -144,7 +182,7 @@ export default function StaffCreate() {
             </div>
           </div>
           <div className="">
-            <button type="submit" className="btn bg-custom w-25 text-white fw-medium border-0">Register</button>
+            <button type="submit" className="btn bg-custom w-25 text-white py-3 fw-medium border-0">Register</button>
           </div>
         </div>
       </form>

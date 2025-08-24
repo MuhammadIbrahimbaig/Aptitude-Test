@@ -76,7 +76,7 @@ export default function ServiceGet() {
                 <td>
                   {/* ✅ Modal open trigger */}
                   <button
-                    className="btn btn-warning btn-sm me-2"
+                    className="btn btn-success btn-sm me-2"
                     data-bs-toggle="modal"
                     data-bs-target="#editModal"
                     onClick={() => handleEdit(service)}
