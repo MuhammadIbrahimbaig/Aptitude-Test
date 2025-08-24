@@ -1,100 +1,94 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";  // ✅ Router se import
 
 const ForgotPassword = () => {
-  const [email, setEmail] = useState('');
-  const [status, setStatus] = useState({ loading: false, message: '', error: false });
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState({
+    loading: false,
+    message: "",
+    error: false,
+  });
+
+  const navigate = useNavigate(); // ✅ navigate hook
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setStatus({ loading: true, message: '', error: false });
+    setStatus({ loading: true, message: "", error: false });
 
     try {
-      const response = await fetch('http://localhost:4001/Mywork/forgot-password', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
-      });
+      const response = await fetch(
+        "http://localhost:4001/Mywork/forgot-password",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+        }
+      );
 
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.message || 'Something went wrong');
+        throw new Error(data.message || "Something went wrong");
       }
 
-      setStatus({ loading: false, message: data.message || 'Password reset link sent!', error: false });
+      // ✅ Success message
+      setStatus({
+        loading: false,
+        message: data.message || "OTP sent successfully!",
+        error: false,
+      });
+
+      // ✅ Navigate to Reset Password page with email state
+      navigate("/reset-otp", { state: { email } });
+
     } catch (error) {
       setStatus({ loading: false, message: error.message, error: true });
     }
   };
 
   return (
-    <div style={styles.container}>
-      <form onSubmit={handleSubmit} style={styles.form}>
-        <h2>Forgot Password</h2>
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-300 via-pink-100 to-pink-300">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-md"
+      >
+        <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
+          Forgot Password
+        </h2>
 
+        {/* Email Input */}
         <input
           type="email"
           placeholder="Enter your email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          style={styles.input}
+          className="w-full px-4 py-2 border rounded-xl focus:ring-2 focus:ring-purple-500 focus:outline-none text-gray-700 placeholder-gray-400"
         />
 
-        <button type="submit" style={styles.button} disabled={status.loading}>
-          {status.loading ? 'Sending...' : 'Send Reset Link'}
-        </button>
+        {/* Submit Button */}
+        <div className="d-flex justify-content-center mt-3 ">
+          <button
+            type="submit"
+            className="relative z-[2] after:duration-350 rounded after:delay-150 text-white py-2 overflow-hidden text-base leading-[1.1] font-bold tracking-wide uppercase inline-flex items-center justify-center gap-3 px-6 md:px-7 md:py-3 transition-colors ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-gradient-to-r from-[#1351d8] to-[#9c00ff] after:absolute after:h-full after:w-0 after:bottom-0 after:right-0 after:bg-purple-800 after:-z-1 after:transition-all hover:text-white hover:after:w-full hover:after:left-0 rounded-full"
+            disabled={status.loading}
+          >
+            {status.loading ? "Sending..." : "Send OTP"}
+          </button>
+        </div>
 
+        {/* Status Message */}
         {status.message && (
-          <p style={{ ...styles.message, color: status.error ? 'red' : 'green' }}>
+          <p
+            className={`mt-4 text-sm text-center ${status.error ? "text-red-500" : "text-green-600"
+              }`}
+          >
             {status.message}
           </p>
         )}
       </form>
     </div>
   );
-};
-
-// 🔧 Minimal styling
-const styles = {
-  container: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100vh',
-    background: '#f9f9f9',
-  },
-  form: {
-    padding: '2rem',
-    borderRadius: '8px',
-    background: '#fff',
-    boxShadow: '0 0 10px rgba(0,0,0,0.1)',
-    width: '100%',
-    maxWidth: '400px',
-    textAlign: 'center',
-  },
-  input: {
-    width: '100%',
-    padding: '12px',
-    margin: '12px 0',
-    borderRadius: '4px',
-    border: '1px solid #ccc',
-    fontSize: '16px',
-  },
-  button: {
-    width: '100%',
-    padding: '12px',
-    background: 'orange',
-    color: '#fff',
-    border: 'none',
-    borderRadius: '4px',
-    fontSize: '16px',
-    cursor: 'pointer',
-  },
-  message: {
-    marginTop: '1rem',
-    fontSize: '14px',
-  },
 };
 
 export default ForgotPassword;

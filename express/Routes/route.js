@@ -18,7 +18,17 @@ router.get("/read", protect, uploadMiddleware, Room.Read);
 router.put("/edit/:a", protect, Room.EditRecord);
 router.delete("/remove/:id", protect, Room.DeleteRecord);
 router.post("/create-contact", protect, ContactController.CreateContact);
+// forgot password
+router.post("/forgot-password", UserController.ForgotPassword);
 
+// verify reset otp
+router.post("/verify-reset-otp", UserController.VerifyResetOtp);
+
+// reset password
+router.post("/reset-password", UserController.ResetPassword);
+
+// resend otp
+router.post("/resend-otp", UserController.ResendOtp);
 
 
 
