@@ -140,6 +140,27 @@ export default function Header() {
                     </div>
                 </li>
 
+                <li className="nav-item">
+                    <a
+                        className="nav-link collapsed"
+                        href="#"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapseContact"
+                        aria-expanded="false"
+                        aria-controls="collapseContact"
+                    >
+                        <i className="fa-solid fa-envelope"></i>&nbsp;
+                        <span>Contact</span>
+                    </a>
+
+                    <div id="collapseContact" className="collapse" aria-labelledby="headingContact">
+                        <div className="bg-primary text-white collapse-inner rounded">
+                            <Link to="/Contact" className="collapse-item custom-hover-set">
+                                All
+                            </Link>
+                        </div>
+                    </div>
+                </li>
 
 
 

@@ -12,12 +12,14 @@ const ContactController = require("../Controller/ContactController");
 
 
 
+
 // Ibrahim Routing Section
 router.post("/saveroom", protect, uploadMiddleware, Room.CreateRoom);
 router.get("/read", protect, uploadMiddleware, Room.Read);
 router.put("/edit/:a", protect, Room.EditRecord);
 router.delete("/remove/:id", protect, Room.DeleteRecord);
 router.post("/create-contact", protect, ContactController.CreateContact);
+router.get("/get-contact", protect, ContactController.GetContacts);
 // forgot password
 router.post("/forgot-password", UserController.ForgotPassword);
 
