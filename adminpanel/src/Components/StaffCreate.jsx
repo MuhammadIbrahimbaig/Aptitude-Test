@@ -88,11 +88,11 @@ export default function StaffCreate() {
   };
 
   return (
-    <div className="container mt-4">
+    <div className="container mt-5">
       <ToastContainer />
       <div className="d-flex justify-content-between mb-3">
         <h2>Staff Registration</h2>
-        <button className="btn btn-primary" onClick={() => setShowModal(true)}>
+        <button className="btn btn-primary bg-custom" onClick={() => setShowModal(true)}>
           Add Department
         </button>
       </div>
@@ -144,7 +144,7 @@ export default function StaffCreate() {
             </div>
           </div>
           <div className="">
-            <button type="submit" className="btn bg-custom text-white fw-bold border-0">Register</button>
+            <button type="submit" className="btn bg-custom w-25 text-white fw-medium border-0">Register</button>
           </div>
         </div>
       </form>

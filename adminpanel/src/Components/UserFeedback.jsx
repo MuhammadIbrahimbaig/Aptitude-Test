@@ -76,7 +76,7 @@ export default function UserFeedback() {
       ) : (
         <div className="table-responsive shadow-sm rounded">
           <table className="table table-striped table-hover align-middle text-center">
-            <thead className="bg-primary text-white">
+            <thead className="table-dark text-white">
               <tr>
                 <th>#</th>
                 <th>Name</th>

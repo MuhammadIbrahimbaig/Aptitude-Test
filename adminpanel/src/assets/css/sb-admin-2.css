@@ -13,6 +13,11 @@
  .bg-custom{
   background: linear-gradient(45deg, #020024, #090979, #00D4FF) !important;
  }
+  .bg-custom-o{
+background-image: url('/src/assets/img/gradient-blur-pink-blue-abstract-background_53876-117324.avif');
+background-repeat: no-repeat;
+background-size: cover;
+ }
   
 :root {
   --blue: #4e73df;

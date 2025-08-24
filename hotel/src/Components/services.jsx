@@ -6,22 +6,22 @@ export default function Services() {
   const [services, setServices] = useState([]);
   
 
-  // Gradient color list (har card ka color change hoga)
+  // Gradient color list 
   const gradients = [
-    "from-purple-500 to-pink-500",
+    "from-fuchsia-600 to-purple-600",
     "from-cyan-400 to-blue-600",
+    "from-emerald-400 to-teal-600",
+    "from-red-400 to-orange-500",
+    "from-purple-500 to-pink-500",
     "from-indigo-400 to-purple-600",
+    "from-yellow-400 to-orange-500",
     "from-pink-400 to-red-500",
     "from-teal-400 to-green-500",
-    "from-red-400 to-yellow-500",
     "from-blue-400 to-indigo-600",
     "from-green-400 to-blue-500",
-    "from-emerald-400 to-teal-600",
     "from-orange-400 to-pink-600",
-    "from-yellow-400 to-orange-500",
     "from-sky-400 to-cyan-600",
     "from-lime-400 to-green-600",
-    "from-fuchsia-400 to-purple-600",
     "from-rose-400 to-pink-600",
   ];
 
@@ -39,7 +39,7 @@ export default function Services() {
   }, []);
 
   return (
-    <div className="py-10 bg-slate-50">
+    <div className="py-10">
       <div className="container mx-auto px-4">
         <div className="text-center mb-10">
           <h6 className="text-primary uppercase font-semibold">Our Services</h6>
@@ -56,11 +56,11 @@ export default function Services() {
               return (
             <div
   key={service._id}
-  className="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 flex flex-col"
+  className="bg-white  shadow-lg overflow-hidden rounded-xl transform hover:scale-105 transition duration-300 flex flex-col"
 >
   {/* Gradient Top Section */}
   <div
-    className={`bg-gradient-to-r ${gradient} text-white text-center py-10`}
+    className={`bg-gradient-to-r ${gradient} text-white  shadow-lg rounded-b-xl text-center py-10`}
   >
     <h3 className="text-xl font-bold">{service.title}</h3>
   </div>
@@ -68,7 +68,7 @@ export default function Services() {
   {/* White Bottom Section */}
   <div className="bg-white text-center px-6 py-6 flex flex-col flex-grow">
     {/* Description with 3 line limit */}
-    <p className="text-gray-700 mb-4 line-clamp-3">
+    <p className="text-gray-700 text-[20px] mb-4 line-clamp-3">
       {service.description}
     </p>
 

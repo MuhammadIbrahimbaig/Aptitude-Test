@@ -23,16 +23,17 @@ export default function ServiceAdd() {
     }
   };
 
-  return (
-    <div className="container mt-5">
-      <ToastContainer />
-      <h2 className="mb-4">Add New Service</h2>
-      <form onSubmit={handleSubmit} className="card p-4 shadow-lg rounded-4">
+ return (
+  <div className="container d-flex justify-content-center align-items-center mt-5 pt-5">
+    <ToastContainer />
+    <div className="card p-4 shadow-lg rounded-4 w-100 " style={{ maxWidth: "500px" }}>
+      <h2 className="mb-4 text-center">Add New Service</h2>
+      <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label className="form-label">Service Title</label>
           <input
             type="text"
-            className="form-control"
+            className="form-control py-4"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
@@ -52,10 +53,12 @@ export default function ServiceAdd() {
           ></textarea>
         </div>
 
-        <button type="submit" className="btn btn-primary w-100">
+        <button type="submit" className=" border-0 py-3 btn bg-custom text-white w-100 py-2 fw-medium">
           Add Service
         </button>
       </form>
     </div>
-  );
+  </div>
+);
+
 }

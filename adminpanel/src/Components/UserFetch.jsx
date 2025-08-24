@@ -172,7 +172,7 @@ export default function UserFetch() {
       ) : (
         <div className="table-responsive">
           <table className="table table-bordered table-hover align-middle text-center shadow-sm custom-table">
-            <thead>
+            <thead className='table-dark'>
               <tr>
                 <th>#</th>
                 <th>Name</th>

@@ -61,7 +61,7 @@ export default function DepartFetch() {
             textAlign: "center",
           }}
         >
-          <thead style={{ backgroundColor: "#d0e7ff" }}>
+          <thead className="table-dark">
             <tr>
               <th>#</th>
               <th>Department Name</th>

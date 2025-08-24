@@ -61,35 +61,42 @@ export default function LoginForm() {
   }
   
   return (
-    <div className="container d-flex align-items-center justify-content-center vh-100 bg-light">
+    <div className="bg-custom-o d-flex align-items-center justify-content-center vh-100 bg-light">
       <ToastContainer />
-      <div className="card shadow p-4" style={{ width: '100%', maxWidth: '400px' }}>
-        <h2 className="text-center text-primary mb-4 fw-bold ">Login</h2>
+      <div className="card shadow-lg px-4 pb-4" style={{ width: '100%', maxWidth: '400px' }}>
+        <div className="d-flex justify-content-center">
+          <img src="/src/assets/img/output-onlinepngtools.png" alt="" className="object-cover w-75 " />
+        </div>
+  
+
+
         <form onSubmit={login}>
-          <div className="mb-3">
-            <label className="form-label">Email address</label>
+          <div className="mb-4">
             <input
               type="email"
               name="email"
-              className="form-control"
+              className="form-control py-4"
+              placeholder="Enter your Email"
+
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
             />
           </div>
 
-          <div className="mb-3">
-            <label className="form-label">Password</label>
+          <div className="mb-4">
+           
             <input
               type="password"
               name="password"
-              className="form-control"
+              placeholder="Enter your password "
+              className="form-control py-4"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
-          <button type="submit" className="btn bg-custom w-100 text-white border py-2 fw-bold">Login</button>
+          <button type="submit" className="btn bg-custom w-100 text-white border py-3 mt-3 fw-bold ">Login</button>
         </form>
       </div>
     </div>

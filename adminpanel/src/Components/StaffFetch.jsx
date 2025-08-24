@@ -138,7 +138,7 @@ export default function StaffFetch() {
       <ToastContainer />
       <h2 className="mb-4 text-center">Staff List</h2>
       <table className="table table-bordered table-hover text-center align-middle shadow">
-        <thead style={{ backgroundColor: "#cce5ff" }}>
+        <thead className="table-dark">
           <tr>
             <th>Name</th>
             <th>Email</th>

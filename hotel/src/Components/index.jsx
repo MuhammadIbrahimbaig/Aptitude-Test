@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import Feedback from './Feedback';
 
 const Home = () => {
     const [selectedRoom, setSelectedRoom] = useState(null);
@@ -289,7 +290,9 @@ const Home = () => {
                 
 
             </section>
-
+<section>
+    <Feedback/>
+</section>
 
         </div>
 
