@@ -4,6 +4,8 @@ let { Role   } = require("../Collection/Role");
 let { Department   } = require("../Collection/Department");
 let { Staff   } = require("../Collection/Staff");
 let { Feedback   } = require("../Collection/Feedback");
+let { Service   } = require("../Collection/service");
+
 
 
 
@@ -12,6 +14,64 @@ let bcrypt = require('bcrypt');
 let jwt = require('jsonwebtoken');
 
 let all_pages = {
+
+ Service: async function (req, res) {
+    try {
+      let { title, description } = req.body;
+
+      if (!title || !description) {
+        return res.status(400).json({ msg: "All fields are required" });
+      }
+
+      let newService = new Service({ title, description });
+      await newService.save();
+
+      res.status(201).json({ msg: "Service added successfully", service: newService });
+    } catch (error) {
+      res.status(500).json({ msg: "Server error", error });
+    }
+  },
+
+  ServiceGet:async function (req , res) {
+    try {
+    const services = await Service.find();
+    res.json(services);
+  } catch (error) {
+    res.status(500).json({ msg: "Server error" });
+  }
+  },
+
+  updateService : async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { title, description } = req.body;
+
+    const service = await Service.findByIdAndUpdate(
+      id,
+      { title, description },
+      { new: true }
+    );
+
+    if (!service) return res.status(404).json({ error: "Service not found" });
+
+    res.json(service);
+  } catch (err) {
+    res.status(400).json({ error: "Failed to update service" });
+  }
+},
+
+deleteService : async (req, res) => {
+  try {
+    const { id } = req.params;
+    const service = await Service.findByIdAndDelete(id);
+
+    if (!service) return res.status(404).json({ error: "Service not found" });
+
+    res.json({ message: "Service deleted successfully" });
+  } catch (err) {
+    res.status(400).json({ error: "Failed to delete service" });
+  }
+},
 
   UserFeedback:async function (req,res) {
       try {

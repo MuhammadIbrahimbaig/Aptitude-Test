@@ -12,13 +12,25 @@ const ContactController = require("../Controller/ContactController");
 
 
 
+
 // Ibrahim Routing Section
 router.post("/saveroom", protect, uploadMiddleware, Room.CreateRoom);
 router.get("/read", protect, uploadMiddleware, Room.Read);
 router.put("/edit/:a", protect, Room.EditRecord);
 router.delete("/remove/:id", protect, Room.DeleteRecord);
 router.post("/create-contact", protect, ContactController.CreateContact);
+router.get("/get-contact", protect, ContactController.GetContacts);
+// forgot password
+router.post("/forgot-password", UserController.ForgotPassword);
 
+// verify reset otp
+router.post("/verify-reset-otp", UserController.VerifyResetOtp);
+
+// reset password
+router.post("/reset-password", UserController.ResetPassword);
+
+// resend otp
+router.post("/resend-otp", UserController.ResendOtp);
 
 
 
@@ -46,7 +58,16 @@ router.post("/Feedback", UserController.FeedbackSubmit);
 router.get("/UserFeedback", AdminLogin.UserFeedback);
 router.delete("/UserFeedDelete/:id", AdminLogin.UserFeedDelete);
 router.put("/Userguest/:id", UserController.Userguest);
-router.get("/Userread", UserController.Useread);
+router.get("/Userread", UserController.Useread);  
+router.post("/service", AdminLogin.Service);  
+router.get("/serviceget", AdminLogin.ServiceGet);  
+router.put("/serviceupdate/:id", AdminLogin.updateService);  
+router.delete("/servicedelete/:id", AdminLogin.deleteService);  
+
+
+
+
+
 
 
 

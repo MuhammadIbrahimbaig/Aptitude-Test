@@ -74,9 +74,9 @@ export default function Registration() {
       </div>
 
       {/* Right Side Form */}
-      <div className="col-12 col-md-6 d-flex justify-content-center align-items-center bg-light">
+      <div className="col-12 col-md-6 d-flex justify-content-center align-items-center bg-gradient-to-br from-blue-300 via-pink-100 to-pink-300">
         <div
-          className="shadow p-4 p-md-5 rounded"
+          className="shadow p-4 p-md-5 rounded-4"
           style={{ width: "85%", maxWidth: "420px", backgroundColor: "#fff" }}
         >
           <h5 className="fw-semibold text-center mb-1">
@@ -133,7 +133,7 @@ export default function Registration() {
             </div>
 
             <div className="text-end mb-4">
-              <Link className="text-decoration-none small" to="/Forgot">
+              <Link className="text-decoration-none small" to="/forgot">
                 Forgot Password?
               </Link>
             </div>

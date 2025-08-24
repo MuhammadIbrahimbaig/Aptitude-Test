@@ -2,9 +2,6 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-
-
 
 export default function VerifyOtp() {
   const [email, setEmail] = useState("");
@@ -20,19 +17,8 @@ export default function VerifyOtp() {
         otp
       });
 
-      Swal.fire({
-                 icon: "Success",
-                 title: "Verification Successfully",
-                 text: "Verification Successfully Complete  ",
-                 position: "center",
-                 showConfirmButton: false,
-                 timer: 2000,
-                 width: 400,    
-                 padding: "2rem" 
-               })
-         .then(() => {
-           navigate("/login");
-         });
+      toast.success("OTP Verified Successfully!");
+      navigate("/login"); // Redirect to login or dashboard after verification
     } catch (err) {
       console.error(err);
       toast.error(err?.response?.data?.error || "Verification failed");

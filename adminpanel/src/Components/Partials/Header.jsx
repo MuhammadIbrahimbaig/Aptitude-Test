@@ -134,7 +134,62 @@ export default function Header() {
   </li>
 )}
 
-      </ul>
-    </div>
-  );
+
+                <li className="nav-item">
+                    <a
+                        className="nav-link collapsed"
+                        href="#"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapseContact"
+                        aria-expanded="false"
+                        aria-controls="collapseContact"
+                    >
+                        <i className="fa-solid fa-envelope"></i>&nbsp;
+                        <span>Contact</span>
+                    </a>
+
+                    <div id="collapseContact" className="collapse" aria-labelledby="headingContact">
+                        <div className="bg-primary text-white collapse-inner rounded">
+                            <Link to="/Contact" className="collapse-item custom-hover-set">
+                                All
+                            </Link>
+                        </div>
+                    </div>
+                </li>
+ <li className="nav-item">
+                    <a
+                        className="nav-link collapsed"
+                        href="#"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapseService"
+                        aria-expanded="false"
+                        aria-controls="collapseService"
+                    >
+                   <i class="fa fa-wrench" aria-hidden="true"></i>&nbsp;
+                        <span>Services </span>
+                    </a>
+
+                    <div id="collapseService" className="collapse" aria-labelledby="headingContact">
+                        <div className="bg-primary text-white collapse-inner rounded">
+                            <Link to="/ServiceAdd" className="collapse-item custom-hover-set">
+                                Create
+                            </Link>
+                             <Link to="/ServiceGet" className="collapse-item custom-hover-set">
+                                All
+                            </Link>
+                        </div>
+                    </div>
+                </li>
+
+
+
+
+
+            </ul>
+
+
+
+
+        </div>
+    )
 }

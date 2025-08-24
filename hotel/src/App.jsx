@@ -22,6 +22,8 @@ import Loginform from './Components/login.jsx';
 import VerifyOtp from './Components/Verifyotp.jsx';
 import Feedback from './Components/Feedback.jsx';
 import ForgotPassword from './Components/ForgetPassword.jsx';
+import ResetPassword from './Components/Resetpassword.jsx';
+import ResetOtpVerify from './Components/ResetOtp.jsx';
 
 
 
@@ -36,6 +38,7 @@ function App() {
             <Route path='/login' element={<Loginform />} />
             <Route path='/verify-otp' element={<VerifyOtp />} />
 
+
             <Route path="/" element={<Layout />}>
               <Route path='/home' element={<Home />} />
               <Route path='/about' element={<About />} />
@@ -45,7 +48,9 @@ function App() {
               <Route path="/booking/:room_id" element={<Booking />} />
               <Route path='/contact' element={<Contact />} />
               <Route path='/Feedback' element={<Feedback />} />
-
+              <Route path='/forgot' element={<ForgotPassword />} />
+              <Route path='/reset' element={<ResetPassword />} />
+              <Route path='/reset-otp' element={<ResetOtpVerify />} />
 
             </Route>
           </Routes>

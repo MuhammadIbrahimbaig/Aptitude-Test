@@ -236,6 +236,7 @@ export default function Header() {
                 <Link to="/room" className="text-black font-medium hover:text-blue-800 text-[18px]" style={{ textDecoration: "none" }}>Rooms</Link>
                 <Link to="/testimonal" className="text-black font-medium hover:text-blue-800 text-[18px]" style={{ textDecoration: "none" }}>Testimonial</Link>
                 <Link to="/contact" className="text-black font-medium hover:text-blue-800 text-[18px]" style={{ textDecoration: "none" }}>Contact</Link>
+                 <Link to="/Feedback" className="text-black font-medium hover:text-blue-800 text-[18px]" style={{ textDecoration: "none" }}>Feedback</Link>
 
                 <div className="nav-item dropdown font-medium">
                   <a href="#" className="nav-link font-medium text-black dropdown-toggle" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Account</a>

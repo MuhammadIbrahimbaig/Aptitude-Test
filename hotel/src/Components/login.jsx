@@ -86,7 +86,7 @@ export default function Loginform() {
   
 
   return (
-    <div className="container-fluid vh-100 d-flex align-items-center justify-content-center">
+    <div className="container-fluid vh-100 d-flex align-items-center justify-content-center bg-gradient-to-br from-blue-300 via-pink-100 to-pink-300">
       <ToastContainer />
       <div className="row w-100 shadow rounded overflow-hidden" style={{ maxWidth: "900px" }}>
 
@@ -96,7 +96,6 @@ export default function Loginform() {
         >
           <div className="text-center">
 
-            {/* <h3 className="fw-bold">HotelLOgo</h3> */}
             <div className="">
               <Link
                 to="/home"
