@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Swal from 'sweetalert2';
 
 export const CreateRoom = () => {
     const [room_name, setRoomName] = useState("");
@@ -29,47 +30,85 @@ export const CreateRoom = () => {
         }
     }, [type]);
 
-    const SubmitFunc = async () => {
-        try {
-            const tokendata = localStorage.getItem('token'); // fetch fresh token
+  const SubmitFunc = async () => {
+    // ✅ Basic Validation with SweetAlert
+    if (!roomNumber.trim()) {
+        Swal.fire("Error", "Room Number is required", "error");
+        return;
+    }
+    if (!room_name.trim()) {
+        Swal.fire("Error", "Room Name is required", "error");
+        return;
+    }
+    if (!type) {
+        Swal.fire("Error", "Room Type is required", "error");
+        return;
+    }
+    if (!price || price <= 0) {
+        Swal.fire("Error", "Valid Price is required", "error");
+        return;
+    }
+    if (!status) {
+        Swal.fire("Error", "Room Status is required", "error");
+        return;
+    }
+    if (!features.trim()) {
+        Swal.fire("Error", "Features are required", "error");
+        return;
+    }
+    if (!shortdescription.trim()) {
+        Swal.fire("Error", "Short Description is required", "error");
+        return;
+    }
+    if (!image) {
+        Swal.fire("Error", "Room Image is required", "error");
+        return;
+    }
 
-            const formData = new FormData();
-            formData.append("room_name", room_name);
-            formData.append("room_number", roomNumber);
-            formData.append("type", type);
-            formData.append("price", price);
-            formData.append("capacity", capacity);
-            formData.append("status", status);
-            formData.append("features", features);
-            formData.append("short_description", shortdescription);
-            if (image) {
-                formData.append("image", image);
-            }
+    try {
+        const tokendata = localStorage.getItem('token'); // fetch fresh token
 
-            await axios.post("http://localhost:4001/Mywork/saveroom", formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                    "Authorization": `Bearer ${tokendata}` // use fresh token here
-                }
-            });
-
-            // Clear form inputs
-            setRoomName("");
-            setRoomNumber("");
-            setType("");
-            setPrice("");
-            setCapacity("");
-            setStatus("");
-            setFeatures("");
-            setDescription("");
-            setImage(null);
-            document.getElementById("image").value = null;
-            toast.success("Room Added Successfully");
-        } catch (e) {
-            console.error(e);
-            toast.error(e?.response?.data?.msg || "Something went wrong!");
+        const formData = new FormData();
+        formData.append("room_name", room_name);
+        formData.append("room_number", roomNumber);
+        formData.append("type", type);
+        formData.append("price", price);
+        formData.append("capacity", capacity);
+        formData.append("status", status);
+        formData.append("features", features);
+        formData.append("short_description", shortdescription);
+        if (image) {
+            formData.append("image", image);
         }
-    };
+
+        await axios.post("http://localhost:4001/Mywork/saveroom", formData, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+                "Authorization": `Bearer ${tokendata}` // use fresh token here
+            }
+        });
+
+        // Clear form inputs
+        setRoomName("");
+        setRoomNumber("");
+        setType("");
+        setPrice("");
+        setCapacity("");
+        setStatus("");
+        setFeatures("");
+        setDescription("");
+        setImage(null);
+        document.getElementById("image").value = null;
+
+        // ✅ Success Alert
+        Swal.fire("Success", "Room Added Successfully", "success");
+
+    } catch (e) {
+        console.error(e);
+        Swal.fire("Error", e?.response?.data?.msg || "Something went wrong!", "error");
+    }
+};
+
 
     return (
         <div>

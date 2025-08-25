@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import Swal from 'sweetalert2';
+
 // set
 export default function RoomRead() {
     const [rooms, setRooms] = useState([]);
@@ -54,8 +56,9 @@ export default function RoomRead() {
                 console.log(e)
                 toast.error(e);
             });
+        Swal.fire("Success", "Record Delete Successfully", "success");
 
-            toast.success("Record Deleted Successfully");
+            // toast.success("Record Deleted Successfully");
             ShowData(); // refresh table/list
         } catch (e) {
             toast.error(e.response?.data?.msg || e.message);
@@ -82,7 +85,9 @@ export default function RoomRead() {
                 }
             );
 
-            toast.success("Record Updated Successfully");
+            // toast.success("Record Updated Successfully");
+        Swal.fire("Success", "Record Update Successfully", "success");
+
             ShowData()
 
             // const modal = bootstrap.Modal.getInstance(document.getElementById('editModal'));

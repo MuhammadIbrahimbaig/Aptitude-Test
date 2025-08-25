@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import swal from "sweetalert2";
+import Swal from "sweetalert2";
 
 export default function DepartFetch() {
   const [departments, setDepartments] = useState([]);
@@ -23,7 +25,7 @@ export default function DepartFetch() {
       axios
         .delete(`http://localhost:4001/Mywork/DepartDelete/${id}`)
         .then(() => {
-          alert("Department deleted successfully!");
+          Swal.fire("success","Department deleted successfully!","success");
           fetchDepartments();
         })
         .catch((err) => console.error("Error deleting department", err));
@@ -40,7 +42,8 @@ export default function DepartFetch() {
     axios
       .put(`http://localhost:4001/Mywork/DepartEdit/${editId}`, { name: editName })
       .then(() => {
-        alert("Department updated successfully!");
+               Swal.fire("success","Department Update successfully!","success");
+
         fetchDepartments();
         setEditModal(false);
       })
