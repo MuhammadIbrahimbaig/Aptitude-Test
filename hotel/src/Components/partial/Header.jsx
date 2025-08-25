@@ -234,7 +234,7 @@ export default function Header() {
                 <Link to="/about" className="text-black font-medium hover:text-blue-800 text-[18px]" style={{ textDecoration: "none" }}>About</Link>
                 <Link to="/service" className="text-black font-medium hover:text-blue-800 text-[18px]" style={{ textDecoration: "none" }}>Services</Link>
                 <Link to="/room" className="text-black font-medium hover:text-blue-800 text-[18px]" style={{ textDecoration: "none" }}>Rooms</Link>
-                <Link to="/testimonal" className="text-black font-medium hover:text-blue-800 text-[18px]" style={{ textDecoration: "none" }}>Testimonial</Link>
+               
                 <Link to="/contact" className="text-black font-medium hover:text-blue-800 text-[18px]" style={{ textDecoration: "none" }}>Contact</Link>
                  <Link to="/Feedback" className="text-black font-medium hover:text-blue-800 text-[18px]" style={{ textDecoration: "none" }}>Feedback</Link>
 

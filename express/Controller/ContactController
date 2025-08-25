@@ -17,7 +17,7 @@ let ContactController = {
         }
     },
 
-    // ✅ Get All Contacts
+    // Get All Contacts
     GetContacts: async (req, res) => {
         try {
             const contacts = await Contact.find().sort({ createdAt: -1 }); // latest first
@@ -30,7 +30,7 @@ let ContactController = {
         }
     },
 
-    // ✅ Get Single Contact by ID
+    // Get Single Contact by ID
     GetContactById: async (req, res) => {
         try {
             let { id } = req.params;
@@ -47,7 +47,7 @@ let ContactController = {
         }
     },
 
-    // ✅ Delete Contact
+    //  Delete Contact
     DeleteContact: async (req, res) => {
         try {
             let { id } = req.params;

@@ -158,7 +158,7 @@ const Home = () => {
                                                             />
 
                                                             <small className="book-btn position-absolute start-0 top-100 translate-middle-y btn border-0 btn-primary text-white rounded py-1 px-3 ms-4">
-                                                                ${room.price}/Night
+                                                                Rs. {room.price}/Night
                                                             </small>
                                                         </div>
                                                         <div className="p-4 mt-2">

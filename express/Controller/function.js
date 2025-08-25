@@ -1,4 +1,4 @@
-let { User } = require("../Collection/User");
+let  User = require("../Collection/User");
 let { Role } = require("../Collection/Role");
 let { Feedback } = require("../Collection/Feedback");
 let bcrypt = require("bcrypt");

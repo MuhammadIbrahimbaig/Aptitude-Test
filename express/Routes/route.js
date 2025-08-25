@@ -8,7 +8,7 @@ const InvoiceController = require("../Controller/InvoiceController");
 const uploadMiddleware = require("../Midleware/uploadMiddleware");
 const protect = require("../Midleware/ProtectedRoutes");
 const ContactController = require("../Controller/ContactController");
-const { getRoomCount } = require("../Controller/RoomCount");
+const { getRoomCount, getStaffCount, getUserCount } = require("../Controller/RoomCount");
 
 
 
@@ -16,7 +16,11 @@ const { getRoomCount } = require("../Controller/RoomCount");
 
 
 // Ibrahim Routing Section
-// router.get("/count", protect, getRoomCount);
+router.get("/count", getRoomCount);
+
+router.get("/staffcount", getStaffCount);
+router.get("/usercount", getUserCount);
+
 router.post("/saveroom", protect, uploadMiddleware, Room.CreateRoom);
 router.get("/read", protect, uploadMiddleware, Room.Read);
 router.put("/edit/:a", protect, Room.EditRecord);

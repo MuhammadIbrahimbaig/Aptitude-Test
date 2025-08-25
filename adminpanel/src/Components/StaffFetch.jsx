@@ -13,7 +13,7 @@ export default function StaffFetch() {
     phone: "",
     joiningDate: "",
     salary: "",
-    designation: ""
+    designation: "",
   });
 
   useEffect(() => {
@@ -21,27 +21,40 @@ export default function StaffFetch() {
     fetchDepartments();
   }, []);
 
-  // Fetch all staff
+  // ✅ Fetch all staff
   const fetchStaff = async () => {
     try {
-      const res = await axios.get("http://localhost:4001/Mywork/StaffFetch");
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        console.error("Token missing! User is not logged in.");
+        return;
+      }
+
+      const res = await axios.get("http://localhost:4001/Mywork/StaffFetch", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
       setStaffList(res.data);
     } catch (err) {
-      console.error(err);
+      console.error("Error fetching staff:", err);
     }
   };
 
-  // Fetch all departments
+  // ✅ Fetch all departments
   const fetchDepartments = async () => {
     try {
       const res = await axios.get("http://localhost:4001/Mywork/DepartFetch");
       setDepartments(res.data);
     } catch (err) {
-      console.error(err);
+      console.error("Error fetching departments:", err);
     }
   };
 
-  // Edit click
+  // ✅ Edit click
   const handleEditClick = (staff) => {
     setEditStaff({
       _id: staff._id,
@@ -50,16 +63,16 @@ export default function StaffFetch() {
       phone: staff.phone || "",
       joiningDate: staff.joiningDate ? staff.joiningDate.split("T")[0] : "",
       salary: staff.salary || "",
-      designation: staff.designation?._id || ""
+      designation: staff.designation?._id || "",
     });
   };
 
-  // Input change
+  // ✅ Input change
   const handleChange = (e) => {
     setEditStaff({ ...editStaff, [e.target.name]: e.target.value });
   };
 
-  // Update staff
+  // ✅ Update staff
   const handleUpdate = async () => {
     try {
       await axios.put(
@@ -70,18 +83,18 @@ export default function StaffFetch() {
       document.getElementById("closeModal").click();
       toast.success("Staff updated successfully!", {
         position: "top-center",
-        autoClose: 2000
+        autoClose: 2000,
       });
     } catch (err) {
       console.error(err);
       toast.error("Error updating staff!", {
         position: "top-center",
-        autoClose: 2000
+        autoClose: 2000,
       });
     }
   };
 
-  // Delete staff with confirmation
+  // ✅ Delete staff with confirmation
   const handleDelete = (id) => {
     toast.info(
       <div style={{ textAlign: "center" }}>
@@ -97,14 +110,14 @@ export default function StaffFetch() {
               toast.dismiss();
               toast.success("Staff deleted successfully!", {
                 position: "top-center",
-                autoClose: 2000
+                autoClose: 2000,
               });
             } catch (err) {
               console.error(err);
               toast.dismiss();
               toast.error("Error deleting staff!", {
                 position: "top-center",
-                autoClose: 2000
+                autoClose: 2000,
               });
             }
           }}
@@ -117,7 +130,7 @@ export default function StaffFetch() {
             toast.dismiss();
             toast.info("Delete cancelled", {
               position: "top-center",
-              autoClose: 1500
+              autoClose: 1500,
             });
           }}
         >
@@ -128,7 +141,7 @@ export default function StaffFetch() {
         position: "top-center",
         autoClose: false,
         closeOnClick: false,
-        draggable: false
+        draggable: false,
       }
     );
   };
@@ -189,7 +202,7 @@ export default function StaffFetch() {
         </tbody>
       </table>
 
-      {/* Edit Modal */}
+      {/* ✅ Edit Modal */}
       <div className="modal fade" id="editModal" tabIndex="-1">
         <div className="modal-dialog modal-lg">
           <div className="modal-content">

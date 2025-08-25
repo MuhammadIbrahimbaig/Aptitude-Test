@@ -46,12 +46,12 @@ let BookingController = {
 
       let booking = await Booking.create(bookingData);
 
-      // ✅ Populate user and room data for invoice
+      //  Populate user and room data for invoice
       booking = await Booking.findById(booking._id)
         .populate("user_id", "name email")
         .populate("room_id", "room_name price");
 
-      // ✅ Generate Invoice PDF
+      //  Generate Invoice PDF
       const invoicePath = path.join(__dirname, `../invoices/invoice_${booking._id}.pdf`);
       const doc = new PDFDocument({ size: "A4", margin: 50 });
       doc.pipe(fs.createWriteStream(invoicePath));
@@ -92,7 +92,7 @@ let BookingController = {
       doc.rect(40, boxTop, doc.page.width - 80, 70).fill("#F9FAFB").stroke();
       doc.font("Helvetica-Bold").fontSize(16).fillColor("#111827").text("Total Price", 60, boxTop + 15);
       doc.font("Helvetica-Bold").fontSize(20).fillColor("#16A34A")
-        .text(`$${booking.total_price}`, 400, boxTop + 12, { align: "right" });
+        .text(`Rs. ${booking.total_price}`, 400, boxTop + 12, { align: "right" });
 
       // Footer
       doc.moveDown(6);
@@ -205,12 +205,12 @@ cron.schedule("0 0 * * *", async () => {
         // Room ko cleaning pe daldo
         await Room.findByIdAndUpdate(b.room_id, { status: "cleaning" });
       }
-      console.log(`✅ Auto-checked out ${bookings.length} bookings`);
+      console.log(`Auto-checked out ${bookings.length} bookings`);
     } else {
       console.log("ℹ️ No bookings found for auto-checkout.");
     }
   } catch (err) {
-    console.error("❌Cron error:", err);
+    console.error("Cron error:", err);
   }
 });
 

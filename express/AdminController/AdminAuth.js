@@ -1,8 +1,8 @@
 
-let { User   } = require("../Collection/User");
+let  User    = require("../Collection/User");
 let { Role   } = require("../Collection/Role");
 let { Department   } = require("../Collection/Department");
-let { Staff   } = require("../Collection/Staff");
+let  Staff   = require("../Collection/Staff");
 let { Feedback   } = require("../Collection/Feedback");
 let { Service   } = require("../Collection/service");
 
@@ -161,7 +161,7 @@ StaffRegister: async function (req, res) {
     res.json(staffList);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ msg: "Server error" });
+    res.status(500).json({ msg:err.message });
   }
   },
 

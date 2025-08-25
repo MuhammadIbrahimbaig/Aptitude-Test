@@ -11,5 +11,5 @@ const staffSchema = new mongoose.Schema({
   salary: Number,
   designation: { type: mongoose.Schema.Types.ObjectId, ref: 'Department', required: true }
 });
-const Staff = mongoose.model('Staff', staffSchema);
-module.exports = {  Staff };
+module.exports= mongoose.model('Staff', staffSchema);
+

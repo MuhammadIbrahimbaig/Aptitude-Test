@@ -19,7 +19,7 @@ const ResetPassword = () => {
             const response = await fetch("http://localhost:4001/Mywork/reset-password", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, newPassword: password }), // ✅ backend ke hisaab se
+                body: JSON.stringify({ email, newPassword: password }), //  backend ke hisaab se
             });
 
             const data = await response.json();

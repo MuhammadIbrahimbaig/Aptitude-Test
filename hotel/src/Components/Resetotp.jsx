@@ -18,7 +18,7 @@ export default function ResetOtpVerify() {
             });
 
             toast.success("OTP Verified! Now reset your password.");
-            // ✅ email ko forward karo ResetPassword.jsx ko
+            //  email ko forward karo ResetPassword.jsx ko
             navigate("/reset", { state: { email } });
         } catch (err) {
             console.error(err);
