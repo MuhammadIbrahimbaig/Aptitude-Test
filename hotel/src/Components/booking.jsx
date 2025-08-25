@@ -179,7 +179,7 @@ export default function Booking() {
         <div>
             {/* Header */}
             <div className="container page-header mb-5 p-0 testimonial">
-                <ToastContainer/>
+                <ToastContainer />
                 <div className="container-fluid py-5">
                     <div className="container text-center pb-5">
                         <h1 className="display-3 text-white mb-3 fw-bold">Booking</h1>
@@ -227,11 +227,19 @@ export default function Booking() {
                                     <div className="row g-3">
                                         <div className="col-md-6">
                                             <div className="form-floating">
-                                                <input type="date" className="form-control" id="checkin"
-                                                    value={checkIn} onChange={(e) => setCheckIn(e.target.value)} required />
+                                                <input
+                                                    type="date"
+                                                    className="form-control"
+                                                    id="checkin"
+                                                    value={checkIn}
+                                                    onChange={(e) => setCheckIn(e.target.value)}
+                                                    min={new Date().toISOString().split("T")[0]} // ✅ previous dates disable
+                                                    required
+                                                />
                                                 <label htmlFor="checkin">Check In</label>
                                             </div>
                                         </div>
+
                                         <div className="col-md-6">
                                             <div className="form-floating">
                                                 <input type="date" className="form-control" id="checkout"
@@ -279,13 +287,7 @@ export default function Booking() {
                                             </select>
                                         </div>
 
-                                        <div className="col-12">
-                                            <div className="form-floating">
-                                                <textarea className="form-control" placeholder="Special Request" id="message" style={{ height: '100px' }}
-                                                    value={specialRequest} onChange={(e) => setSpecialRequest(e.target.value)} />
-                                                <label htmlFor="message">Special Request</label>
-                                            </div>
-                                        </div>
+
                                         <div className="col-12">
                                             <div className="alert alert-info text-center fw-bold">
                                                 {totalPrice > 0 ? `Total Price: Rs. ${totalPrice}` : "Select dates to see total price"}

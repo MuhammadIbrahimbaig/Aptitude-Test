@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom";
+import logo from "../../assets/images/logo.png";
+
 export default function Footer() {
     return (
         <div>
@@ -33,12 +36,20 @@ export default function Footer() {
                     <div className="container pb-5">
                         <div className="row g-5">
                             <div className="col-md-6 col-lg-4">
-                                <div className="rounded p-4" style={{ background:"white"}}>
-                                    <a className="text-decoration-none" href="index.html">
-                                        <h1 className="text-white text-uppercase mb-3">LuxuryStay</h1>
-                                    </a>
+                                <div className="rounded p-4" >
+                                    <Link
+                                        to="/home"
+                                        className="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center"
+                                    >
+                                        <img
+                                            src={logo}
+                                            alt="Hotel Logo"
+                                            className="object-fit-cover"
+                                            style={{ height: "120px", width: "280px" }}
+                                        />
+                                    </Link>
                                     <p className="text-white mb-0">
-                                       lorem  build a professional website for your hotel business and grab the attention of new visitors upon your site’s launch.
+                                       Welcome to our Hotel Management System – a modern and user-friendly platform designed to make hotel booking and management easier than ever.
                                     </p>
                                 </div>
                             </div>
@@ -62,22 +73,31 @@ export default function Footer() {
                             </div>
                             <div className="col-lg-5 col-md-12">
                                 <div className="row gy-5 g-4">
-                                    <div className="col-md-6">
-                                        <h6 className="section-title text-start font-medium text-white text-[19px] text-uppercase mb-4">Company</h6>
-                                        <a className="btn btn-link text-decoration-none text-white" href="#">About Us</a>
-                                        <a className="btn btn-link text-decoration-none text-white" href="#">Contact Us</a>
-                                        <a className="btn btn-link text-decoration-none text-white" href="#">Privacy Policy</a>
-                                        <a className="btn btn-link text-decoration-none text-white" href="#">Terms & Condition</a>
-                                        <a className="btn btn-link text-decoration-none text-white" href="#">Support</a>
+                                    <div className="row">
+                                        {/* Usefull Links */}
+                                        <div className="col-md-6">
+                                            <h6 className="section-title text-start font-medium text-white text-[19px] text-uppercase mb-4">
+                                                Usefull Links
+                                            </h6>
+                                            <Link to="/about" className="btn btn-link text-decoration-none text-white">About Us</Link>
+                                            <Link to="/contact" className="btn btn-link text-decoration-none text-white">Contact Us</Link>
+                                            <Link to="/service" className="btn btn-link text-decoration-none text-white">Service</Link>
+
+                                        </div>
+
+                                        {/* Services */}
+                                        <div className="col-md-6">
+                                            <h6 className="section-title text-start font-medium text-white text-[19px] text-uppercase mb-4">
+                                                Services
+                                            </h6>
+                                            <Link to="/services/food" className="btn btn-link text-decoration-none text-white">Food & Restaurant</Link>
+                                            <Link to="/services/spa" className="btn btn-link text-decoration-none text-white">Spa & Fitness</Link>
+                                            <Link to="/services/sports" className="btn btn-link text-decoration-none text-white">Sports & Gaming</Link>
+                                            <Link to="/services/events" className="btn btn-link text-decoration-none text-white">Event & Party</Link>
+                                            <Link to="/services/gym" className="btn btn-link text-decoration-none text-white">GYM & Yoga</Link>
+                                        </div>
                                     </div>
-                                    <div className="col-md-6">
-                                        <h6 className="section-title text-start font-medium text-white text-[19px] text-uppercase mb-4">Services</h6>
-                                        <a className="btn btn-link text-decoration-none text-white" href="#">Food & Restaurant</a>
-                                        <a className="btn btn-link text-decoration-none text-white" href="#">Spa & Fitness</a>
-                                        <a className="btn btn-link text-decoration-none text-white" href="#">Sports & Gaming</a>
-                                        <a className="btn btn-link text-decoration-none text-white" href="#">Event & Party</a>
-                                        <a className="btn btn-link text-decoration-none text-white" href="#">GYM & Yoga</a>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -86,7 +106,7 @@ export default function Footer() {
                         <div className="copyright">
                             <div className="row">
                                 <div className="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                                    &copy; <a className=" border-bottom text-decoration-none"  href="#">LuxaryStay</a>, All Right Reserved.
+                                    &copy; <a className=" border-bottom text-decoration-none" href="#">LuxaryStay</a>, All Right Reserved.
                                 </div>
                                 <div className="col-md-6 text-center text-md-end">
                                     <div className="footer-menu">
