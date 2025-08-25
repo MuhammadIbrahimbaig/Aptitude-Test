@@ -122,10 +122,10 @@ export default function Index() {
                 <div className="row no-gutters align-items-center">
                   <div className="col mr-2">
                     <div className="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                      Earnings (Monthly)
+                      Booking (Monthly)
                     </div>
                     <div className="h5 mb-0 font-weight-bold text-gray-800">
-                      $40,000
+                      PKR 20,000
                     </div>
                   </div>
                   <div className="col-auto">
@@ -143,10 +143,10 @@ export default function Index() {
                 <div className="row no-gutters align-items-center">
                   <div className="col mr-2">
                     <div className="text-xs font-weight-bold text-success text-uppercase mb-1">
-                      Earnings (Annual)
+                     Rooms
                     </div>
                     <div className="h5 mb-0 font-weight-bold text-gray-800">
-                      $215,000
+                     19
                     </div>
                   </div>
                   <div className="col-auto">
@@ -164,12 +164,12 @@ export default function Index() {
                 <div className="row no-gutters align-items-center">
                   <div className="col mr-2">
                     <div className="text-xs font-weight-bold text-info text-uppercase mb-1">
-                      Tasks
+                    Users
                     </div>
                     <div className="row no-gutters align-items-center">
                       <div className="col-auto">
                         <div className="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                          50%
+                          25%
                         </div>
                       </div>
                       <div className="col">
